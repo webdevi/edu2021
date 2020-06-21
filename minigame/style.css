@@ -1,0 +1,48 @@
+body{background-color:rgb(53, 50, 50);}
+header h1{ width:100px; margin:0 auto;background: url('imgs/logo.png') no-repeat;  }
+header, nav, section{max-width:600px;margin:0 auto;}
+
+/* header에 대한 부분 */
+.blind{color:transparent;} 
+header {margin-top:80px;}
+
+/* nav관련부분 */ 
+/* nav{margin-top:30px;margin-bottom:30px;background-color:blueviolet} */
+
+.container{ display:flex;
+            height:100px; 
+            justify-content:center;
+            align-items:center; 
+            /* align-content: center; */
+          }
+.container div{ margin:10px;width:40px;}
+.container div img{width:45x;height:45px;}
+.navcolor{margin:10px; padding:10px;}
+.blue {background:blue;color:white;}
+.yellow {background:yellow;}
+.pink {background:hotpink;}
+
+
+section div {background-color:white;margin-top:5px; border-radius:8px;}
+.items{height:400px; overflow:auto; }
+.items::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+.items div {display:flex;padding:10px 10px 10px 20px;vertical-align: middle;}
+.items div img{width:45px; height:45px; }
+.items div span{ padding:10px 0 0 10px; font-weight: bold;}
+
+/* nav div {position: relative;display:inline-block;width:70px;height:70px; background-color:brown} */ */
+/* nav {display:flex; background-color:red; }
+nav div{width:70px;height:70px;background-color:blue;}
+nav div img{width:65px;height:65px;} */
+
+/* .container {display:flex;background-color: turquoise;}
+.container div {background-color:beige;} */
+/* nav div{width:60px; height:60px; text-align:center; background-color:red;} */
+/* nav span:last-child{padding-right:10px;background-color:red;} */
+/* nav ul, nav ul li{background-color:green;position: relative; display: inline;padding: 0 20px 0 00px;}
+nav ul li img{width:70px;height:70px;}
+nav ul li #f-color{width:100px;height:70px;background-color:aqua; padding:10px;}
+
+.items {height:300px;background-color:yellow;overflow:scroll}    */

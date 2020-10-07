@@ -1,8 +1,7 @@
--- 이름: demo_madang.sql
+-- 이름: madang_demo.sql
 -- 설명
 -- madang 스키마를 생성하고 MADANG 서점 실습테이블과 데이터를 입력한다.
--- 본스크립트는 system 계정에서 실행해야한다.
-
+ 
 
 USE mysql ; 
 
@@ -17,17 +16,7 @@ DROP TABLE IF EXISTS Book,
                      Imported_Book ;
                      
  
-CREATE TABLE Book ( 
-
-SELECT *
-   FROM customer A 
-   
-
--- (2) 손님 이름과 평균 구매액을 출력해준다. 
--- 주문테이블에서 고객ID를 순차적으로 출력과 평균 주문액을 나타낸 테이블OD를 만들고, 고객 테이블CS에서CS.고객 아이디와OD.고객 아이디가 같은 것을 출력한다,
-
--- (3) 주문 테이블에서 총 구매액(TOTAL)을 고객ID가 3이하이고, 고객테이블과 주문테이블에서ID가 같다는 조건하에 화면에 출력한다.
- 
+CREATE TABLE Book (   
   bookid      int PRIMARY KEY,
   bookname    VARCHAR(40),
   publisher   VARCHAR(40),

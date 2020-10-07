@@ -13,8 +13,7 @@ USE madang;
  
 DROP TABLE IF EXISTS Book,
                      Customer,
-                     Orders,
-                     Imported_Book ;
+                     Orders ;
                      
  
 CREATE TABLE Book (   
@@ -69,14 +68,4 @@ INSERT INTO Orders VALUES (7, 4, 8, 13000,  '2014-07-07');
 INSERT INTO Orders VALUES (8, 3, 10, 12000, '2014-07-08'); 
 INSERT INTO Orders VALUES (9, 2, 10, 7000,  '2014-07-09'); 
 INSERT INTO Orders VALUES (10, 3, 8, 13000, '2014-07-10');
- 
-CREATE TABLE Imported_Book (
-  bookid     int ,
-  bookname    VARCHAR(40),
-  publisher   VARCHAR(40),
-  price      int 
-);
-INSERT INTO Imported_Book VALUES(21, 'Zen Golf', 'Pearson', 12000);
-INSERT INTO Imported_Book VALUES(22, 'Soccer Skills', 'Human Kinetics', 15000);
-
  

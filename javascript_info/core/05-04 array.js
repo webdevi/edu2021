@@ -33,15 +33,15 @@ shoppingCart.push("바나나");
 // Rap, Reggae, Classics, Rock-n-Roll
 
 let styles = ["Jazz", "Blues"];
-console.log(styles);
+// console.log(styles);
 styles.push("Rock-n-Roll"); 
-console.log(styles); 
+// console.log(styles); 
 styles[Math.trunc(styles.length /2)] = "Classics";
-console.log(styles);
+// console.log(styles);
 styles.shift();
-console.log(styles);
+// console.log(styles);
 styles.unshift("Rap","Reggae");
-console.log(styles);
+// console.log(styles);
 
  
 
@@ -56,7 +56,7 @@ arr.push(function() {
   alert( this );
 })
 
-console.log(arr);
+//console.log(arr);
 // arr[2](); // ?
 
 
@@ -102,7 +102,7 @@ function sumInput(){
     return sum;
 }
 
-sumInput();
+//sumInput();
 
  
 // 최대합 부분 배열
@@ -126,4 +126,50 @@ sumInput();
 // getMaxSubSum([-1, -2, -3]) = 0;
 // 가능하다면 성능을 고려하여 답안을 작성해 봅시다. 답안은 O(n2) 또는 O(n)까지 가능합니다.
 
-let arr3 = [1, -2, 3, 4, -9, 6] ; 
+let arr3 = [-1, -2, -3]; 
+
+function getMaxSubSum(arr){
+
+    let act = [];
+    let sum = 0;
+    let result = 0;
+  
+    for (let i = 0; i < arr.length ; i++) { 
+       
+        // console.log(`1-loop:  i = ${i} , arr[i] = ${arr[i]} sum = ${sum + arr[i]}`);
+ 
+        sum = arr[i];
+        act.push(sum); 
+        // console.log(act);
+        
+        for(let m = i+1; m<arr.length; m++){
+            
+            // console.log(`ㄴ 2-loop ; ${sum} + ${arr[m]} = ${sum+arr[m]}`);
+            sum += arr[m];
+            act.push(sum);
+            // console.log(act);
+        }
+             
+    }
+    
+    result = Math.max.apply(null, act);
+    if( result <0){
+        act = [];
+        return 0;
+    }
+    else{
+        return result;
+    } 
+}
+
+console.log(`최종...... ${getMaxSubSum(arr3)}`);
+
+
+console.log(getMaxSubSum([-1, 2, 3, -9]) == 5 ); // (강조 표시된 요소들의 합)
+console.log(getMaxSubSum([2, -1, 2, 3, -9]) == 6); //
+console.log(getMaxSubSum([-1, 2, 3, -9, 11]) == 11); //
+console.log(getMaxSubSum([-2, -1, 1, 2]) == 3); //
+console.log(getMaxSubSum([100, -9, 2, -3, 5]) == 100); //
+console.log(getMaxSubSum([1, 2, 3]) == 6 ); // //(모든 요소)
+
+// 해답 : https://ko.javascript.info/array 

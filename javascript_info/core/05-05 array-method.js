@@ -3,15 +3,17 @@ let arr = ["I", "study", "JavaScript"];
 // 인덱스 2부터
 // 0개의 요소를 삭제합니다.
 // 그 후, "complex"와 "language"를 추가합니다.
-arr.splice(2, 0, "complex", "language");
+// arr.splice(2, 0, "complex", "language");
 
-console.log("splice :", arr); // 잘라내기
+// console.log("splice :", arr); // 잘라내기
+ 
+// arr.slice(2,4 );
+
+// console.log("slice :", arr.slice(2,4 ));
+// console.log("slice :", arr); //그대로 
 
 
-arr.slice(2,4 );
 
-console.log("slice :", arr.slice(2,4 ));
-console.log("slice :", arr); //그대로 
 // border-left-width를 borderLeftWidth로 변경하기
 // 중요도: 5
 // "my-short-string"같이 여러 단어를 대시(-)로 구분한 문자열을 카멜 표기법을 사용한 문자열 "myShortString"로 변경해주는 함수를 작성해보세요.
@@ -27,7 +29,36 @@ console.log("slice :", arr); //그대로
 
 // 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
 
-// 해답
+function camelize(str){ 
+    let arr = str.split("-") ;
+    for (let i = 1 ; i < arr.length ; i++ ) { 
+        arr[i] = arr[i].substring(0,1).toUpperCase() + arr[i].substring(1, arr[i].length);
+    }
+    return arr.join("");
+}
+
+console.log(camelize("background-color") == 'backgroundColor');
+console.log(camelize("list-style-image") == 'listStyleImage');
+console.log(camelize("-webkit-transition") == 'WebkitTransition');
+
+ 
+//  해답코드 - map/reduce를 공부하자 
+
+//  function camelize(str) {
+//     return str
+//       .split('-') // splits 'my-long-word' into array ['my', 'long', 'word']
+//       .map(
+//         // capitalizes first letters of all array items except the first one
+//         // converts ['my', 'long', 'word'] into ['my', 'Long', 'Word']
+//         (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+//       )
+//       .join(''); // joins ['my', 'Long', 'Word'] into 'myLongWord'
+//   }
+
+
+
+
+
 // 특정 범위에 속하는 요소 찾기
 // 중요도: 4
 // 배열 arr의 요소 중 a이상 b 이하 범위에 속하는 요소만 골라 새로운 배열에 집어넣고, 해당 요소를 출력해주는 함수 filterRange(arr, a, b)를 작성해봅시다.

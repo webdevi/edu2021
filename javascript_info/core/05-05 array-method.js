@@ -54,9 +54,7 @@ console.log(camelize("-webkit-transition") == 'WebkitTransition');
 //       )
 //       .join(''); // joins ['my', 'Long', 'Word'] into 'myLongWord'
 //   }
-
-
-
+ 
 
 
 // 특정 범위에 속하는 요소 찾기
@@ -75,8 +73,33 @@ console.log(camelize("-webkit-transition") == 'WebkitTransition');
 
 // alert( arr ); // 5,3,8,1 (기존 배열은 변경되지 않았습니다.)
 // 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
+ 
+function filterRange(arr, a, b){
+    let newarr = [];
+    arr.map(num=>{  
+        if(num >= a && num <= b ){
+            newarr.push(num);
+        }
+    });
+    return newarr;
+}
 
-// 해답
+// [해답코드]  *** filter를 잘 활용하자 
+// function filterRange(arr, a, b) {
+//     // 가독성을 위해 표현식을 괄호로 감싸주었습니다.
+//     return arr.filter(item => (a <= item && item <= b));
+// }
+
+let arr2 = [5, 3, 8, 1];
+
+let filtered = filterRange(arr2, 1, 4);
+
+console.log( filtered ); // 3,1 (조건에 맞는 요소)
+
+console.log( arr2 ); // 5,3,8,1 (기존 배열은 변경되지 않았습니다.)
+
+
+
 // 특정 범위에 속하는 요소 찾기(배열 변경하기)
 // 중요도: 4
 // 배열 arr의 요소 중 a와 b 사이에 속하지 않는 요소는 삭제해주는 함수 filterRangeInPlace(arr, a, b)를 작성해보세요. 배열의 모든 요소(i)는 다음 조건을 만족해야 합니다. a ≤ arr[i] ≤ b
@@ -92,7 +115,25 @@ console.log(camelize("-webkit-transition") == 'WebkitTransition');
 // alert( arr ); // [3, 1]
 // 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
 
-// 해답
+function filterRangeInPlace(arr, a, b){
+    // arr = arr.filter(item => (a > item || item < b)) ;
+    // return arr;  // 이건 제거는 아니긴 함
+
+    for(let i = 0 ; i < arr.length ; i++ ){
+        console.log(arr[i]);
+        if(arr[i] < 1 || arr[i] > 4){
+            arr.splice(i, 1);
+        }
+    }
+    return arr;
+}
+
+let arr3 = [5, 3, 8, 1, 2, 10];
+console.log(`filterRangeInPlace(arr3, 1, 4) = ${filterRangeInPlace(arr3, 1, 4)}`);
+console.log(arr3);
+
+
+
 // 내림차순으로 정렬하기
 // 중요도: 4
 // let arr = [5, 2, 1, -10, 8];
@@ -113,7 +154,13 @@ console.log(camelize("-webkit-transition") == 'WebkitTransition');
 
 // alert( sorted ); // CSS, HTML, JavaScript
 // alert( arr ); // HTML, JavaScript, CSS (no changes)
-// 해답
+
+
+
+
+
+
+
 // 확장 가능한 계산기
 // 중요도: 5
 // 기능을 "확장"할 수 있는 계산기 객체를 만들어 주는 생성자 함수 Calculator를 작성해봅시다.

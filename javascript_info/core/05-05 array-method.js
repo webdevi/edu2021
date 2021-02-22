@@ -129,8 +129,8 @@ function filterRangeInPlace(arr, a, b){
 }
 
 let arr3 = [5, 3, 8, 1, 2, 10];
-console.log(`filterRangeInPlace(arr3, 1, 4) = ${filterRangeInPlace(arr3, 1, 4)}`);
-console.log(arr3);
+// console.log(`filterRangeInPlace(arr3, 1, 4) = ${filterRangeInPlace(arr3, 1, 4)}`);
+// console.log(arr3);
 
 
 
@@ -155,8 +155,26 @@ console.log(arr3);
 // alert( sorted ); // CSS, HTML, JavaScript
 // alert( arr ); // HTML, JavaScript, CSS (no changes)
 
+function copySorted(arr){
+    let arr_t =  [];
+    for(let key of arr){
+        console.log(`key = ${key}`);
+        arr_t.push(key);
+    } 
+     
+    return arr_t.sort(); 
+}
+// // 해답코드 --- 역시 해답코드라 깔꿈하군
+// function copySorted(arr) {
+//     return arr.slice().sort();
+//   }
 
+let arr4 = ["HTML", "JavaScript", "CSS"];
 
+let sorted = copySorted(arr4);
+
+console.log( sorted ); // CSS, HTML, JavaScript
+console.log( arr4 ); // HTML, JavaScript, CSS (no changes)
 
 
 
@@ -167,14 +185,18 @@ console.log(arr3);
 
 // Calculator는 두 단계를 거쳐 만들 수 있습니다.
 
-// 첫 번째 단계는 "1 + 2"와 같은 문자열을 받아서 “숫자 연산자 숫자” 형태(공백으로 구분)로 바꿔주는 메서드 calculate(str)를 구현하는 것입니다. 이 함수는 +와 -를 처리할 수 있어야 하고, 연산 결과를 반환해야 합니다.
+// 첫 번째 단계는 "1 + 2"와 같은 문자열을 받아서 “숫자 연산자 숫자” 형태(공백으로 구분)로 바꿔주는 메서드 calculate(str)를 구현하는 것입니다. 
+// 이 함수는 +와 -를 처리할 수 있어야 하고, 연산 결과를 반환해야 합니다.
 
 // 예시:
 
 // let calc = new Calculator;
 
 // alert( calc.calculate("3 + 7") ); // 10
-// 두 번째 단계는 계산기가 새로운 연산을 학습할 수 있도록 해주는 메서드 addMethod(name, func)를 추가해 주는 것입니다. 연산자 이름을 나타내는 name과 인수가 두개인 익명 함수 func(a,b)를 받는 새 메서드를 구현해야 하죠.
+
+
+// 두 번째 단계는 계산기가 새로운 연산을 학습할 수 있도록 해주는 메서드 addMethod(name, func)를 추가해 주는 것입니다. 
+// 연산자 이름을 나타내는 name과 인수가 두개인 익명 함수 func(a,b)를 받는 새 메서드를 구현해야 하죠.
 
 // 구현된 메서드를 이용해 곱셈 *과 나눗셈 /, 거듭제곱 **연산자를 추가해주는 예시는 아래와 같습니다.
 
@@ -192,7 +214,26 @@ console.log(arr3);
 // 에러 핸들링을 위한 코드를 추가해도 좋습니다(선택 사항).
 // 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
 
-// 해답
+let calc = new Calculator;
+
+function Calculator() {
+    calculate = function(){
+        let arr = [];
+        arr = this.split(" ");
+        return arr; 
+    }
+} 
+
+console.log("3 + 7".split(""));
+console.log(calc.calculate("3 + 7"));
+
+
+
+
+
+
+
+
 // 이름 매핑하기
 // 중요도: 5
 // name을 나타내는 프로퍼티를 가진 객체 user가 담긴 배열이 있습니다. name의 값만 담은 새로운 배열을 만들어주는 코드를 작성해보세요.
@@ -256,7 +297,10 @@ console.log(arr3);
 // alert(arr[0].name); // John
 // alert(arr[1].name); // Mary
 // alert(arr[2].name); // Pete
-// 해답
+
+
+
+
 // 배열 요소 무작위로 섞기
 // 중요도: 3
 // 배열의 요소를 무작위로 섞어주는 함수 shuffle(array)을 작성해 보세요.
@@ -274,9 +318,18 @@ console.log(arr3);
 // shuffle(arr);
 // // arr = [3, 1, 2]
 // // ...
-// 문제를 풀 때 주의할 점은 모든 순열이 동일한 확률로 일어나야 한다는 점입니다. 예를 들어 [1,2,3] 은 [1,2,3]이나 [1,3,2], [3,1,2]로 재정렬 될 수 있는데, 이 배열들이 만들어지는 빈도는 같아야 합니다.
+// 문제를 풀 때 주의할 점은 모든 순열이 동일한 확률로 일어나야 한다는 점입니다. 
+// 예를 들어 [1,2,3] 은 [1,2,3]이나 [1,3,2], [3,1,2]로 재정렬 될 수 있는데, 이 배열들이 만들어지는 빈도는 같아야 합니다.
 
-// 해답
+
+
+
+
+
+
+
+
+
 // 평균 나이 구하기
 // 중요도: 4
 // age를 나타내는 프로퍼티를 가진 객체가 여러 개 담긴 배열이 있습니다. 평균 나이를 반환해주는 함수 getAverageAge(users)를 작성해보세요.
@@ -292,7 +345,15 @@ console.log(arr3);
 // let arr = [ john, pete, mary ];
 
 // alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
-// 해답
+
+
+
+
+
+
+
+
+
 // 중복 없는 요소 찾아내기
 // 중요도: 4
 // arr은 배열입니다.

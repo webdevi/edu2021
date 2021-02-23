@@ -214,24 +214,69 @@ console.log( arr4 ); // HTML, JavaScript, CSS (no changes)
 // 에러 핸들링을 위한 코드를 추가해도 좋습니다(선택 사항).
 // 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
 
-let calc = new Calculator;
+// let calc = new Calculator;
+// calc.addMethod  =function(name, func){
+//     console.log("test");
+// }
+
+
+// calc.calculate = function(str){
+    
+//     console.log(str);
+//     let stradr = {};
+//     stradr= str.split(" ");
+//     console.log(stradr);
+
+//     this.addMethod(stradr[1], (stradr[0], stradr[2]))k;
+
+//     return this; 
+    
+// }
+
+// function Calculator() {
+    
+// } 
+
+
+// // let powerCalc = new Calculator;
+// // powerCalc.addMethod("*", (a, b) => a * b);
+// // powerCalc.addMethod("/", (a, b) => a / b);
+// // powerCalc.addMethod("**", (a, b) => a ** b)
+
+
+
+// [ 해답코드 ]
 
 function Calculator() {
-    calculate = function(){
-        let arr = [];
-        arr = this.split(" ");
-        return arr; 
-    }
-} 
 
-console.log("3 + 7".split(""));
-console.log(calc.calculate("3 + 7"));
+    this.methods = {
+      "-": (a, b) => a - b,
+      "+": (a, b) => a + b
+    };
+  
+    this.calculate = function(str) {
+  
+      let split = str.split(' '),
+        a = +split[0],
+        op = split[1],
+        b = +split[2];
+  
+      if (!this.methods[op] || isNaN(a) || isNaN(b)) {
+        return NaN;
+      }
+  
+      return this.methods[op](a, b);
+    };
+  
+    this.addMethod = function(name, func) {
+      this.methods[name] = func;
+    };
+  }
+ 
+  let calc = new Calculator;
 
-
-
-
-
-
+  console.log("3 + 7".split(""));
+  console.log(calc.calculate("3 + 7"));
 
 
 // 이름 매핑하기

@@ -37,9 +37,9 @@ function camelize(str){
     return arr.join("");
 }
 
-console.log(camelize("background-color") == 'backgroundColor');
-console.log(camelize("list-style-image") == 'listStyleImage');
-console.log(camelize("-webkit-transition") == 'WebkitTransition');
+// console.log(camelize("background-color") == 'backgroundColor');
+// console.log(camelize("list-style-image") == 'listStyleImage');
+// console.log(camelize("-webkit-transition") == 'WebkitTransition');
 
  
 //  해답코드 - map/reduce를 공부하자 
@@ -94,9 +94,9 @@ let arr2 = [5, 3, 8, 1];
 
 let filtered = filterRange(arr2, 1, 4);
 
-console.log( filtered ); // 3,1 (조건에 맞는 요소)
+// console.log( filtered ); // 3,1 (조건에 맞는 요소)
 
-console.log( arr2 ); // 5,3,8,1 (기존 배열은 변경되지 않았습니다.)
+// console.log( arr2 ); // 5,3,8,1 (기존 배열은 변경되지 않았습니다.)
 
 
 
@@ -158,7 +158,7 @@ let arr3 = [5, 3, 8, 1, 2, 10];
 function copySorted(arr){
     let arr_t =  [];
     for(let key of arr){
-        console.log(`key = ${key}`);
+        // console.log(`key = ${key}`);
         arr_t.push(key);
     } 
      
@@ -173,8 +173,8 @@ let arr4 = ["HTML", "JavaScript", "CSS"];
 
 let sorted = copySorted(arr4);
 
-console.log( sorted ); // CSS, HTML, JavaScript
-console.log( arr4 ); // HTML, JavaScript, CSS (no changes)
+// console.log( sorted ); // CSS, HTML, JavaScript
+// console.log( arr4 ); // HTML, JavaScript, CSS (no changes)
 
 
 
@@ -273,10 +273,9 @@ function Calculator() {
     };
   }
  
-  let calc = new Calculator;
-
-  console.log("3 + 7".split(""));
-  console.log(calc.calculate("3 + 7"));
+  //let calc = new Calculator;
+ 
+  //console.log(calc.calculate("3 + 7"));
 
 
 // 이름 매핑하기
@@ -294,7 +293,33 @@ function Calculator() {
 // let names = /* 여기에 코드를 작성하세요. */
 
 // alert( names ); // John, Pete, Mary
-// 해답
+
+
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 28 };
+
+let users = [ john, pete, mary ];
+ 
+ 
+// 1) 최초 
+// users.forEach(element => {
+//   names.push(element.name) ;
+// }) ; 
+
+// 2)map 이용 
+let names = users.map(function(person){
+  return person.name;
+  // console.log(person.name);
+});
+// console.log(names);
+// 3) map에서 익명함수 
+let names2 = users.map((person) =>  person.name);
+// console.log(names2);
+
+ 
+
+
 // 객체 매핑하기
 // 중요도: 5
 // 세 개의 프로퍼티 name과 surname, id를 가진 객체 user가 담긴 배열이 있습니다.
@@ -322,8 +347,43 @@ function Calculator() {
 // alert( usersMapped[0].id ) // 1
 // alert( usersMapped[0].fullName ) // John Smith
 // 문제를 해결하려면 배열을 새로운 배열로 매핑해야 합니다. 힌트를 하나 드리자면 =>를 이용하는 것입니다.
+ 
+let john2 = { name: "John", surname: "Smith", id: 1 };
+let pete2 = { name: "Pete", surname: "Hunt", id: 2 };
+let mary2 = { name: "Mary", surname: "Key", id: 3 };
 
-// 해답
+let users10 = [ john2, pete2, mary2 ];
+
+let usersMapped = users10.map((person )=>{
+    // console.log(person); 
+    // console.log(person.name + " " + person.surname); 
+    let arr10 = {};  
+    arr10["fullName"] = person.name + " " + person.surname;
+    arr10["id"] = person.id;
+    return arr10;  
+});   /* 여기에 코드를 작성하세요. */
+
+// 해답 코드 **** 깔끔하군 
+// let usersMapped = users.map(user => ({
+//   fullName: `${user.name} ${user.surname}`,
+//   id: user.id
+// }));
+
+// /*
+// usersMapped = [
+//   { fullName: "John Smith", id: 1 },
+//   { fullName: "Pete Hunt", id: 2 },
+//   { fullName: "Mary Key", id: 3 }
+// ]
+// */
+
+// console.log( usersMapped[0].id ) // 1
+// console.log( usersMapped[0].fullName ) // 
+
+ 
+
+
+
 // 나이를 기준으로 객체 정렬하기
 // 중요도: 5
 // 프로퍼티 age가 있는 객체가 담긴 배열이 있습니다. 이 배열을 age를 기준으로 정렬해주는 함수 sortByAge(users)를 만들어보세요.
@@ -344,6 +404,41 @@ function Calculator() {
 // alert(arr[2].name); // Pete
 
 
+let john11 = { name: "John", age: 25 };
+let pete11 = { name: "Pete", age: 30 };
+let mary11 = { name: "Mary", age: 28 };
+
+let arr12 = [ pete11, john11, mary11 ];
+
+ 
+// function sortByAge(arr){ 
+//    return arr.sort(function (a, b) {
+//     if (a.age > b.age) {
+//       return 1;
+//     }
+//     if (a.age < b.age) {
+//       return -1;
+//     }
+//     // a must be equal to b
+//     return 0;
+//   }); 
+  
+// }
+
+// 해답코드  *** 깔꼼하군 
+function sortByAge(arr) {
+  arr.sort((a, b) => a.age - b.age);
+}
+
+
+sortByAge(arr12);
+
+// // now: [john, mary, pete]
+console.log(arr12[0].name); // John
+console.log(arr12[1].name); // Mary
+console.log(arr12[2].name); // Pete
+
+ 
 
 
 // 배열 요소 무작위로 섞기

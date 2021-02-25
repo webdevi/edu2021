@@ -434,9 +434,9 @@ function sortByAge(arr) {
 sortByAge(arr12);
 
 // // now: [john, mary, pete]
-console.log(arr12[0].name); // John
-console.log(arr12[1].name); // Mary
-console.log(arr12[2].name); // Pete
+// console.log(arr12[0].name); // John
+// console.log(arr12[1].name); // Mary
+// console.log(arr12[2].name); // Pete
 
  
 
@@ -460,6 +460,47 @@ console.log(arr12[2].name); // Pete
 // // ...
 // 문제를 풀 때 주의할 점은 모든 순열이 동일한 확률로 일어나야 한다는 점입니다. 
 // 예를 들어 [1,2,3] 은 [1,2,3]이나 [1,3,2], [3,1,2]로 재정렬 될 수 있는데, 이 배열들이 만들어지는 빈도는 같아야 합니다.
+
+ 
+
+let arr5 = [1, 2, 3];
+
+// //  피셔-예이츠 셔플(Fisher-Yates shuffle) 알고리즘 - 애 안되는걸까?
+// function shuffle(arr){
+  
+//   const strikeOut = [];
+//   while(arr.length){
+//     const lastIdx = arr.length-1;
+//     let roll = Math.floor(Math.random()*arr.length);
+//     let temp = arr[lastIdx];
+//     arr[lastIdx] = arr[roll];
+//     arr[roll] = temp;
+//     strikeOut.push(arr.pop());
+//   }
+// return strikeOut;
+// }
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+shuffle(arr5);
+console.log(arr5);
+
+shuffle(arr5);
+console.log(arr5);
+
+shuffle(arr5);
+console.log(arr5);
+// // arr = [3, 2, 1]
+
+// console.log(shuffle(arr5));
+// // // arr = [2, 1, 3]
+
+// console.log(shuffle(arr5));
 
 
 

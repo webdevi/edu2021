@@ -462,8 +462,42 @@ sortByAge(arr12);
 // 예를 들어 [1,2,3] 은 [1,2,3]이나 [1,3,2], [3,1,2]로 재정렬 될 수 있는데, 이 배열들이 만들어지는 빈도는 같아야 합니다.
 
  
+// 1) 가장 간단한 방법 
+//    그런데 배열이 일정하지 않고, 결과가 한쪽으로 쏠림 
+// function shuffle(array) {
+//   array.sort(() => Math.random() - 0.5);
+// }
 
-let arr5 = [1, 2, 3];
+// 2) 해답 -  피셔-예이츠 셔플(Fisher-Yates shuffle)은 “정렬” 연산도 없기 때문에 성능상 이점도 있습니다.
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// // 1, 2, 3으로 만들 수 있는 모든 순열의 빈도를 세줍니다.
+// let count = {
+//   '123': 0,
+//   '132': 0,
+//   '213': 0,
+//   '231': 0,
+//   '321': 0,
+//   '312': 0
+// };
+
+// for (let i = 0; i < 1000000; i++) {
+//   let array = [1, 2, 3];
+//   shuffle(array);
+//   count[array.join('')]++;
+// }
+
+// // 만들 수 있는 모든 순열의 생성 빈도를 세서 출력해줍니다.
+// for (let key in count) {
+//   console.log(`${key}: ${count[key]}`);
+// }
+
+ 
 
 // //  피셔-예이츠 셔플(Fisher-Yates shuffle) 알고리즘 - 애 안되는걸까?
 // function shuffle(arr){
@@ -480,33 +514,33 @@ let arr5 = [1, 2, 3];
 // return strikeOut;
 // }
 
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
+// function shuffle(array) {
+//   let tmparr = [];
+  
+//   Object.assign(tmparr, array);
+//   for (let i = tmparr.length - 1; i > 0; i--) {
+//     let j = Math.floor(Math.random() * (i + 1));
+//     [tmparr[i], tmparr[j]] = [tmparr[j], tmparr[i]];
+//   }
+//   return tmparr;
+// }
 
-shuffle(arr5);
-console.log(arr5);
-
-shuffle(arr5);
-console.log(arr5);
-
-shuffle(arr5);
-console.log(arr5);
-// // arr = [3, 2, 1]
-
+// // shuffle(arr5);
 // console.log(shuffle(arr5));
+
+// // shuffle(arr5);
+// console.log(shuffle(arr5));
+
+// // shuffle(arr5);
+// console.log(shuffle(arr5));
+// // // arr = [3, 2, 1]
+
+// // console.log(shuffle(arr5));
 // // // arr = [2, 1, 3]
 
 // console.log(shuffle(arr5));
 
-
-
-
-
-
+ 
 
 
 
@@ -528,8 +562,32 @@ console.log(arr5);
 // alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
 
 
+// function getAverageAge(users){
+//     let sum =0 ;
+//     for (let user of users) {
+//       sum += user.age; 
+//     }
+//     return sum / users.length; 
+// }
+// 해답코드 
+// function getAverageAge(users) {
+//   return users.reduce((prev, user) => prev + user.age, 0) / users.length;
+// }
 
+ 
+function getAverageAge(users){
+  
+  return users.reduce((sum, val) => sum + val.age, 0) / users.length; // 객체인 경우 초기값(0)을 넣으면됨.
 
+}
+
+let johns = { name: "John", age: 30 };
+let petes = { name: "Pete", age: 20 };
+let marys = { name: "Mary", age: 10 };
+
+let arr_users = [ johns, petes, marys ];
+
+// console.log( Math.floor(getAverageAge(arr_users)) );
 
 
 
@@ -554,7 +612,13 @@ console.log(arr5);
 // alert( unique(strings) ); // Hare, Krishna, :-O
 // 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
 
-// 해답
+function unique(arr){
+  
+}
+
+
+
+
 // Create keyed object from array
 // 중요도: 4
 // Let’s say we received an array of users in the form {id:..., name:..., age... }.

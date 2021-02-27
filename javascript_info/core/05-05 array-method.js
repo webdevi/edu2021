@@ -587,7 +587,7 @@ let marys = { name: "Mary", age: 10 };
 
 let arr_users = [ johns, petes, marys ];
 
-// console.log( Math.floor(getAverageAge(arr_users)) );
+//aconsole.log( Math.floor(getAverageAge(arr_users)) );
 
 
 
@@ -612,13 +612,49 @@ let arr_users = [ johns, petes, marys ];
 // alert( unique(strings) ); // Hare, Krishna, :-O
 // 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
 
+let strings = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+]; 
+
+// function unique(arr){
+//   let tmp = [];  
+//   arr.map((item, index, arrs)=>{
+//     let i = 0 ;
+//     let a = 0;
+//     for (key of arrs) {
+//       // console.log(`item : ${item}  key = ${key} index = ${index} i = ${i}`);
+//       if(index !== i ){
+//           if(key === item){
+//             a++;
+//             break;
+//           } 
+//       } 
+//       i++;
+//     }
+//     if(a === 0) {
+//       console.log(item);
+//       tmp.push(item);
+//     }
+//   });
+
+//   return tmp;
+// }
 function unique(arr){
-  
+  let result = [];
+  // arr.includes(item, from)는 인덱스 from부터 시작해 item이 있는지를 검색하는데, 해당하는 요소를 발견하면 true를 반환합니다.
+  for (let str of arr) {
+    if (!result.includes(str)) {
+      result.push(str);
+    }
+  }
+
+  return result;
 }
+//unique(strings);
+// console.log(unique(strings));
 
 
-
-
+ 
 // Create keyed object from array
 // 중요도: 4
 // Let’s say we received an array of users in the form {id:..., name:..., age... }.
@@ -649,8 +685,28 @@ function unique(arr){
 // In this task we assume that id is unique. There may be no two array items with the same id.
 
 // Please use array .reduce method in the solution.
+let users2 = [
+  {id: 'john', name: "John Smith", age: 20},
+  {id: 'ann', name: "Ann Smith", age: 24},
+  {id: 'pete', name: "Pete Peterson", age: 31},
+];
 
-// 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
+// function groupById(arr){
+//   return arr.reduce((result, value)=>{
+//     //  result.id = value.id;
+//     result[value.id] = value;
+//     return result;
 
-// 해답
-// 댓글
+//   });
+// }
+
+function groupById(array) {
+  return array.reduce((obj, value) => {
+    obj[value.id] = value;
+    return obj;
+  }, {}) // 초기 값 
+}
+//groupById(users2);
+
+ let usersById = groupById(users2);
+ console.log(usersById);

@@ -1,0 +1,73 @@
+html{
+    font-family:'Noto Sans KR', sans-serif;
+}
+body{
+    margin:0;
+}
+div, section, header, footer,figure, p, h1, h2{
+    box-sizing :border-box; /* 내부 패딩 포함되도록 */ 
+}
+img{
+    max-width:100%; /* 반응형에 잘 돌아갈 수있도록 설정 */ 
+    height:auto; 
+}
+
+.global-width{
+    max-width:620px;
+    margin:0 auto; /*가운데 정렬*/ 
+    padding:0 20px; 
+       /* 기본16px */
+}
+.scroll-graphic{
+    position:sticky;
+    top: 0;
+    height:100vh;
+}
+.graphic-item{
+    /* 화면에 꽉차고, 가운데정렬 */
+    display:flex; 
+    align-items:center;
+    justify-content:center;
+
+    position:absolute;
+    left:0;
+    top :0; 
+
+    width:100%;
+    height:100%;
+    background:pink;
+    opacity:0;
+} 
+.visible{
+    opacity:1;
+    transition:0.5s;
+}
+.graphic-item img{
+    max-height:100vh;
+}
+.scroll-text{
+    position:relative; 
+}
+
+.step{
+    background:rgba(255, 255, 255, 0.8);
+    padding:0.5rem 1rem; 
+    border-radius: 10px;
+    margin-bottom:60vh;
+    box-shadow:rgba(0, 0, 0, 0.9) 0 0 3px;
+}
+
+footer{
+    margin:0 auto; 
+    height:100px;
+    background:skyblue;
+}
+/* footer div{
+    background:red;
+    margin:0 auto;
+    height:100%; 
+} */
+.footer{
+    margin-top:30px;
+    background:yellow;
+}

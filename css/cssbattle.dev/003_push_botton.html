@@ -1,0 +1,61 @@
+.square{  
+    position:relative;
+    z-index:2;
+    top:0;
+    width: 300px;
+    height: 150px; 
+     
+    background:#112211;  
+     
+  }   
+  
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+
+
+  <div id="container">
+    <div class="circle"></div>
+    <div class="square"></div>
+ 
+    
+  <!--  <div class="square"></div> -->
+ </div>
+    <div class="mini-circle"></div> 
+ <style>
+   body{
+     background:#6592CF;  
+    
+   }
+   #container{
+     background:pink;
+       display:flex;
+     align-items:center;
+     justify-content:center; 
+   }
+  
+ .circle{  
+     width: 150px;
+     height: 150px; 
+     border-radius:50%;     
+     background:#243D83;
+     border:50px solid #6592CF;
+     
+     position:relative;
+     z-index;1;
+     top:0;
+   }
+   .mini-circle{
+     background:#EEB850;
+     width:50px;
+     height:50px;
+     border-radius:50%;  
+     position:absolute;
+     top:50%;
+     left:50%;
+     transform:translate(-50%, -50%); 
+   }
+   
+ </style>
+ 

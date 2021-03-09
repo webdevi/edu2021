@@ -66,9 +66,22 @@ function getWeekDay(date) {
 
 // let date = new Date(2019, 11, 5);  // 2019년 11월 5일
 // alert( getLocalDay(date) );       // 금요일이므로, 5가 출력되어야 함
-// 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
 
-// 해답
+let date = new Date(2021,2,12);  // 2019년 11월 5일
+
+console.log(date.getDay());
+ 
+function getLocalDay(dt){
+  let d = dt.getDay();
+  if(d === 0 ) return 7;
+  else 
+    return d;
+}
+
+console.log(getLocalDay(date));
+ 
+
+
 // n일 전 '일' 출력하기
 // 중요도: 4
 // date를 기준으로 days일 전 '일’을 반환하는 함수 getDateAgo(date, days)를 만들어보세요,
@@ -84,9 +97,12 @@ function getWeekDay(date) {
 // alert( getDateAgo(date, 365) ); // 2, (2014년 1월 2일)
 // 주의: 함수는 date를 변경하지 않아야 합니다.
 
-// 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
 
-// 해답
+
+
+
+
+
 // 달의 마지막 일
 // 중요도: 5
 // 특정 달의 마지막 일을 반환하는 함수 getLastDayOfMonth(year, month)를 작성해보세요. 반환 값은 30이나 31, 29(2월), 28(2월)이 될 겁니다.

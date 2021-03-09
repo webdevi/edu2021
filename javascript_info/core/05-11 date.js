@@ -5,7 +5,7 @@
 
 // 그리고 alert 함수를 이용해 생성한 객체를 출력하세요.
 let t = new Date(2012, 2, 20, 3, 12 );
-console.log(t);
+// console.log(t);
 
 
 
@@ -20,7 +20,7 @@ console.log(t);
 // 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
 
 let date2 = new Date(2021, 2, 7);  // 2012년 1월 3일
-console.log(getWeekDay(date2) );        // "TU"가 출력되어야 합니다.
+// console.log(getWeekDay(date2) );        // "TU"가 출력되어야 합니다.
  
 // function getWeekDay(dt){
 //     console.log(dt.getDay());
@@ -69,7 +69,7 @@ function getWeekDay(date) {
 
 let date = new Date(2021,2,12);  // 2019년 11월 5일
 
-console.log(date.getDay());
+// console.log(date.getDay());
  
 function getLocalDay(dt){
   let d = dt.getDay();
@@ -78,7 +78,7 @@ function getLocalDay(dt){
     return d;
 }
 
-console.log(getLocalDay(date));
+// console.log(getLocalDay(date));
  
 
 
@@ -97,10 +97,18 @@ console.log(getLocalDay(date));
 // alert( getDateAgo(date, 365) ); // 2, (2014년 1월 2일)
 // 주의: 함수는 date를 변경하지 않아야 합니다.
 
+let date3 = new Date(2015, 0, 2);
 
+function getDateAgo(dt, ago){
+  let nd = new Date(dt);  
+  nd.setDate(dt.getDate()-ago);
 
+  return nd.getDate();
+}
 
-
+// console.log( getDateAgo(date3, 1) ); // 1, (2015년 1월 1일)
+// console.log( getDateAgo(date3, 2) ); // 31, (2014년 12월 31일)
+// console.log( getDateAgo(date3, 365) );
 
 
 // 달의 마지막 일
@@ -113,9 +121,23 @@ console.log(getLocalDay(date));
 // month – 월(0부터 11)
 // 윤년인 2012년의 2월은 29가 반환되어야 합니다. getLastDayOfMonth(2012, 1) = 29
 
-// 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.
 
-// 해답
+function getLastDayOfMonth(year, month){
+  let dt = new Date(year, month, 1);
+  // console.log(dt.toLocaleDateString()); 
+  return getDateAgo(dt, 1);
+}
+//해답코드 --------------- 맨 끝에 0을 넣으면 되는군
+// function getLastDayOfMonth(year, month) {
+//   let date = new Date(year, month + 1, 0);
+//   return date.getDate();
+// }
+ 
+// console.log(getLastDayOfMonth(2012, 1) );
+// console.log(getLastDayOfMonth(2012, 2) );
+
+
+
 // 몇 초나 지났을까요?
 // 중요도: 5
 // 오늘 하루가 시작된 이후 몇 초나 지났는지 반환하는 함수 getSecondsToday()를 만들어보세요.
@@ -125,7 +147,21 @@ console.log(getLocalDay(date));
 // getSecondsToday() == 36000 // (3600 * 10)
 // 주의: 어떤 날이든 함수를 호출했을 때, 원하는 결과가 반환되어야 합니다. '오늘’을 나타내는 값을 하드 코딩하지 마세요.
 
-// 해답
+
+function getSecondsToday(){
+  let dt = new Date();
+  // console.log(dt.toLocaleTimeStrings());
+  console.log(dt.getHours());
+  return dt.getHours() * 3600 + dt.getMinutes() * 60 + dt.getSeconds();
+}
+
+console.log(` getSecondsToday() = ${ getSecondsToday()}`);
+
+
+
+
+
+
 // 몇 초나 남았을까요?
 // 중요도: 5
 // 오늘 하루가 끝날 때까지 남은 초를 반환해주는 함수 getSecondsToTomorrow()를 만들어보세요.

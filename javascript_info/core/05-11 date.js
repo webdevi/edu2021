@@ -155,11 +155,9 @@ function getSecondsToday(){
   return dt.getHours() * 3600 + dt.getMinutes() * 60 + dt.getSeconds();
 }
 
-console.log(` getSecondsToday() = ${ getSecondsToday()}`);
+// console.log(` getSecondsToday() = ${ getSecondsToday()}`);
 
-
-
-
+ 
 
 
 // 몇 초나 남았을까요?
@@ -171,7 +169,24 @@ console.log(` getSecondsToday() = ${ getSecondsToday()}`);
 // getSecondsToTomorrow() == 3600
 // 주의: 어떤 날이든 함수를 호출했을 때, 원하는 결과가 반환되어야 합니다. '오늘’을 나타내는 값을 하드 코딩하지 마세요.
 
-// 해답
+function getSecondsToTomorrow(){
+  // let dt = new Date();
+  let start = new Date(); 
+  let end = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 1);
+  // console.log(start);
+  // console.log(end);
+
+  // console.log(end.getTime() - start.getTime());
+  return Math.round(end.getTime() - start.getTime() / 1000); //초로 변환  
+  
+}
+
+console.log(`getSecondsToTomorrow() = ${getSecondsToTomorrow()}`);
+
+
+  
+
+
 // 상대 날짜 출력하기
 // 중요도: 4
 // date를 아래와 같은 형식으로 변경해주는 함수 formatDate(date)를 만들어보세요.
@@ -189,5 +204,3 @@ console.log(` getSecondsToday() = ${ getSecondsToday()}`);
 // alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5분 전"
 
 // // 어제를 나타내는 날짜를 "일.월.연 시:분" 포맷으로 출력
-// alert( formatDate(new Date(new Date - 86400 * 1000)) );
-// 테스트 코드가 담긴 샌드박스를 열어 정답을 작성해보세요.

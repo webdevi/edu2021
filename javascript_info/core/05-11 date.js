@@ -181,12 +181,9 @@ function getSecondsToTomorrow(){
   
 }
 
-console.log(`getSecondsToTomorrow() = ${getSecondsToTomorrow()}`);
+// console.log(`getSecondsToTomorrow() = ${getSecondsToTomorrow()}`);
 
-
-  
-
-
+ 
 // 상대 날짜 출력하기
 // 중요도: 4
 // date를 아래와 같은 형식으로 변경해주는 함수 formatDate(date)를 만들어보세요.
@@ -204,3 +201,55 @@ console.log(`getSecondsToTomorrow() = ${getSecondsToTomorrow()}`);
 // alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5분 전"
 
 // // 어제를 나타내는 날짜를 "일.월.연 시:분" 포맷으로 출력
+
+
+function formatDate(dt){
+  let dt2 = new Date();
+  let timediff = -(dt-dt2);
+  let retVal ;
+ 
+  if(timediff > 0 && timediff <= 1000){
+      retVal = "현재";
+  }
+  else if(timediff >= 30 * 1000 && timediff <= 60 * 1000){
+      retVal = Math.round(timediff / 1000) + "초전";
+  }
+  else if(timediff > 60 * 1000 && timediff < 60 * 60 * 1000){
+    retVal = Math.round(timediff / 6000  ) + "분전";
+  }
+  else{
+    retVal = (dt.getDate() < 10 ? "0"+dt.getDate() : dt.getDate()) ; 
+    retVal += ".";
+    retVal += ( +(dt.getMonth() +1)< 10 ? "0"+(dt.getMonth() +1) : +(dt.getMonth()+1));
+    retVal += ".";
+    retVal += dt.getFullYear().toString().substring(2, 4);
+    retVal += " ";
+    retVal += (dt.getHours() < 10 ? "0"+dt.getHours() : dt.getHours()) ;
+    retVal += ":";
+    retVal += (dt.getSeconds() < 10 ? "0"+dt.getSeconds() : dt.getSeconds()) ;
+
+    //정답코드  *** 깔끔하군 
+      // let d = date;
+      // d = [
+      //   '0' + d.getDate(),
+      //   '0' + (d.getMonth() + 1),
+      //   '' + d.getFullYear(),
+      //   '0' + d.getHours(),
+      //   '0' + d.getMinutes()
+      // ].map(component => component.slice(-2)); // 모든 컴포넌트의 마지막 숫자 2개를 가져옴
+
+      // // 컴포넌트를 조합
+      // return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
+  }
+   
+
+  return retVal; 
+}
+
+
+console.log(formatDate(new Date(new Date - 1)));
+console.log(formatDate(new Date(new Date - 30 * 1000)));
+console.log(formatDate(new Date(new Date - 5 * 60 * 1000)));
+
+console.log(formatDate(new Date(new Date - 100 * 60 * 1000)));
+console.log( formatDate(new Date(new Date - 86400 * 1000)) );

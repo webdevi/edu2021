@@ -31,15 +31,11 @@ function sumTo(n){
 
 
 // 재귀 사용하기(n > 1일 때 sumTo(n) = n + sumTo(n-1))
-function sumTo2(n){
-    if(n === 1){
-        return n;
-    }
-    else{
-        return n + sumTo2(n-1) ;
-    }
-}
- 
+function sumTo2(n) {
+    if (n == 1) return 1;
+    return n + sumTo2(n - 1);
+  }
+  
 
 // console.log(sumTo2(1)) ;//= 1
 // console.log(sumTo2(2));//= 2 + 1 = 3
@@ -55,10 +51,10 @@ function sumTo3(n){
 }
  
 
-console.log(sumTo3(1)) ;//= 1
-console.log(sumTo3(2));//= 2 + 1 = 3
-console.log(sumTo3(3)) ;//= 3 + 2 + 1 = 6
-console.log(sumTo3(4)) ;///= 4 + 3 + 2 + 1 = 10
+// console.log(sumTo3(1)) ;//= 1
+// console.log(sumTo3(2));//= 2 + 1 = 3
+// console.log(sumTo3(3)) ;//= 3 + 2 + 1 = 6
+// console.log(sumTo3(4)) ;///= 4 + 3 + 2 + 1 = 10
 
 
 // 예시:
@@ -72,18 +68,24 @@ console.log(sumTo3(4)) ;///= 4 + 3 + 2 + 1 = 10
 
 
 
+// let s_dt = new Date();
+// console.log(sumTo(100000));
+// let e_dt = new Date();
+
+// console.log(`1번내용 ---- ${s_dt - e_dt}`);
+
+// let s_dt2 = new Date();
+// console.log(sumTo2(100000));
+// let e_dt2 = new Date();
+
+// console.log(`2번내용 ---- ${s_dt2 - e_dt2}`);
 
 
+// let s_dt3 = new Date();
+// console.log(sumTo3(100000));
+// let e_dt3 = new Date();
 
-
-
-
-
-
-
-
-
-
+// console.log(`3번내용 ---- ${s_dt3 - e_dt3}`);
 
 
 // 팩토리얼 계산하기
@@ -105,7 +107,24 @@ console.log(sumTo3(4)) ;///= 4 + 3 + 2 + 1 = 10
 // alert( factorial(5) ); // 120
 // 힌트: n!은 n * (n-1)!입니다. 3! = 3 * 2! = 3 * 2 * 1! = 6같이 말이죠.
 
-// 해답
+
+function factorial(n){
+    if(n == 1) return 1; 
+    else{
+        return n * factorial(n-1);
+    }
+}
+//해답 코드 -- 간단하균
+// function factorial(n) {
+//     return (n != 1) ? n * factorial(n - 1) : 1;
+//   }
+
+// console.log(factorial(5));
+
+
+
+
+
 // 피보나치 수 계산하기
 // 중요도: 5
 // 피보나치 수는 첫째와 둘째 항이 1이며 그 뒤의 모든 항은 바로 앞 두 항의 합인 수열로, Fn = Fn-1 + Fn-2라는 공식으로 표현할 수 있습니다.
@@ -125,7 +144,42 @@ console.log(sumTo3(4)) ;///= 4 + 3 + 2 + 1 = 10
 // alert(fib(77)); // 5527939700884757
 // 주의: fib (77)를 호출했을 때 연산 시간이 1초 이상 되면 안 됩니다.
 
-// 해답
+function fib(n){
+    console.log(`n = ${n}    ${n-1} + ${n-2} = ${n+n-3}`);
+   return ( (n==1 || n== 2) ? 1 : (n+ n-3));
+}
+console.log(fib(3));
+console.log(fib(4));
+console.log(fib(5));
+console.log(fib(6));
+console.log(fib(7));
+
+console.log(fib(77));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 단일 연결 리스트 출력하기
 // 중요도: 5
 // 재귀와 스택에서 설명한 바 있는, 단일 연결 리스트(single-linked list)가 있다고 가정해 봅시다.

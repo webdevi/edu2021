@@ -165,30 +165,104 @@ function fib(n){
     return b ; 
  
 }
-console.log(fib(3));
-//console.log(fib(4));
-// console.log(fib(5));
-// console.log(fib(6));
-//console.log(fib(7));
-console.log(fib(77));
+// console.log(fib(3));
+// //console.log(fib(4));
+// // console.log(fib(5));
+// // console.log(fib(6));
+// //console.log(fib(7));
+// console.log(fib(77));
 
 
 
+// 단일 연결 리스트 출력하기
+// 중요도: 5
+// 재귀와 스택에서 설명한 바 있는, 단일 연결 리스트(single-linked list)가 있다고 가정해 봅시다.
+
+// let list = {
+//   value: 1,
+//   next: {
+//     value: 2,
+//     next: {
+//       value: 3,
+//       next: {
+//         value: 4,
+//         next: null
+//       }
+//     }
+//   }
+// };
+// 리스트 내 항목을 차례대로 하나씩 출력해주는 함수 printList(list)를 만들어보세요.
+
+// 반복문과 재귀를 사용한 답안을 각각 만들어봅시다.
+
+// 그리고 재귀를 사용한 것과 재귀를 사용하지 않은 것 중 어떤 게 더 좋은 코드인지 생각해봅시다.
+
+let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
+      }
+    }
+  }
+};
+
+function printList(list){
+    // let ref = new Array(list);
+
+    // ref.forEach(elem => {
+    //     for (let key in elem) {
+    //         // console.log(typeof elem[key]);
+    //         // console.log(elem[key]);
+    //         if(typeof elem[key] === "object") {
+    //             console.log(`object = ${elem[key]}`);
+    //             printList(Object.assign({}, elem[key]));
+    //         }
+    //         else console.log(` ${key} = ${elem[key]}`)
+    //     }
+    //     // console.log(element);
+    // });
+
+    // let value = list.value; 
+    // let next = new Array(list.next); 
+
+    // // console.log(next.value);
+    // next.forEach(elem  => {
+    //     // console.log(elem.value);?
+    //     console.log(`value = ${elem.value} `);
+    //     console.log(`next = ${elem.next} `);
+    //     // if(elem.next) return;?
+    //     if(typeof elem.next === 'object') printList(elem); 
+    // }); 
+    // console.log(`value = ${value} , next = ${next}`);
 
 
+    // 정답코드 : 반복문을 기반으로 하는 
+    let tmp = list;
 
+    while (tmp) {
+        console.log(tmp.value);
+        tmp = tmp.next;
+    }
 
+    // 재귀를 기반으로 한 코드 
+    // 정답소스 
+    // alert(list.value); // 현재 요소를 출력합니다.
 
+    // if (list.next) {
+    //     printList(list.next); // 같은 방법을 사용해 나머지 요소를 출력합니다.
+    // }
+    
+}
 
+printList(list);
 
-
-
-
-
-
-
-
-
+// console.log(ref);
+ 
 
 
 

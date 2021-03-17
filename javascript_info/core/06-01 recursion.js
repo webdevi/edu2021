@@ -144,16 +144,32 @@ function factorial(n){
 // alert(fib(77)); // 5527939700884757
 // 주의: fib (77)를 호출했을 때 연산 시간이 1초 이상 되면 안 됩니다.
 
+// function fib(n){
+// //    console.log(`n = ${n}    ${n-1} + ${n-2} `);
+//    return ( (n==1 || n== 2) ? 1 : (fib(n-1)+ fib(n-2)));
+// }  // fib(77) 하면 뻗음 
+
 function fib(n){
-    console.log(`n = ${n}    ${n-1} + ${n-2} = ${n+n-3}`);
-   return ( (n==1 || n== 2) ? 1 : (n+ n-3));
+    let sum ; 
+    if(n<= 0) return "오류";
+    if(n <=2 ) return 1;
+
+    let a = 1 ; 
+    let b = 1; 
+
+    for (let i = 3; i <= n; i++) {
+        let c = a+ b ; 
+        a = b; 
+        b = c ; 
+    }
+    return b ; 
+ 
 }
 console.log(fib(3));
-console.log(fib(4));
-console.log(fib(5));
-console.log(fib(6));
-console.log(fib(7));
-
+//console.log(fib(4));
+// console.log(fib(5));
+// console.log(fib(6));
+//console.log(fib(7));
 console.log(fib(77));
 
 

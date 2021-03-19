@@ -274,9 +274,28 @@ let list = {
 // 반복문과 재귀를 사용한 답안을 각각 만들어보세요.
 
 
-function printReverse(list){
- // 반복문 
- console.log(Object.keys(list).length+1);
+function printReverseList(list){
+
+// 정답코드 
+//  // 재귀문 
+//  if (list.next) {
+//     printReverseList(list.next);
+//   }
+
+//   alert(list.value);
+
+// 반복문 
+let arr = [];
+let tmp = list;
+
+while (tmp) {
+  arr.push(tmp.value);
+  tmp = tmp.next;
+}
+
+for (let i = arr.length - 1; i >= 0; i--) {
+  alert( arr[i] );
+}
 
 }
-printReverse(list);
+printReverseList(list);

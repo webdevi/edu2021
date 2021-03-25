@@ -145,7 +145,7 @@ if (true) {
   let user = "John";
 
   function sayHi() {
-    alert(`${phrase}, ${user}`);
+    // alert(`${phrase}, ${user}`);
   }
 }
 console.log(`......if 문 안의 함수.........`);
@@ -155,9 +155,9 @@ sayHi();  // Hello John (X)
 // @@정답 
 // 에러가 발생합니다.
 // sayHi는 if문 안에서 정의했기 때문에, 오직 if문 안에서만 접근할 수 있습니다. if문 밖엔 sayHi가 없습니다.
+ 
 
-
-
+ 
 // 클로저를 이용하여 합 구하기
 // 중요도: 4
 // sum(a)(b) = a+b와 같은 연산을 해주는 함수 sum을 만들어보세요.
@@ -166,6 +166,8 @@ sayHi();  // Hello John (X)
 
 // 예시:
 
-// sum(1)(2) = 3
-// sum(5)(-1) = 4
+sum(1)(2) ;  // = 3
+sum(5)(-1) ; //   = 4
+
+function sum()
 

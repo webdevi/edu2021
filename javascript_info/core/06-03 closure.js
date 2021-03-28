@@ -17,8 +17,8 @@ function sayHiBye(firstname, lastname){
         return firstname + " " + lastname; 
     }
 
-    console.log(`Hello, ${getFullName()}`);
-    console.log(`Bye, ${getFullName()}`);
+    // console.log(`Hello, ${getFullName()}`);
+    // console.log(`Bye, ${getFullName()}`);
 }
 
 sayHiBye("황", "혜경");
@@ -55,7 +55,7 @@ let counter = makeCounter();
 let name2 = "John";
 
 function sayHi() {
-  console.log("------> Hi, " + name2);
+  // console.log("------> Hi, " + name2);
 }
 
 name2 = "Pete"; 
@@ -72,7 +72,7 @@ function makeWorker() {
   let name3 = "Pete";
 
   return function() {
-    console.log(`--------------> ${name3}`);
+    // console.log(`--------------> ${name3}`);
   };
 }
 
@@ -103,11 +103,11 @@ function makeCounter3() {
 let counter3 = makeCounter3();
 let counter4 = makeCounter3();
 
-console.log( counter3() ); // 0
-console.log( counter3() ); // 1
+// console.log( counter3() ); // 0
+// console.log( counter3() ); // 1
 
-console.log( counter4() ); // 0
-console.log( counter4() ); // 1  // 두 함수는 독립적인 렉시컬 환경을 갖게되므로 함수는 자신만의 count를 갖게 됩니다. 
+// console.log( counter4() ); // 0
+// console.log( counter4() ); // 1  // 두 함수는 독립적인 렉시컬 환경을 갖게되므로 함수는 자신만의 count를 갖게 됩니다. 
 
 
 
@@ -130,9 +130,9 @@ function Counter5() {
 
 let counter5 = new Counter5();
 
-console.log( counter5.up() ); // 1
-console.log( counter5.up() ); // 2
-console.log( counter5.down() ); // 1
+// console.log( counter5.up() ); // 1
+// console.log( counter5.up() ); // 2
+// console.log( counter5.down() ); // 1
 
 
 
@@ -148,7 +148,7 @@ if (true) {
     // alert(`${phrase}, ${user}`);
   }
 }
-console.log(`......if 문 안의 함수.........`);
+// console.log(`......if 문 안의 함수.........`);
 
 sayHi();  // Hello John (X)
 
@@ -166,8 +166,9 @@ sayHi();  // Hello John (X)
 
 // 예시:
 
-sum(1)(2) ;  // = 3
-sum(5)(-1) ; //   = 4
+// sum(1)(2) ;  // = 3
+// sum(5)(-1) ; //   = 4
+console.log(`...... 클로저를 이용하여 합 구하기.........`);
 
-function sum()
+// function sum()
 

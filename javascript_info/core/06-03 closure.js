@@ -170,5 +170,12 @@ sayHi();  // Hello John (X)
 // sum(5)(-1) ; //   = 4
 console.log(`...... 클로저를 이용하여 합 구하기.........`);
 
-// function sum()
+function sum(a){
+   return function(b){
+    console.log(` a+b  = ${ a+b}`);
+    return a+b;
+  }
+}
+
+sum(1)(2);
 

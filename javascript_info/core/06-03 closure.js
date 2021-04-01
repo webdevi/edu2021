@@ -269,4 +269,44 @@ function byField(param){
  console.log(users);
 
 
- 
+console.log(`...... 함수를 사용해 군대 만들기.........`);
+// 중요도: 5
+// 아래 코드는 shooters가 요소인 배열을 만들어줍니다.
+
+// 모든 함수는 몇 번째 shooter인지 출력해줘야 하는데 뭔가 잘못되었습니다.
+
+function makeArmy() {
+  let shooters = [];
+
+  // let i = 0;
+  // while (i < 10) {
+  //   let shooter = function() { // shooter 함수
+  //     console.log( i ); // 몇 번째 shooter인지 출력해줘야 함
+  //   };
+  //   shooters.push(shooter);
+  //   i++;
+  // }
+  let i = 0;
+  while (i < 10) {
+    let j = i ; 
+    let shooter = function() { // shooter 함수
+      console.log( j ); // 몇 번째 shooter인지 출력해줘야 함
+    };
+    shooters.push(shooter);
+    i++;
+  }
+
+  return shooters;
+}
+
+let army = makeArmy();
+console.log(army);
+
+ army[0](); // 0번째 shooter가 10을 출력함
+army[5](); // 5번째 shooter 역시 10을 출력함
+// // 모든 shooter가 자신의 번호 대신 10을 출력하고 있음
+  // --> 반복문과 클로저는 잘 사용이 안됨. 
+
+// 왜 모든 shooter가 동일한 숫자를 출력하는 걸까요? 제대로 된 번호가 출력될 수 있게 코드를 수정해 보세요.
+
+

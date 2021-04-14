@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html{
+            margin:0;
+            padding:0;
+            height:100%
+        }
+        /* .bgimg{
+            border:0;
+            padding:0;
+            background-image:url('bg.webp');
+            min-height:100%;   배경화면을 화면 꽉 채우는 방법  
+            background-position:center;
+            background-size:cover; 이미지가 찌그러지지 않는 한도 내에서 제일 크게 설정. 이미지의 가로세로비가 요소와 다르다면 이미지를 세로 또는 가로방향으로 잘라내어 빈 공간이 생기지 않도록 설정합니다.
+auto 
+        } */
+        html{
+            background:url(bg.webp) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        .keypan{
+            background-color:red;
+            height:100px;
+            width:1024px;
+            margin : 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bgimg"></div>
+    <div class="keypan"></div>
+   
+</body>
+</html>

@@ -17,6 +17,7 @@
 		const $button = document.querySelector('button') ;
 		const $input  = document.querySelector('input') ;
 		const $order  = document.querySelector('#order') ;
+	  const $word   = document.querySelector('#word');
 
 		let word ; //제시어
 		let newword ; // 새로 입력한 단어 
@@ -29,7 +30,7 @@
 					 // 입력한 단어가 제시어가 된다 
 					 word = newword; 
 					 console.log(word);
-					 document.querySelector("#word").innerHTML = word;
+					 $word.textContent = word;
 					 $input.value = "";
 
 				}
@@ -42,9 +43,9 @@
 					if(word.charAt(word.length-1) === newword.charAt(0)){
 						console.log("같은가?"); 
 
-						order  =(Number($order.innerHTML)+1) % member ? member : (Number($order.innerHTML)+1) % member  ; 
-						$order.innerHTML = order;
-						document.querySelector("#word").innerHTML = newword;
+						order  = (Number($order.textContent)+1) % member ? member : (Number($order.textContent)+1) % member  ; 
+						$order.textContent = order;
+						$word.textContent = newword;
 						$input.value = "";
 
 						word = newword;

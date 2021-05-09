@@ -12,8 +12,8 @@
 	<div><input type="text"><button id='input'>입력</button></div>
 			
 	<script>
-		// const member = Number(prompt("몇명이 참가하나요?"));
-		const member = 3 ;
+		const member = Number(prompt("몇명이 참가하나요?"));
+		// const member = 3 ;
 		const $button = document.querySelector('button') ;
 		const $input  = document.querySelector('input') ;
 		const $order  = document.querySelector('#order') ;
@@ -22,48 +22,34 @@
 		let word ; //제시어
 		let newword ; // 새로 입력한 단어 
 
-		let order ; // 순서 
+		let order = Number($order.textContent) ; // 순서 
  
 		const onClickButton = () =>{
-				if(!word){ // 제시어가 비어있는가?
-					 // 비어있다. => 첫번째 참가자이군
-					 // 입력한 단어가 제시어가 된다 
-					 word = newword; 
-					 console.log(word);
-					 $word.textContent = word;
-					 $input.value = "";
+				if(!word || word[word.length-1] === newword[0]){ // 제시어가 비어있는가?
+					// 비어있다. => 첫번째 참가자이군
+					// 입력한 단어가 제시어가 된다 				 
+					$word.textContent = newword;
+					word = newword; 
+					$input.value = "";
+					$input.focus(); 					 
 
+					// 순서 표시 
+					if(order==  member ){
+						$order.textContent = 1; 
+					}
+					else {
+						$order.textContent = order+1; 
+					} 
+					order = Number($order.textContent)  ;
 				}
 				else{
-					// 비어있지 않다. 
-					// word의 맨 마지막 글자와 newword의 첫글자가 같은지를 비교한다. 
-					// 입력한 단어가 올바른가? 
-				  //console.log(word.charAt(word.length-1), '-----', newword.charAt(0), '------', $order.innerHTML); 
-
-					if(word.charAt(word.length-1) === newword.charAt(0)){
-						console.log("같은가?"); 
-
-						order  = (Number($order.textContent)+1) % member ? member : (Number($order.textContent)+1) % member  ; 
-						$order.textContent = order;
-						$word.textContent = newword;
-						$input.value = "";
-
-						word = newword;
-
-					}
-				  else{
-						console.log("다른가?");
-					}
-
+						alert("잘못된 제시어입니다."); 		 
 				}
 		};
 
 		const onInput = (event)=>{
-				newword = event.target.value; 
-				
+				newword = event.target.value; 				
 		};
-
-	 
 
 		$button.addEventListener('click', onClickButton); 
 		$input.addEventListener('input', onInput); 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>쿵쿵따</title>
+</head>
+<body>
+  <div><h2>쿵쿵따 쿵쿵따</h2></div>
+  <div><span id="order">1</span>번째 순서</div>
+  <div>제시어 : <span id="word"></span></div>
+  <div><input type="text" > <button>입력</button></div>
+</body>
+<script>
+ let member = prompt("몇명이 참가하나요?");
+ //const member = 3;
+ const $input = document.querySelector("input"); 
+ const $button = document.querySelector("button"); 
+ const $word = document.querySelector("#word"); 
+ const $order = document.querySelector("#order"); 
+
+ if(member == null){
+   console.log("취소를 누른거임?");  
+   document.querySelector("body").textContent = "쿵쿵따 쿵쿵따 취소";    
+ }
+ else  if(Number(member) ===0 ){
+   member = prompt("명수를 정확히 입력해주세요"); 
+ }
+
+ function onBtnClick() { 
+  if($input.value.length !== 3) {
+    alert('쿵쿵따는 3글자로 이뤄져야 합니다.');
+    return; 
+  } 
+ 
+  if(!$word.textContent|| $word.textContent[2] === $input.value[0]){
+    $word.textContent = $input.value; 
+    $input.value = "";
+    $input.focus(); 
+    console.log(member);
+    if(Number($order.textContent) == member  ){
+      $order.textContent = 1; 
+    }
+    else{
+      $order.textContent = Number($order.textContent)  + 1; 
+    }
+  }
+  else{
+    alert("올바른 제시어가 아닙니다. ");
+    $input.value = "";
+    $input.focus(); 
+    return; 
+  }
+ }
+
+ // $input.addEventListener("input", ()=>{console.log("input입력하고 있네");});
+ $button.addEventListener("click", onBtnClick);
+ $input.addEventListener("keypress", (e)=>{
+
+  if(window.event.keyCode == 13){
+    onBtnClick();
+  }
+ 
+ });
+
+</script>
+</html>

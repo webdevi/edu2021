@@ -48,33 +48,47 @@
  const $operator = document.querySelector("#operator");
  const $result = document.querySelector("#result");
 
- const onClickNumber = (num)=>{
-   return ()=>{
-     if(!$operator){
-        console.log(`result = ${$result.textContent}`);
+ const onClickNumber = (event)=>{
+     if(operator){ // 비어있지 않다면 
+        numTwo += event.target.textContent;
      }
-     else{
-        numOne = num; 
-     }
-     console.log(num, numOne, numTwo);
-   };
- }
+    //  else{
+    //     numOne = num; 
+    //  }
+    console.log(numOne, numTwo, event.target.textContent);
+    //console.log(event.target.textContent);
+   
+ };
 
- document.querySelector('#num-1').addEventListener('click', onClickNumber(1)); 
- document.querySelector('#num-2').addEventListener('click', onClickNumber(2)); 
- document.querySelector('#num-3').addEventListener('click', onClickNumber(3)); 
- document.querySelector('#num-4').addEventListener('click', onClickNumber(4)); 
- document.querySelector('#num-5').addEventListener('click', onClickNumber(5)); 
- document.querySelector('#num-6').addEventListener('click', onClickNumber(6)); 
- document.querySelector('#num-7').addEventListener('click', onClickNumber(7)); 
- document.querySelector('#num-8').addEventListener('click', onClickNumber(8)); 
- document.querySelector('#num-9').addEventListener('click', onClickNumber(9));
+ function add(a,b){
+   return a+b;
+ }
+ function minus(a,b){
+   return a- b; 
+ }
+ function multiply(a, b){
+   return a* b ;    
+ }
+ function divide(a, b){
+  return a/ b; 
+}
  
- document.querySelector('#plus').addEventListener('click', ()=>{}); 
- document.querySelector('#minus').addEventListener('click', ()=>{}); 
- document.querySelector('#divide').addEventListener('click', ()=>{}); 
- document.querySelector('#calculate').addEventListener('click', ()=>{}); 
- document.querySelector('#multiply').addEventListener('click', ()=>{}); 
+
+ document.querySelector('#num-1').addEventListener('click', onClickNumber); 
+ document.querySelector('#num-2').addEventListener('click', onClickNumber); 
+ document.querySelector('#num-3').addEventListener('click', onClickNumber); 
+ document.querySelector('#num-4').addEventListener('click', onClickNumber); 
+ document.querySelector('#num-5').addEventListener('click', onClickNumber); 
+ document.querySelector('#num-6').addEventListener('click', onClickNumber); 
+ document.querySelector('#num-7').addEventListener('click', onClickNumber); 
+ document.querySelector('#num-8').addEventListener('click', onClickNumber); 
+ document.querySelector('#num-9').addEventListener('click', onClickNumber);
+ 
+ document.querySelector('#plus').addEventListener('click',     onClickNumber); 
+ document.querySelector('#minus').addEventListener('click',    onClickNumber); 
+ document.querySelector('#divide').addEventListener('click',   onClickNumber); 
+ document.querySelector('#calculate').addEventListener('click',onClickNumber); 
+ document.querySelector('#multiply').addEventListener('click', onClickNumber); 
 
 
 </script>

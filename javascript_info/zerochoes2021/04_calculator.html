@@ -49,16 +49,30 @@
  const $result = document.querySelector("#result");
 
  const onClickNumber = (event)=>{
+
+     let number = Number(event.target.textContent); 
+
      if(operator){ // 비어있지 않다면 
-        numTwo += event.target.textContent;
+        numTwo += number;
      }
-    //  else{
-    //     numOne = num; 
-    //  }
+     else{ // 비어있다 
+        numOne += number;
+     } 
+     $result.value += number; 
+ 
     console.log(numOne, numTwo, event.target.textContent);
-    //console.log(event.target.textContent);
-   
+    //console.log(event.target.textContent);   
  };
+
+ const onClickOperator = (op)=>()=>{
+   if(numOne){
+     operator = op;
+     $operator.value = op;  
+   }
+   else {
+     alert("숫자를 먼저 입력하세요.");
+   }
+ }
 
  function add(a,b){
    return a+b;
@@ -84,11 +98,11 @@
  document.querySelector('#num-8').addEventListener('click', onClickNumber); 
  document.querySelector('#num-9').addEventListener('click', onClickNumber);
  
- document.querySelector('#plus').addEventListener('click',     onClickNumber); 
- document.querySelector('#minus').addEventListener('click',    onClickNumber); 
- document.querySelector('#divide').addEventListener('click',   onClickNumber); 
- document.querySelector('#calculate').addEventListener('click',onClickNumber); 
- document.querySelector('#multiply').addEventListener('click', onClickNumber); 
+ document.querySelector('#plus').addEventListener('click',     onClickOperator('+')); 
+ document.querySelector('#minus').addEventListener('click',    onClickOperator('-')); 
+ document.querySelector('#divide').addEventListener('click',   onClickOperator('/'));  
+ document.querySelector('#multiply').addEventListener('click', onClickOperator('*')); 
+ document.querySelector('#calculate').addEventListener('click',onClickOperator('=')); 
 
 
 </script>

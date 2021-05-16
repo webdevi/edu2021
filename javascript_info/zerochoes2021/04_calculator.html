@@ -45,23 +45,41 @@
  let operator = ''; 
  let numTwo  = '' ;
 
+ let result = 0 ; 
+
  const $operator = document.querySelector("#operator");
  const $result = document.querySelector("#result");
 
  const onClickNumber = (event)=>{
 
+     
      let number = Number(event.target.textContent); 
-
-     if(operator){ // 비어있지 않다면 
-        numTwo += number;
-     }
-     else{ // 비어있다 
+     if(!operator){ // 비어있지 않다면 
         numOne += number;
-     } 
-     $result.value += number; 
- 
-    console.log(numOne, numTwo, event.target.textContent);
+        $result.value += number;   
+
+        return ; 
+     }
+
+    if(!numTwo){
+      $result.value = "";
+    }  
+    numTwo += number;
+    $result.value += number; 
+    
+     
+    switch(operator){
+      case  "+" : 
+        $result.value = add(numOne, numTwo); 
+        break; 
+      // default : 
+      //   $result.value   
+    }
+    
+    console.log(numOne, numTwo, operator);
     //console.log(event.target.textContent);   
+
+
  };
 
  const onClickOperator = (op)=>()=>{
@@ -75,7 +93,7 @@
  }
 
  function add(a,b){
-   return a+b;
+   return Number(a)+Number(b);
  }
  function minus(a,b){
    return a- b; 
@@ -103,6 +121,7 @@
  document.querySelector('#divide').addEventListener('click',   onClickOperator('/'));  
  document.querySelector('#multiply').addEventListener('click', onClickOperator('*')); 
  document.querySelector('#calculate').addEventListener('click',onClickOperator('=')); 
+
 
 
 </script>

@@ -65,27 +65,16 @@
       $result.value = "";
     }  
     numTwo += number;
-    $result.value += number; 
-    
-     
-    switch(operator){
-      case  "+" : 
-        $result.value = add(numOne, numTwo); 
-        break; 
-      // default : 
-      //   $result.value   
-    }
-    
-    console.log(numOne, numTwo, operator);
-    //console.log(event.target.textContent);   
-
-
+    $result.value = numTwo;
+      
  };
 
  const onClickOperator = (op)=>()=>{
-   if(numOne){
-     operator = op;
-     $operator.value = op;  
+ 
+   if(numOne){ 
+    operator = op;
+    $operator.value = op; 
+
    }
    else {
      alert("숫자를 먼저 입력하세요.");
@@ -105,7 +94,6 @@
   return a/ b; 
 }
  
-
  document.querySelector('#num-1').addEventListener('click', onClickNumber); 
  document.querySelector('#num-2').addEventListener('click', onClickNumber); 
  document.querySelector('#num-3').addEventListener('click', onClickNumber); 
@@ -120,8 +108,33 @@
  document.querySelector('#minus').addEventListener('click',    onClickOperator('-')); 
  document.querySelector('#divide').addEventListener('click',   onClickOperator('/'));  
  document.querySelector('#multiply').addEventListener('click', onClickOperator('*')); 
- document.querySelector('#calculate').addEventListener('click',onClickOperator('=')); 
-
+ document.querySelector('#calculate').addEventListener('click', ()=>{
+    if(numTwo){
+      switch(operator){
+        case  "+" : 
+          $result.value = parseInt(numOne) +  parseInt(numTwo); // parseInt 반드시 
+          break; 
+        case  "-" :
+          $result.value = parseInt(numOne) - parseInt(numTwo); // parseInt 안써도 됨
+          break; 
+        case  "/" :
+          $result.value =  parseInt(numOne) / parseInt(numTwo); // parseInt 안써도 됨
+          break;
+        case  "*" :
+          $result.value = parseInt(numOne) * parseInt(numTwo); // parseInt 안써도 됨
+          break; 
+      }
+    }
+    $operator.value = "=";
+ }); 
+ document.querySelector('#clear').addEventListener('click',()=>{
+   $operator.value = '';
+   $result.value = '';
+   numOne = '';
+   numTwo = ''; 
+   operator = '';
+  }); 
+  
 
 
 </script>

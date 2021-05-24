@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>야구게임</title>
+</head>
+<body>
+  <script>
+    let num = [1,2,3,4,5,6,7,8,9];
+    let card = []; 
+    let usercard = []; 
+    let chance = 10; 
+
+    // 컴퓨터 카드 생성하기 
+    function MakeCompcard(){
+      let randomnum ; 
+      let copynum = num.slice(0, num.length);
+      let tmpcard =[];
+      
+      // random 숫자카드 넣기 
+      while(tmpcard.length < 4){
+        randomnum = Math.round(Math.random()) * (copynum.length-1);       
+        tmpcard.push(copynum.splice(randomnum,1).toString());
+      }
+       
+      return tmpcard; 
+    }
+
+    // 사용자 카드입력 받기 
+    function MakeUsercard(){      
+      let tmpcard = [];
+      let i ; 
+      while(tmpcard.length <4){
+        i = Number(prompt("1-9사이의 숫자를 입력해주세요")); 
+        // console.log(i);
+        // console.log(`tmpcard : ${tmpcard} tmpcard.includes(i); `, tmpcard.includes(i));
+        if(i < 1 || i > 9){
+          alert('1-9 사이의 숫자를 입력해주세요');          
+        }
+        else if(tmpcard == null  || !tmpcard.includes(i))
+        {
+          tmpcard.push(i.toString());
+        }
+        else{
+          alert('이미 선택한 숫자입니다. 다른 숫자를 입력해주세요.');
+        } 
+      }      
+      return tmpcard;
+    };
+
+    // 비교하기 
+    function cardcompare(def, my){
+      let homerun = 0 ; 
+      let ball= 0 ; 
+      let out = 0; 
+      my.forEach(function(value, index,arr){        
+        if(def[index] == value){
+        //console.log(`${value} 홈런!입니다`);
+          homerun++;           
+        }
+        else if(def.includes(value)){
+        //console.log(`${value} 볼!입니다`);          
+          ball++;
+        }
+      });  
+      out = my.length- homerun - ball; 
+      console.log(`${homerun} 홈런, ${ball} 볼, ${out} 아웃! `);
+
+      if(homerun == 4){
+        console.log("성공했습니다"); 
+        console.log(`제가 가지고 있는 카드는 : ${card} 입니다`);
+      }
+      else if(chance ==0){
+        console.log("모든 기회가 종료되었습니다. 아쉽게도 실패");        
+      }
+      else{
+        chance--;  
+      }
+      return homerun ; 
+    }
+
+        
+    card = MakeCompcard();  
+    usercard = MakeUsercard();
+    console.log(usercard);
+    let homerun = cardcompare(card, usercard); 
+    
+    while(chance > 0 && homerun != 4){
+      if(!confirm("계속도전하시겠습니까?")) break; 
+      usercard = MakeUsercard();
+      console.log(usercard);
+      if(cardcompare(card, usercard) == 4) break; 
+    } 
+
+  </script>
+
+
+</body>
+</html>

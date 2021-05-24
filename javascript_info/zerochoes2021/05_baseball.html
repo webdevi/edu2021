@@ -39,7 +39,7 @@
         if(i < 1 || i > 9){
           alert('1-9 사이의 숫자를 입력해주세요');          
         }
-        else if(tmpcard == null  || !tmpcard.includes(i))
+        else if(tmpcard == null  || !tmpcard.includes(i.toString()))
         {
           tmpcard.push(i.toString());
         }
@@ -68,7 +68,7 @@
       out = my.length- homerun - ball; 
       console.log(`${homerun} 홈런, ${ball} 볼, ${out} 아웃! `);
 
-      if(homerun == 4){
+      if(homerun == 4){ 
         console.log("성공했습니다"); 
         console.log(`제가 가지고 있는 카드는 : ${card} 입니다`);
       }

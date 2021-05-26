@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로또 추첨기</title>
+  <style>
+    .ball{
+      display:inline-block; 
+      border : 1px solid black; 
+      border-radius : 20px;
+      width:40px; 
+      height:40px;
+      line-height:40px;
+      font-size:20px;
+      text-align:center;
+      margin-right:20px;
+    }
+  </style>
+</head>
+<body>
+    <div id="result">추첨 결과는?</div>
+    <div id="bonus">보너스 :</div>
+</body>
+<script>
+  const candidate = Array(45).fill().map((v,i)=> i+ 1); 
+  const shuffle = []; 
+  // 먼저 랜덤으로 볼을 섞는 로직 
+  while(candidate.length > 0){
+    const random = Math.floor(Math.random() * candidate.length); 
+    const spliceArray = candidate.splice(random, 1); 
+    const value = spliceArray[0]; 
+    shuffle.push(value); 
+  }
+  console.log(shuffle);   
+</script>
+</html>

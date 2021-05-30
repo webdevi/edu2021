@@ -33,6 +33,34 @@
     const value = spliceArray[0]; 
     shuffle.push(value); 
   }
-  console.log(shuffle);   
+  //console.log(shuffle);   
+  
+  const myball = Array(7).fill().map((val, idx)=>{
+    let i = Math.ceil(Math.random()*shuffle.length)-1;       
+    return Number(shuffle.splice(i, 1).toString()); 
+  })
+  
+  const winBalls = myball.slice(0,6).sort((a,b) => a-b); 
+  const bonusBall = myball.slice(6,7); 
+  
+  const $result = document.querySelector('#result');
+  const $bonus = document.querySelector('#bonus');
+
+  const showBall = (number, $target)=>{
+    const $ball = document.createElement('div'); 
+    $ball.className = 'ball';
+    $ball.textContent = number; 
+    $target.appendChild($ball);    
+  }; 
+  for(let i = 0 ; i < 6 ; i++)
+  {
+    setTimeout(()=>{
+      showBall(winBalls[i], $result);
+    }, 1000*(i+1) ); 
+  }
+  setTimeout(()=>{
+      showBall(bonusBall, $bonus);
+    }, 7000)  ;
+
 </script>
 </html>

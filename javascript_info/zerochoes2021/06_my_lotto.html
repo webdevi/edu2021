@@ -34,18 +34,53 @@
       let i = Math.ceil(Math.random()*lottoball.length)-1;       
       return Number(lottoball.splice(i, 1).toString()); 
   }); 
-  // console.log(myball); 
-  // console.log(lottoball); 
 
-  let i = 0 ;
-  for (let i = 0; i < myball.length-1 ; i++) {
-    console.log(myball[i]);
-    setTimeout(() => { clearInterval(); console.log('둠칫!'); }, 500);
+  const winBalls = myball.slice(0,6).sort((a,b) => a-b); 
+  const bonusBall = myball.slice(6,7); 
+  
+  console.log(winBalls); 
+  console.log(bonusBall); 
+    
+  const $result = document.querySelector('#result');
+  const $bonus = document.querySelector('#bonus');
+
+  const showBall =  (num, $tag) =>{
+    const $ball = document.createElement('div');
+    $ball.className = 'ball';
+    $ball.textContent = num;
+    
+    let ballcolor = "red";
+    let fontcolor = "white";
+    if(num >= 40){
+      ballcolor = "green";
+    }
+    else if(num >= 30){
+      ballcolor = "blue";      
+    }
+    else if(num >= 20){
+      ballcolor = "yellow";      
+      fontcolor = "black";
+    }
+    else if(num >= 10){      
+      ballcolor = "orange";      
+      fontcolor = "black";
+    }
+    
+    $ball.style.backgroundColor = ballcolor;
+    $ball.style.color = fontcolor;
+    $tag.append($ball);
+  }; 
+
+  for (const i in winBalls) {
+    setTimeout(() => {
+      showBall(winBalls[i], $result); 
+    }, 1000* i);  
   }
   
-
-
-
+ setTimeout(() => {
+  showBall(bonusBall[0], $bonus);  
+  }, 7000);  
+    
 
 </script>
 </html>

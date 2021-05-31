@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반응속도 테스트</title>
+  <style>
+    #screen{
+      width:300px;
+      height:200px;
+      text-align:center;
+      user-select:none; 
+    }
+    #screen.waiting{
+      background-color:aqua;
+      color:black; 
+    }
+    #screen.ready{
+      background-color:red;
+      color: white;
+    }
+    #screen.now{
+      background-color:greenyellow;
+      color:black;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="screen" class="waiting">클릭해서 시작하세요</div>
+  <div id="result"></div>
+  <script>
+    const $screen = document.querySelector('#screen');
+    const $result = document.querySelector('#result');
+    const screenState = {
+      waiting: -1, 
+      ready : 0 , 
+      now : 1 ,
+    }; 
+    
+    let nowState = "waiting";
+    let clickable = true; 
+
+    // const clickEvent = (e)=>{
+    //   console.log(e.target.className);
+
+    //   if(e.target.className=="waiting"){
+    //     $screen.className = "ready";
+    //     $screen.style.color = "white";
+        
+    //     // 랜덤 시간을 생성 
+    //     let randomTime = Math.ceil(Math.random()*10000 + 1000); 
+    //     console.log(randomTime); 
+    //     setTimeout(changeNow, randomTime); 
+    //   }
+    // }; 
+
+    // const changeNow = ()=> {
+    //   $screen.className = 
+    //   console.log("랜덤시간이에요"); 
+    // }; \\
+
+    const timeDiff = [];
+    let startTime ; 
+    let endTime; 
+    let timeoutID; 
+        
+    const clickEvent = (e)=>{
+      let myclickClass = e.target.classList; 
+      
+      if(!clickable){
+        console.log("클릭할 수 없어여. 이제");
+       return; 
+      }
+      
+      if(myclickClass.contains("ready")){
+        
+        alert("성급한 click입니다. 초록색이 될 때까지 기다려주세요"); 
+        return ;
+      }      
+
+      if(myclickClass.contains("now")){        
+        // 시간재기 종료 
+        endTime = new Date(); 
+        // 시간 차이 저장하기 
+        timeDiff.push(endTime - startTime); 
+        console.log(endTime - startTime);
+ 
+        if(timeDiff.length >= 4){
+            //평균을 구하고 
+            $result.textContent = `평균 반응속도 : ${(timeDiff.reduce((a, c) => a+c) / timeDiff.length) / 1000} 초`; 
+            
+            timeDiff.slice().sort((a,b)=>(a-b)).forEach((val, idx, arr)=>{
+              if(idx >=2 ) return;
+              console.log(`${idx+1}번 : ${val}초`);  
+            }); 
+
+
+            //종료합니다.
+            clickable = false; 
+            $screen.textContent = "종료!!!";             
+            startTime = null ; 
+            endTime = null ;
+        }
+        else{ 
+          $screen.classList.replace("now", "waiting"); 
+          $screen.textContent = "클릭하면 시작하세요"; 
+        }
+        
+        return ;
+      }      
+
+
+      if(myclickClass.contains("waiting")){
+        myclickClass.replace("waiting" , "ready");  
+        $screen.textContent = "초록색이 되면 클릭하세요";
+        
+        // 랜덤 시간을 생성 
+        let randomTime = Math.floor(Math.random()*3000 + 1000); 
+        console.log(randomTime); 
+        timeoutID = setTimeout(changeNow, randomTime); 
+      }
+    }
+    const changeNow = ()=> {
+      $screen.classList.replace("ready","now"); 
+      startTime = new Date();
+      // 시간 재기 시작 
+    }; 
+    $screen.addEventListener('click', clickEvent); 
+
+  </script>
+</body>
+</html>

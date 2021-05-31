@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>틱택토 게임</title>
+  <style>
+    table{border-collapse:collapse;}
+    td{
+      border:1px solid black;
+      width:40px;
+      height:40px;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+
+  <div><button>클릭</button></div>
+  <script>
+      document.querySelector('div').addEventListener('click', (e)=>{
+        
+        if(e.target.tagName == "BUTTON")
+          alert('hello, event bubbling'); 
+      }); 
+  </script>
+<script>
+  let turn = 'O'; 
+  const rows = [];   
+  const $table = document.createElement('table');
+  const $result = document.createElement('div');
+  
+
+  for (let i = 0; i < 3 ; i++) {    
+    const $tr = document.createElement('tr');    
+    const cells = []; 
+    for (let j = 0; j < 3 ; j++) {
+      const $td = document.createElement('td');
+      
+      $td.addEventListener('click', (e)=>{
+        //칸에 이미 글자가 있나?
+        if(e.target.textContent) return; 
+ 
+        e.target.textContent = turn;        
+        //순서넘기기 
+        if(turn === 'O') turn = 'X'; 
+        else turn = 'O';
+ 
+      });
+      $tr.append( $td);      
+      cells.push($td); 
+    }
+    $table.append($tr);   
+    rows.push(cells) ; 
+  }
+
+  document.body.append($table); 
+  document.body.append($result); 
+
+  console.log(rows); 
+  
+
+</script>
+
+</body>
+</html>

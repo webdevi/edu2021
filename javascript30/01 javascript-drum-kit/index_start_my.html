@@ -1,0 +1,104 @@
+<!-- 원본 https://github.com/wesbos/JavaScript30/blob/master/01%20-%20JavaScript%20Drum%20Kit/index-START.html  
+     제공해주는 소스를 가지고 만들어보기
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- https://cheonfamily.tistory.com/7 favicon.ico 오류 404 메시지 해결 방법 -->
+  <link rel="shortcut icon" href="#"> 
+</head>
+<body>
+ 
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sound/clap.wav"></audio>
+  <audio data-key="83" src="sound/hihat.wav"></audio>
+  <audio data-key="68" src="sound/kick.wav"></audio>
+  <audio data-key="70" src="sound/openhat.wav"></audio>
+  <audio data-key="71" src="sound/boom.wav"></audio>
+  <audio data-key="72" src="sound/ride.wav"></audio>
+  <audio data-key="74" src="sound/snare.wav"></audio>
+  <audio data-key="75" src="sound/tom.wav"></audio>
+  <audio data-key="76" src="sound/tink.wav"></audio>
+
+<script>
+  // 참고 url : https://www.codegrepper.com/code-examples/javascript/javascript+get+element+by+data+attribute 
+  const $audio = document.querySelectorAll('audio[data-key]'); 
+  const $keys = document.querySelectorAll('div[data-key]'); 
+  let clicked_key ; 
+
+  window.addEventListener("keydown", (event)=>{
+    clicked_key = event.keyCode;
+    $audio.forEach((elem, index)=>{
+      if(clicked_key == elem.getAttribute('data-key')){
+        wavplay(elem["src"]);
+      }         
+    }); 
+    $keys.forEach((elem, index)=>{  
+      if(clicked_key == elem.getAttribute('data-key')){
+        elem.classList.add('playing');                
+        setTimeout(() => {
+          removeCss();
+        }, 100);
+      }
+    }); 
+  });
+  // play
+  function removeCss(){
+    $keys.forEach((elem, index)=>{
+      if(elem.classList.contains("playing"))
+        elem.classList.remove('playing'); 
+    })
+  }
+
+  function wavplay(url){
+    let audio1 = new Audio(url); 
+    audio1.loop = false; 
+    audio1.volume = 0.2;     
+    audio1.play();
+  }
+</script>
+
+
+</body>
+</html>

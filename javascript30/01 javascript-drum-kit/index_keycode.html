@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="mystyle.css">
+</head>
+<body>
+    <div class="wrapper">      
+        <div class="box" id="65"><SPAN class="kname">A</SPAN><span class="action">CLAP</span></div>
+        <div class="box" id="83"><SPAN class="kname">S</SPAN><span class="action">HIHAT</span></div>
+        <div class="box" id="68"><SPAN class="kname">D</SPAN><span class="action">KICK</span></div>
+        <div class="box" id="70"><SPAN class="kname">F</SPAN><span class="action">OPENHAT</span></div>
+        <div class="box" id="71"><SPAN class="kname">G</SPAN><span class="action">BOOM</span></div>
+        <div class="box" id="72"><SPAN class="kname">H</SPAN><span class="action">RIDE</span></div>
+        <div class="box" id="74"><SPAN class="kname">J</SPAN><span class="action">SNARE</span></div>
+        <div class="box" id="75"><SPAN class="kname">K</SPAN><span class="action">TOM</span></div>
+        <div class="box" id="76"><SPAN class="kname">L</SPAN><span class="action">TINK</span></div>        
+    </div>
+</body>
+
+<script>
+    // 참고 : https://keycode.info/ 
+    let clicked_keycode ; 
+    let playing_url; 
+    let clicked_div ; 
+
+    const audio = {
+        "65" : './sound/clap.wav', 
+        "83" : './sound/hihat.wav', 
+        "68" : './sound/kick.wav', 
+        "70" : './sound/openhat.wav', 
+        "71" : './sound/boom.wav', 
+        "72" : './sound/ride.wav', 
+        "74" : './sound/snare.wav', 
+        "75" : './sound/tom.wav', 
+        "76" : './sound/tink.wav', 
+    }; 
+
+    window.addEventListener("keyup", event => { 
+        clicked_keycode = event.which || event.keyCode;
+        clicked_div = document.getElementById(clicked_keycode); 
+        clicked_div.classList.toggle('yellowborder'); 
+
+        let audio1 = new Audio(audio[clicked_keycode]);
+        audio1.loop = false; // 반복재생하지 않음
+        audio1.volume = 0.2; // 음량 설정
+        audio1.play(); // 재생 
+    
+        setTimeout(function() {
+            //두 개를 동시에 클릭하는 경우 오류가 생겨서 추가함 
+            document.querySelectorAll(".box").forEach((elem, index)=>{
+                elem.classList.remove('yellowborder');
+            })
+        }, 80);        
+    });
+  
+</script>
+</html> 

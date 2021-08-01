@@ -1,0 +1,45 @@
+body, html{
+  margin:0;
+  padding:0;
+  height:100%
+} 
+html{
+  background:url(bg.webp) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.box{            
+  background-color:rgba(0, 0, 0, 0.7); 
+  width:100px;
+  height:100px;
+  margin-left:10px;
+  border: 5px solid black;
+  transition: all 0.07s;
+} 
+.yellowborder{            
+  border: 5px solid yellow;
+  transform:scale(1.1);
+ 
+} 
+.kname {
+  font-size: 3.5em;
+  color:rgba(255, 255, 255, 0.7);
+  margin:0 auto;
+  display:block;                        
+  text-align:center;
+}
+.action{
+  font-size:1em;
+  color:rgba(214, 195, 18); 
+  text-align:center;
+  display:block;    
+}
+.wrapper{
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-wrap:wrap;  
+  min-height:100vh; 
+}

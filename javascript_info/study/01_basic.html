@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>샘플</title>
+</head>
+<body>
+  <!--
+    1. 버튼 하나를 만들고 
+    2. 버튼을 클릭햇을 때 
+    3. 조회하는 api 호출해서 받아온 결과를 (ajax, 자바스크립트 비동기 처리 ) 
+    4. 화면에 뿌려보세요. ( dom 제어 ) 
+   --> 
+   <button id="basic">불러오기</button>
+   <div class="answer">
+
+   </div>
+
+   <script>
+    let $basic = document.querySelector('#basic');
+    let $answer = document.querySelector('.answer'); 
+
+    $basic.addEventListener('click', (event)=>{
+     
+    }); 
+
+    // const request = new Request("https://openapi.gg.go.kr/PlaceThatDoATasteyFoodSt");// 경기도 맛집 
+
+    // const URL = request.url;
+    // const method = request.method;
+    // const credentials = request.credentials;
+
+    // fetch(request)
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     console.log(json);
+    //   });
+        
+    // https://data.gg.go.kr/portal/data/service/selectServicePage.do?page=1&rows=10&sortColumn=&sortDirection=&infId=6T98794V0223GQQ9O1P42464027&infSeq=3&order=&loc=&RESTRT_NM=&REFINE_ROADNM_ADDR= 
+
+    // let data = new FormData();
+    // data.append('SIGUN_NM', '성남시');
+    // data.append('SIGUN_CD', '41130');
+
+    // fetch("https://openapi.gg.go.kr/PlaceThatDoATasteyFoodSt?SIGUN_NM=성남시&SIGUN_CD=41130")
+    //   .then(res => res.text())
+    //   .then(str => (new DOMParser()).parseFromString(str, "text/xml"))
+    //   .then(data => xmlprocessing(data));
+
+    // function xmlprocessing(data){
+    //   console.log(data); 
+    // }
+
+    const promise = new Promise((resolve, reject)=>{
+      // doing some heavy work(network, read files) 
+      console.log('doning something...'); 
+      
+    }); 
+
+      
+   </script>
+
+</body>
+</html>

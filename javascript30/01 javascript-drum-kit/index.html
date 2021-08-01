@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html{
+            margin:0;
+            padding:0;
+            height:100%
+        }
+        /* .bgimg{
+            border:0;
+            padding:0;
+            background-image:url('bg.webp');
+            min-height:100%;   배경화면을 화면 꽉 채우는 방법  
+            background-position:center;
+            background-size:cover; 이미지가 찌그러지지 않는 한도 내에서 제일 크게 설정. 이미지의 가로세로비가 요소와 다르다면 이미지를 세로 또는 가로방향으로 잘라내어 빈 공간이 생기지 않도록 설정합니다.
+auto 
+        } */
+        html{
+            background:url(bg.webp) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        .box{            
+            background-color:rgba(0, 0, 0, 0.7); 
+            width:100px;
+            height:100px;
+            margin-left:10px;
+            border: 5px solid black;
+            transition: all 0.07s;
+        }
+
+        .yellowborder{            
+            border: 5px solid yellow;
+            transform:scale(1.1);
+           
+        }
+
+        .kname {
+            font-size: 3.5em;
+            color:rgba(255, 255, 255, 0.7);
+            margin:0 auto;
+            display:block;                        
+            text-align:center;
+        }
+        .action{
+            font-size:1em;
+            color:rgba(214, 195, 18); 
+            text-align:center;
+            display:block;    
+        }
+        .wrapper{
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            flex-wrap:wrap;  
+            min-height:100vh; 
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">      
+        <div class="box" id="A"><SPAN class="kname">A</SPAN><span class="action">CLAP</span></div>
+        <div class="box" id="S"><SPAN class="kname">S</SPAN><span class="action">HIHAT</span></div>
+        <div class="box" id="D"><SPAN class="kname">D</SPAN><span class="action">KICK</span></div>
+        <div class="box" id="F"><SPAN class="kname">F</SPAN><span class="action">OPENHAT</span></div>
+        <div class="box" id="G"><SPAN class="kname">G</SPAN><span class="action">BOOM</span></div>
+        <div class="box" id="H"><SPAN class="kname">H</SPAN><span class="action">RIDE</span></div>
+        <div class="box" id="J"><SPAN class="kname">J</SPAN><span class="action">SNARE</span></div>
+        <div class="box" id="K"><SPAN class="kname">K</SPAN><span class="action">TOM</span></div>
+        <div class="box" id="L"><SPAN class="kname">L</SPAN><span class="action">TINK</span></div>        
+    </div>
+</body>
+
+<script>
+    const audio =[
+        './sound/clap.wav', 
+        './sound/hihat.wav', 
+        './sound/kick.wav', 
+        './sound/openhat.wav', 
+        './sound/boom.wav', 
+        './sound/ride.wav', 
+        './sound/snare.wav', 
+        './sound/tom.wav', 
+        './sound/tink.wav', 
+    ]; 
+    const box = document.querySelectorAll('div .box').forEach((elem, index)=>{
+        // console.log(elem["id"]);
+        elem.addEventListener('click', ()=>{
+            // console.log(elem["id"]);
+            // console.log(audio[index]);
+            elem.classList.toggle('yellowborder'); 
+
+            var audio1 = new Audio(audio[index]);
+            audio1.loop = false; // 반복재생하지 않음
+            audio1.volume = 0.5; // 음량 설정
+            audio1.play(); // 재생 
+
+            setTimeout(function() {
+                elem.classList.toggle('yellowborder');
+            },180);
+
+        });
+    }); 
+
+</script>
+</html>

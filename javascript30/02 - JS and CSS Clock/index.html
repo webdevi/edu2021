@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <!-- <link rel="stylesheet" href="mystyle.css"> -->
+  <!-- 참고 https://github.com/WebDevSimplified/JavaScript-Clock/blob/master/styles.css  
+       영상 : https://www.youtube.com/watch?v=Ki0XXrlKlHY
+  -->
+  <style> 
+    *, *::after, *::before {
+    box-sizing: border-box;
+    }
+    body{
+      background:linear-gradient(to left,lightgreen, green); 
+    }
+
+    .clock{
+      width:300px;
+      height:300px;
+      background:cornflowerblue; 
+      position:relative
+    }
+    .number{
+      
+      font-size:1.2rem;
+      position:absolute;
+      text-align:center;
+      width:100%;
+      height:100%;
+      background:red;
+      /* transform:rotate(var(--degree, 0)); */
+      /* transform:rotate('20deg')); */
+
+      transform:rotate('30deg')
+      }
+    .number2 {--degree: '30deg';}
+    /* body, html{
+      margin:0;
+      padding:0;
+      height:100%; 
+      display:flex;
+      flex:1;
+      justify-content: center;  
+      align-items:center;
+      min-height:100vh;  
+    }  
+    .clock{  
+      width:300px;
+      height:300px;  
+      border:30px solid blue;
+      border-radius: 50%;
+      background-color: cadetblue; 
+      position:fixed;
+    }
+    .clock-face{
+      width:150px;
+      height:50%;  
+    } 
+    .hand{        
+        background:red;
+        position:absolute;
+        top : 5px;
+        left: 140px;
+        height:145px;
+        width:5px;
+        transform-origin: 0 100%;         
+    }  */
+    /* .min{
+        background:yellow;
+        position:absolute;
+        top : 40px;
+        left: 145px;
+        height:110px;
+        width:5px;
+        transform-origin: 0 100%;                
+    }  */
+  </style>
+  <title>02 CSS+JS Clock - Javascript30</title>
+</head>
+<body> 
+    <div class="clock">
+      <div class="hand hour" ></div>
+      <div class="hand min" ></div>   
+      <div class="hand second" ></div>      
+      
+      <div class="number number1">1</div>
+      <div class="number number2">2</div>
+      <div class="number number3">3</div>
+      <div class="number number4">4</div>
+      <div class="number number5">5</div>
+      <div class="number number6">6</div>
+      <div class="number number7">7</div>
+      <div class="number number8">8</div>
+      <div class="number number9">9</div>
+      <div class="number number10">10</div>
+      <div class="number number11">11</div>
+      <div class="number number12">12</div>
+    </div>
+    <!-- 
+      setInterval 
+    : 일정한 시간 간격으로 작업을 수행하기 위한 함수 
+      clearInterval함수를 이용하여 중지 가능. 
+      주의 - 일정한 시간 간격으로 실행되는 작업인데, 그 시간간격보다 오래걸리는 경우 문제 발생가능.
+
+    setTimeout 
+    : 일정한 시간 후에 작업을 한번 실행함. 
+      clearTimeout()을 사용하여 작업을 중지합니다. 
+      지정된 시간 사이 작업시간이 추가되어 살짝씩 밀리게 됩니다 . 
+    -->
+  <script>
+    // const $clockface = document.querySelector('.clock-face');
+    // const $hour = document.querySelector('#hour');
+    
+    // {
+    //     //$hour.style.transform ="rotate(1.4turn)";  //  16deg
+    //     console.log('test');
+        
+    // }
+    // console.log($clockface);
+    // console.log($hour);
+    
+    // function PrintTime(){
+    //   const now = new Date(); 
+    //   console.log(now.getFullYear());
+    //   console.log(now.getMonth()+1);
+    //   console.log(now.getDate());
+    //   console.log(now.getHours());
+    //   console.log(now.getMinutes());
+    //   console.log(now.getSeconds());
+      
+
+    //   console.log(now);
+      
+    // }
+    // PrintTime();
+  </script>      
+</body>
+</html>

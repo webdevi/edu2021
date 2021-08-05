@@ -20,23 +20,35 @@
     .clock{
       width:300px;
       height:300px;
+      border-radius: 50%;
       background:cornflowerblue; 
       position:relative
     }
-    .number{
-      
+    .clock .number{
+      --degree:0; 
       font-size:1.2rem;
       position:absolute;
       text-align:center;
       width:100%;
       height:100%;
-      background:red;
+      /* background:red; */
       /* transform:rotate(var(--degree, 0)); */
       /* transform:rotate('20deg')); */
 
-      transform:rotate('30deg')
+      transform:rotate(var(--degree)); 
       }
-    .number2 {--degree: '30deg';}
+    .clock .number1 {--degree: 30deg;}
+    .clock .number2 {--degree: 60deg;}
+    .clock .number3 {--degree: 90deg;}
+    .clock .number4 {--degree: 120deg;}
+    .clock .number5 {--degree: 150deg;}
+    .clock .number6 {--degree: 180deg;}
+    .clock .number7 {--degree: 210deg;}
+    .clock .number8 {--degree: 240deg;}
+    .clock .number9 {--degree:  270deg;}
+    .clock .number10 {--degree: 300deg;}
+    .clock .number11 {--degree: 331deg;}
+    
     /* body, html{
       margin:0;
       padding:0;

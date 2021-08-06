@@ -8,87 +8,93 @@
   <!-- <link rel="stylesheet" href="mystyle.css"> -->
   <!-- 참고 https://github.com/WebDevSimplified/JavaScript-Clock/blob/master/styles.css  
        영상 : https://www.youtube.com/watch?v=Ki0XXrlKlHY
+
+       https://codepen.io/vaskopetrov/pen/yVEXjz
   -->
   <style> 
+    :root{
+      --degreehour:0deg;
+      --degreemin:0deg;
+      --degreesecond:0deg;   
+      --degree:0deg; 
+    }
     *, *::after, *::before {
     box-sizing: border-box;
     }
-    body{
-      background:linear-gradient(to left,lightgreen, green); 
-    }
-
-    .clock{
-      width:300px;
-      height:300px;
-      border-radius: 50%;
-      background:cornflowerblue; 
-      position:relative
-    }
-    .clock .number{
-      --degree:0; 
-      font-size:1.2rem;
-      position:absolute;
-      text-align:center;
-      width:100%;
-      height:100%;
-      /* background:red; */
-      /* transform:rotate(var(--degree, 0)); */
-      /* transform:rotate('20deg')); */
-
-      transform:rotate(var(--degree)); 
-      }
-    .clock .number1 {--degree: 30deg;}
-    .clock .number2 {--degree: 60deg;}
-    .clock .number3 {--degree: 90deg;}
-    .clock .number4 {--degree: 120deg;}
-    .clock .number5 {--degree: 150deg;}
-    .clock .number6 {--degree: 180deg;}
-    .clock .number7 {--degree: 210deg;}
-    .clock .number8 {--degree: 240deg;}
-    .clock .number9 {--degree:  270deg;}
-    .clock .number10 {--degree: 300deg;}
-    .clock .number11 {--degree: 331deg;}
-    
-    /* body, html{
-      margin:0;
-      padding:0;
-      height:100%; 
+    body{      
+      background:linear-gradient(to right,skyblue, white);       
       display:flex;
       flex:1;
       justify-content: center;  
       align-items:center;
       min-height:100vh;  
-    }  
-    .clock{  
-      width:300px;
-      height:300px;  
-      border:30px solid blue;
-      border-radius: 50%;
-      background-color: cadetblue; 
-      position:fixed;
     }
-    .clock-face{
-      width:150px;
-      height:50%;  
-    } 
-    .hand{        
-        background:red;
-        position:absolute;
-        top : 5px;
-        left: 140px;
-        height:145px;
-        width:5px;
-        transform-origin: 0 100%;         
-    }  */
-    /* .min{
-        background:yellow;
-        position:absolute;
-        top : 40px;
-        left: 145px;
-        height:110px;
-        width:5px;
-        transform-origin: 0 100%;                
-    }  */
+    
+    .clock{
+      width:300px;
+      height:300px;
+      border-radius: 50%;
+      background:cornflowerblue; 
+      position:relative;      
+    }
+    .number{ 
+      font-size:1.2rem;
+      position:absolute;
+      text-align:center;
+      width:100%;
+      height:100%; 
+      transform:rotate(var(--degree)); 
+      font-weight:bold;
+    }
+    /* css변수를 활용   */ 
+    .number1 {--degree: 30deg;}
+    .number2 {--degree: 60deg;}
+    .number3 {--degree: 90deg;}
+    .number4 {--degree: 120deg;}
+    .number5 {--degree: 150deg;}
+    .number6 {--degree: 180deg;}
+    .number7 {--degree: 210deg;}
+    .number8 {--degree: 240deg;}
+    .number9 {--degree:  270deg;}
+    .number10 {--degree: 300deg;}
+    .number11 {--degree: 331deg;}
+    
+    .hand{
+      position:absolute;             
+      left:50%; 
+      width:5px;     
+      height:50%; 
+      transform-origin: 0 100%;
+    }
+    /* hand가 들어가면 안되는 이유를 모르겠네 */
+    .hour{
+       
+      transform:rotate(var(--degreehour));
+      background-color:red;   
+    }
+    .min{
+      
+      transform:rotate(var(--degreehour));
+      background-color:yellow;  
+    }
+    .second{
+    
+      transform:rotate(var(--degreehour));
+      background-color:black; 
+    }
+    .round{ 
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ccc;                  
+      position: absolute;      
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto; 
+      box-shadow:0 2px 10px 0 black;
+    }  
   </style>
   <title>02 CSS+JS Clock - Javascript30</title>
 </head>
@@ -97,7 +103,7 @@
       <div class="hand hour" ></div>
       <div class="hand min" ></div>   
       <div class="hand second" ></div>      
-      
+      <!-- <div class="round"></div> -->
       <div class="number number1">1</div>
       <div class="number number2">2</div>
       <div class="number number3">3</div>
@@ -123,6 +129,55 @@
       지정된 시간 사이 작업시간이 추가되어 살짝씩 밀리게 됩니다 . 
     -->
   <script>
+    const $hour = document.querySelector('.hour');
+    const $min = document.querySelector('.min');
+    const $second = document.querySelector('.second');
+
+    let d1 = 0;
+    let d2 = 0;
+    let d3 = 0;
+    setInterval(() => {
+      const now = new Date(); 
+      // console.log(now.getFullYear());
+      // console.log(now.getMonth()+1);
+      // console.log(now.getDate());
+      // console.log(now.getHours());
+      // console.log(now.getMinutes());
+      // console.log(now.getSeconds());
+      d1 = now.getHours()*6;
+      d2 = now.getMinutes()*6;
+      d3 = now.getSeconds()*6;
+      $hour.style.setProperty('--degreehour', d1 + "deg");   
+      $min.style.setProperty('--degreehour', d2 + "deg");   
+      $second.style.setProperty('--degreehour', d3 + "deg");   
+       
+    }, 1000);
+    
+    function PrintTime(){
+      // const now = new Date(); 
+      // console.log(now.getFullYear());
+      // console.log(now.getMonth()+1);
+      // console.log(now.getDate());
+      // console.log(now.getHours());
+      // console.log(now.getMinutes());
+      // console.log(now.getSeconds());
+      
+
+      // console.log(now);
+      
+    }
+    PrintTime();
+    //console.log($hour.getComputedStyle());
+
+    // 인라인 스타일에서 변수 얻기
+    //element.style.getPropertyValue("--degreehour");
+    // 어느 곳에서나 변수 얻기
+    //getComputedStyle(element).getPropertyValue("--degreehour");
+    // 인라인 스타일에 변수 설정하기
+    //element.style.setProperty("--degreehour", jsVar + 4);
+
+
+
     // const $clockface = document.querySelector('.clock-face');
     // const $hour = document.querySelector('#hour');
     
@@ -134,20 +189,7 @@
     // console.log($clockface);
     // console.log($hour);
     
-    // function PrintTime(){
-    //   const now = new Date(); 
-    //   console.log(now.getFullYear());
-    //   console.log(now.getMonth()+1);
-    //   console.log(now.getDate());
-    //   console.log(now.getHours());
-    //   console.log(now.getMinutes());
-    //   console.log(now.getSeconds());
-      
 
-    //   console.log(now);
-      
-    // }
-    // PrintTime();
   </script>      
 </body>
 </html>

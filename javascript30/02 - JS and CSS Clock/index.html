@@ -28,8 +28,7 @@
       justify-content: center;  
       align-items:center;
       min-height:100vh;  
-    }
-    
+    } 
     .clock{
       width:300px;
       height:300px;
@@ -57,30 +56,35 @@
     .number8 {--degree: 240deg;}
     .number9 {--degree:  270deg;}
     .number10 {--degree: 300deg;}
-    .number11 {--degree: 331deg;}
+    .number11 {--degree: 330deg;}
     
     .hand{
       position:absolute;             
       left:50%; 
-      width:5px;     
+      width:4px;     
       height:50%; 
-      transform-origin: 0 100%;
-    }
-    /* hand가 들어가면 안되는 이유를 모르겠네 */
-    .hour{
-       
-      transform:rotate(var(--degreehour));
-      background-color:red;   
-    }
-    .min{
       
+      border-top-left-radius: 50%; 
+      border-top-right-radius: 50%;
+      transform-origin: 100% 100%;
+    }
+    /* hand가 들어가면?*/
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin */
+    .hour{       
+      transform:rotate(var(--degreehour));
+      background-color:red;  
+      transform-origin: 0 100%; 
+    }
+    .min{      
       transform:rotate(var(--degreehour));
       background-color:yellow;  
+      transform-origin: 0 100%;
     }
-    .second{
-    
+    .second{    
       transform:rotate(var(--degreehour));
       background-color:black; 
+      transform-origin: 0 100%;
+     /* transform: translate(-100%, 50%) rotate(var(--degreehour)) translate(100%, -50%);  */
     }
     .round{ 
       width: 14px;
@@ -94,6 +98,7 @@
       bottom: 0;
       margin: auto; 
       box-shadow:0 2px 10px 0 black;
+      z-index:10;
     }  
   </style>
   <title>02 CSS+JS Clock - Javascript30</title>
@@ -103,7 +108,7 @@
       <div class="hand hour" ></div>
       <div class="hand min" ></div>   
       <div class="hand second" ></div>      
-      <!-- <div class="round"></div> -->
+      <div class="round"></div>
       <div class="number number1">1</div>
       <div class="number number2">2</div>
       <div class="number number3">3</div>
@@ -133,62 +138,21 @@
     const $min = document.querySelector('.min');
     const $second = document.querySelector('.second');
 
-    let d1 = 0;
-    let d2 = 0;
-    let d3 = 0;
+    let h = 0;
+    let m = 0;
+    let s = 0;
     setInterval(() => {
       const now = new Date(); 
-      // console.log(now.getFullYear());
-      // console.log(now.getMonth()+1);
-      // console.log(now.getDate());
-      // console.log(now.getHours());
-      // console.log(now.getMinutes());
-      // console.log(now.getSeconds());
-      d1 = now.getHours()*6;
-      d2 = now.getMinutes()*6;
-      d3 = now.getSeconds()*6;
-      $hour.style.setProperty('--degreehour', d1 + "deg");   
-      $min.style.setProperty('--degreehour', d2 + "deg");   
-      $second.style.setProperty('--degreehour', d3 + "deg");   
+ 
+      h = now.getHours()*30 + now.getMinutes()*0.5;
+      m = now.getMinutes()*6 ;
+      s = now.getSeconds()*6;
+      $hour.style.setProperty('--degreehour', h + "deg");   
+      $min.style.setProperty('--degreehour', m + "deg");   
+      $second.style.setProperty('--degreehour', s + "deg");   
        
     }, 1000);
-    
-    function PrintTime(){
-      // const now = new Date(); 
-      // console.log(now.getFullYear());
-      // console.log(now.getMonth()+1);
-      // console.log(now.getDate());
-      // console.log(now.getHours());
-      // console.log(now.getMinutes());
-      // console.log(now.getSeconds());
-      
-
-      // console.log(now);
-      
-    }
-    PrintTime();
-    //console.log($hour.getComputedStyle());
-
-    // 인라인 스타일에서 변수 얻기
-    //element.style.getPropertyValue("--degreehour");
-    // 어느 곳에서나 변수 얻기
-    //getComputedStyle(element).getPropertyValue("--degreehour");
-    // 인라인 스타일에 변수 설정하기
-    //element.style.setProperty("--degreehour", jsVar + 4);
-
-
-
-    // const $clockface = document.querySelector('.clock-face');
-    // const $hour = document.querySelector('#hour');
-    
-    // {
-    //     //$hour.style.transform ="rotate(1.4turn)";  //  16deg
-    //     console.log('test');
-        
-    // }
-    // console.log($clockface);
-    // console.log($hour);
-    
+     
 
   </script>      
 </body>

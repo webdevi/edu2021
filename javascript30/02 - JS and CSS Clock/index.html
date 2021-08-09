@@ -11,13 +11,7 @@
 
        https://codepen.io/vaskopetrov/pen/yVEXjz
   -->
-  <style> 
-    :root{
-      --degreehour:0deg;
-      --degreemin:0deg;
-      --degreesecond:0deg;   
-      --degree:0deg; 
-    }
+  <style>  
     *, *::after, *::before {
     box-sizing: border-box;
     }
@@ -58,37 +52,41 @@
     .number10 {--degree: 300deg;}
     .number11 {--degree: 330deg;}
     
-    .hand{
+    .hand {      
+      --rotation:0;
       position:absolute;             
-      left:50%; 
-      width:4px;     
-      height:50%; 
-      
+      bottom:50%;
+      height: 35%;
+      width:13px;
+      left:50%;          
+      background-color: skyblue;
+      transform:translateX(-50%) rotate(calc(var(--rotation)* 1deg));
+      transform-origin:bottom;
+
       border-top-left-radius: 50%; 
-      border-top-right-radius: 50%;
-      transform-origin: 100% 100%;
+      border-top-right-radius: 50%;       */
     }
     /* hand가 들어가면?*/
     /* https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin */
-    .hour{       
-      transform:rotate(var(--degreehour));
-      background-color:red;  
-      transform-origin: 0 100%; 
-    }
-    .min{      
-      transform:rotate(var(--degreehour));
+     .hour{       
+      background-color:skyblue;   
+      z-index:10; 
+    } 
+    .min{
       background-color:yellow;  
-      transform-origin: 0 100%;
+      height:45%;
+      z-index:9;
+    } 
+    .second{
+      background-color:black;  
+      height: 50%;
+      width:5px;     
+      z-index:5; 
     }
-    .second{    
-      transform:rotate(var(--degreehour));
-      background-color:black; 
-      transform-origin: 0 100%;
-     /* transform: translate(-100%, 50%) rotate(var(--degreehour)) translate(100%, -50%);  */
-    }
+ 
     .round{ 
-      width: 14px;
-      height: 14px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       background: #ccc;                  
       position: absolute;      
@@ -98,7 +96,7 @@
       bottom: 0;
       margin: auto; 
       box-shadow:0 2px 10px 0 black;
-      z-index:10;
+      z-index:20;
     }  
   </style>
   <title>02 CSS+JS Clock - Javascript30</title>
@@ -107,7 +105,7 @@
     <div class="clock">
       <div class="hand hour" ></div>
       <div class="hand min" ></div>   
-      <div class="hand second" ></div>      
+      <div class="hand second" ></div>     
       <div class="round"></div>
       <div class="number number1">1</div>
       <div class="number number2">2</div>
@@ -147,9 +145,9 @@
       h = now.getHours()*30 + now.getMinutes()*0.5;
       m = now.getMinutes()*6 ;
       s = now.getSeconds()*6;
-      $hour.style.setProperty('--degreehour', h + "deg");   
-      $min.style.setProperty('--degreehour', m + "deg");   
-      $second.style.setProperty('--degreehour', s + "deg");   
+      $hour.style.setProperty('--rotation', h  );   
+      $min.style.setProperty('--rotation', m );   
+      $second.style.setProperty('--rotation', s  );   
        
     }, 1000);
      

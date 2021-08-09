@@ -64,7 +64,19 @@
       transform-origin:bottom;
 
       border-top-left-radius: 50%; 
-      border-top-right-radius: 50%;       */
+      border-top-right-radius: 50%;  
+      /*       
+      transision 속성을 서서히 변화시키는 속성
+      transision-property, transision-duration, transition-timing-function, transision-delay속성을
+      한번에 정함 
+      */
+      transition: all .05s; 
+      /* timing-function : transition의 진행 속도를 정합니다. transition-timing-function를 참고하세요.
+         cubic-bezier( n, n, n, n ) : n에는 0부터 1까지의 수를 넣습니다.
+         https://www.codingfactory.net/10953
+         시계가 튕겨지면서 움직이는 효과 
+       */
+      transition-timing-function:cubic-bezier( 0.1, 2.7, 0.58, 1 )  ;
     }
     /* hand가 들어가면?*/
     /* https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin */

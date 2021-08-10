@@ -1,0 +1,55 @@
+<!-- 교육영상 : https://courses.wesbos.com/account/access/6075912675ff3a25a5c45290/view/194130480 
+
+-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <title>03 - CSS Variables</title>
+  <style>
+    body{
+      background-color:#162E3E; 
+      color:white;
+    }
+    
+    h1 span{
+      color:aquamarine; 
+    }
+    .img{
+      background-color: aquamarine;
+      width:340px;
+    }
+    #mainImage{
+      width:300px;
+      margin:20px;      
+    }
+    .controller{
+      position:relative;
+    }
+    .controller div{
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Update CSS Variables with <span>JS</span></h1>
+  <div class="controller">
+    <div>Spacing 
+      <!-- 
+         Range Slider 
+         https://www.w3schools.com/howto/howto_js_rangeslider.asp -->
+         <input type="range" class="slider">
+    </div>
+    <div>Blur
+      <input type="range" class="slider">
+    </div>
+    <div>Base Color</div>
+  </div>  
+  <div><input type="text">Color picker</div>
+  <div class="img"><img src="../01 javascript-drum-kit/bg.jpg" id="mainImage"></div>
+</body>
+</html>

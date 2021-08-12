@@ -14,61 +14,77 @@
    :root{
        --blur:0;
        --spacing:20;
+       --backgroundcolor:#3d186e;
     }
     body{
       background-color:#162E3E; 
       color:white;
+      display:flex;
+      flex:1;
+      flex-direction: column;
+      justify-content: center; 
+      margin:0 auto;
+      align-items:center;
+      min-height:100vh;        
     } 
-    h1 span{
-      color:aquamarine; 
+    header, section{
+      width:500px;      
     }
-    .imgbox{
-      background-color: aquamarine;
-      margin:30px;
-      width
+    h1{text-align:center}
+    h1 span{
+      color:aquamarine;             
+    }
+    .imgbox{ 
+      margin-top:30px;
+      width:100%;
+      text-align:center;
     }
     #mainImage{ 
       padding:calc(var(--spacing)*1px);
       filter: blur(calc(var(--blur)*1px));  /*이미지에 블러효과*/ 
-    }
-    
+      background-color:#3d186e;
+    } 
     .controller{
-      /* position:relative; */
-      margin:20px auto;    
-      display:flex;              
+      font-size:13px;       
+      height:30px;
+      text-align:center;    
     }
     .controller div{
-      display:inline-block;
+      display:inline-block;      
     }
     .slider{
       width:70px;
     } 
     #colorbox{
       width:30px;
-      margin:5px;
+      height:25px;
     }
   </style>
 </head>
 <body>
-  <h1>Update CSS Variables with <span>JS</span></h1>
-  <div class="controller">
-    <div>Spacing 
-      <!-- Range Slider 
-           https://www.w3schools.com/howto/howto_js_rangeslider.asp -->
-         <input type="range" class="slider" id="spacing" value="20" onchange="spacingChange(this);">
+  <header>
+    <h1>Update CSS Variables with <span>JS</span></h1>
+  </header>
+  <section>
+    <div class="controller">
+      <span>Spacing </span>
+        <!-- Range Slider 
+            https://www.w3schools.com/howto/howto_js_rangeslider.asp -->
+      <input type="range" class="slider" id="spacing" value="20" onchange="spacingChange(this);">
+      <span>Blur</span>      
+      <input type="range" class="slider" id="blur" value="0" onchange="BlurChange(this);">      
+      <span>Base Color</span>
+      <div><input type="color" id="colorbox" onchange="colorChange(this);" value="#3d186e">Color picker</div>
+    </div> 
+    <div class="imgbox">
+      <img src="img.jpg" id="mainImage">
     </div>
-    <div>Blur
-      <input type="range" class="slider" id="blur" value="0" onchange="BlurChange(this);">
-    </div>
-    <div>Base Color</div>
-  </div>  
-  <div><input type="text" id="colorbox">Color picker</div>
-  <div class="imgbox"><img src="img.jpg" id="mainImage"></div>
+  </section>
+
   <script>
     const $spacing = document.querySelector("#spacing"); 
     const $img = document.querySelector("#mainImage"); 
-    // console.log($spacing);
-
+ 
     function setValue(e){  
       console.log(e.value);
       return e.value;
@@ -84,6 +100,10 @@
       $img.style.setProperty("--blur", e.value *0.1);        
     }
 
+    function colorChange(e){  
+      console.log(e.value  );
+      $img.style.backgroundColor = e.value;
+    }
   </script>
 </body>
 </html>

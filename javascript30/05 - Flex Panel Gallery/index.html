@@ -1,0 +1,47 @@
+<!-- https://github.com/wesbos/JavaScript30/tree/master/05%20-%20Flex%20Panel%20Gallery 
+
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <title>05 - Flex Panel Gallery</title>
+  <style>
+    body, p, div{margin:0px;}
+    body{
+      display:flex;
+      flex-direction: row;
+    }
+    .imgbox{
+      background-color:brown;
+      margin:3px;
+      width:100vh;
+      height:100vh;
+
+      display:flex;      
+      flex-direction: column;          
+      align-items: center;/* https://stackoverflow.com/questions/25311541/how-to-vertically-align-text-inside-a-flexbox */
+    }
+    .imgbox p{
+      background-color:cadetblue;      
+      flex:1 1 auto; /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox */
+      margin: 3px;;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="imgbox img1">
+    <p>HEY</p>
+    <p>LET'S</p>
+    <p>DANCE</p>
+  </div>
+  <div class="imgbox img2"><p>TAKE</p></div>
+  <div class="imgbox img3"><p>IT</p></div>
+  <div class="imgbox img4"><p>ALL</p></div>
+  <div class="imgbox img5"><p>IN</p></div>
+</body>
+</html>

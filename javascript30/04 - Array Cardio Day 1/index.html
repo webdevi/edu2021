@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="#"> 
+  <link rel="shortcut icon" href="#">
   <title>04-Array Cardio Day 1</title>
   </head>
   <body>
@@ -13,9 +13,9 @@
     <script>
       // Get your shorts on - this is an array workout!
       // ## Array Cardio Day 1
-  
+
       // Some data we can work with
-  
+
       const inventors = [
         { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
         { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
@@ -30,40 +30,109 @@
         { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
         { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
       ];
-  
+
       const people = [
-        'Bernhard, Sandra', 'Bethea, Erin', 'Becker, Carl', 'Bentsen, Lloyd', 'Beckett, Samuel', 'Blake, William', 'Berger, Ric', 'Beddoes, Mick', 'Beethoven, Ludwig',
+        'Bernhard, Sandra', 'Bethea, Erin', 'zirrell, Augustine', 'Becker, Carl', 'Bentsen, Lloyd', 'Beckett, Samuel', 'Blake, William', 'Berger, Ric', 'Beddoes, Mick', 'Beethoven, Ludwig',
         'Belloc, Hilaire', 'Begin, Menachem', 'Bellow, Saul', 'Benchley, Robert', 'Blair, Robert', 'Benenson, Peter', 'Benjamin, Walter', 'Berlin, Irving',
         'Benn, Tony', 'Benson, Leana', 'Bent, Silas', 'Berle, Milton', 'Berry, Halle', 'Biko, Steve', 'Beck, Glenn', 'Bergman, Ingmar', 'Black, Elk', 'Berio, Luciano',
         'Berne, Eric', 'Berra, Yogi', 'Berry, Wendell', 'Bevan, Aneurin', 'Ben-Gurion, David', 'Bevel, Ken', 'Biden, Joseph', 'Bennington, Chester', 'Bierce, Ambrose',
         'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
       ];
-      
+
+      {
       // Array.prototype.filter()
       // 1. Filter the list of inventors for those who were born in the 1500's
-  
+      const fifteen = inventors.filter(inventor=>(inventor.year >=1500 && inventor.year <1600) )
+      console.table(fifteen); 
+
+
       // Array.prototype.map()
       // 2. Give us an array of the inventors first and last names
-  
+      const fullname = inventors.map(inventor=>`${inventor.first}, ${inventor.last}`);
+      console.log(fullname); 
+
       // Array.prototype.sort()
       // 3. Sort the inventors by birthdate, oldest to youngest
-  
+      // const ordered = inventors.sort(function(a, b){
+      //   if(a.year > b.year){
+      //     return 1; 
+      //   }
+      //   else {
+      //     return -1; 
+      //   }
+      // }); 
+      // 이미 배열의 정렬도 바뀌어 버림 
+      const ordered = inventors.sort((a , b)=>(a.year > b.year ? 1 : -1)); 
+      console.table(ordered); 
+      // console.table(inventors); 
+      // const disordered = inventors.sort((a , b)=>(a.year > b.year ? -1 : 1));      
+      // console.table(disordered); 
+      // console.table(inventors); 
+ 
+      // console.log('-------------------------------------------');
+        
       // Array.prototype.reduce()
       // 4. How many years did all the inventors live all together?
-  
+      // REDUCE : foreach와 같이 배열 내의 요소를 반복작업 할 수 있습니다. 
+      // let value = arr.reduce(function(accumulator, item, index, array) {}, init); 
+      // 1) accumlator : 이전 함수 호출의 결과 
+      // 2) item : 현재 배열의 요소 
+      // 3) index : 요소의 위치 
+      // 4) array : 배열 
+      // init 초기 값 
+      // const totalyear =  inventors.reduce((preinventor, inventor)=>{                 
+      //    return (preinventor+ inventor.passed - inventor.year);        
+      // } , 0);
+      const totalyear = inventors.reduce((prev, inventor)=>(prev + inventor.passed - inventor.year), 0); 
+      console.log(totalyear);
+       
       // 5. Sort the inventors by years lived
-  
+      const oldest = inventors.sort((a, b)=>{
+        const prevAge = a.passed - a.year; 
+        const nowAge= b.passed - b.passed; 
+        if(prevAge > nowAge){
+          return -1 ; 
+        }
+        else {
+          return 1;
+        } 
+      });
+      console.table(oldest); 
       // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-  
-  
+      const categorys = Array.from(document.querySelectorAll('.mw-category a'));
+      const de = categorys
+                  .map((val, index, arr)=>(val.innerHTML))
+                  .filter(val => val.includes("de "));
+
+     console.table(de);  
+
+    
+     
       // 7. sort Exercise
       // Sort the people alphabetically by last name
-  
+      //console.log(people); 
+      const alpha = people.sort((a, b)=>{
+         const [aLast, aFirst] = a.split(", "); 
+         const [bLast, bFirst] = b.split(", ");  
+         
+         return aLast > bLast ? 1 : -1;  
+      }); 
+     console.log(alpha); 
+    }
       // 8. Reduce Exercise
       // Sum up the instances of each of these
       const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-  
+
+      const summary = data.reduce((obj,data)=>{        
+        if(!obj[data]){
+          obj[data]= 0; 
+        }
+        obj[data]++;
+        return obj;
+      }, {}); 
+      console.table(summary);
     </script>
   </body>
   </html>
+  

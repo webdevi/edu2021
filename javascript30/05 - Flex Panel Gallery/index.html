@@ -16,33 +16,40 @@
       flex-direction: row;
     }
     .imgbox{
-      background-color:brown;
+      background-color:rgb(4, 43, 46);
       margin:3px;
       width:100vh;
       height:100vh;
 
       display:flex;  
-      flex:3;   
       flex-direction: column;          
+      flex:3;   
       align-items: center;/* https://stackoverflow.com/questions/25311541/how-to-vertically-align-text-inside-a-flexbox */
       justify-content:center; 
+      
       /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container */
     }
     .imgbox p{
       background-color:cadetblue;      
-      flex:1 1 auto; /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox */
+      /* flex:1 1 auto;  */
+      /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox */
       margin: 3px;    
     }
     .img1{
-      background-image:url('https://source.unsplash.com/gYl-UtwNg_I/1500x1500');
-      background-position: center;
+      /* background-image:url('https://source.unsplash.com/gYl-UtwNg_I/1500x1500'); */
+      /* background-position: center; */
+      background-color:blue;
+    }
+    .img1 .point{
+      /* flex-grow:1; */
+      flex-basis:100%;
     }
   </style>
 </head>
 <body>
   <div class="imgbox img1">
     <p>HEY</p>
-    <p>LET'S</p>
+    <p class="point">LET'S</p>
     <p>DANCE</p>
   </div>
   <div class="imgbox img2"><p>TAKE</p></div>

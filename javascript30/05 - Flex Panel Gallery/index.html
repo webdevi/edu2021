@@ -9,52 +9,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="#"> 
   <title>05 - Flex Panel Gallery</title>
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet" type="text/css">
   <style>
-    body, p, div{margin:0px;}
+   html{
+      box-sizing: border-box;
+      font-size: 20px;
+      font-weight: 200;
+   }
+   body, p, div{margin:0px;}
+   
     body{
       display:flex;
-      flex-direction: row;
+      /* flex-direction: column;?
+      max-height:100vh; */      
+      height:100vh; 
+      flex-flow: column nowrap;
+      justify-content: space-between;
+
+      /* flex-direction: row; */
     }
     .imgbox{
-      background-color:rgb(4, 43, 46);
-      margin:3px;
-      width:100vh;
-      height:100vh;
-
-      display:flex;  
-      flex-direction: column;          
-      flex:3;   
-      align-items: center;/* https://stackoverflow.com/questions/25311541/how-to-vertically-align-text-inside-a-flexbox */
-      justify-content:center; 
+      background-color: burlywood;    
       
-      /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container */
+      /* https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Backgrounds_and_Borders/Resizing_background_images          
+         cover : 배경이미지의 가로, 세로 모두 큰 경우 배경이미지를 작게 조절함. 가로세로 비율 유지 
+      */
+      background-size:cover; 
+      background-position:center;
+      
     }
+
     .imgbox p{
-      background-color:cadetblue;      
-      /* flex:1 1 auto;  */
-      /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox */
-      margin: 3px;    
+      font-family: 'Amatic SC', cursive;
+      font-size:2em;
+      color:white;      
+      text-shadow: black 1px 0 10px;
+      text-align:center;
     }
-    .img1{
-      /* background-image:url('https://source.unsplash.com/gYl-UtwNg_I/1500x1500'); */
-      /* background-position: center; */
-      background-color:blue;
-    }
-    .img1 .point{
-      /* flex-grow:1; */
-      flex-basis:100%;
-    }
+
+    .imgbox p:nth-child(2){
+      font-size:4em; 
+    } 
+
+    .img1 { background-image:url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500); }
+    .img2 { background-image:url(https://source.unsplash.com/rFKUFzjPYiQ/1500x1500); }
+    .img3 { background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d); }
+    .img4 { background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500); }
+    .img5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
+
   </style>
 </head>
 <body>
   <div class="imgbox img1">
     <p>HEY</p>
-    <p class="point">LET'S</p>
+    <p >LET'S</p>
     <p>DANCE</p>
   </div>
-  <div class="imgbox img2"><p>TAKE</p></div>
-  <div class="imgbox img3"><p>IT</p></div>
-  <div class="imgbox img4"><p>ALL</p></div>
-  <div class="imgbox img5"><p>IN</p></div>
+  <div class="imgbox img2">
+    <p>Give</p>
+    <p>TAKE</p>
+    <p>Receive</p>
+  </div>
+  <div class="imgbox img3">
+    <p>Experience</p>
+    <p>IT</p>
+    <p>Today</p>
+  </div>
+  <div class="imgbox img4">
+    <p>Give</p>
+    <p>ALL</p>
+    <p>You CAN</p>
+  </div>
+  <div class="imgbox img5">
+    <P>LIFE</P>
+    <p>IN</p>
+    <P>MOTION</P>
+  </div>
 </body>
 </html>

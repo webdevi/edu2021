@@ -65,7 +65,7 @@
       margin: 0;
       width: 100%;
       transition: transform 0.5s;
-      border:1px solid red;
+    
       flex:1 0 auto;  /* https://developer.mozilla.org/ko/docs/Web/CSS/flex */ 
       display:flex;
       justify-content: center;
@@ -73,7 +73,9 @@
     }
 
     .panel > *:first-child{ transform: translateY(-100%); }
+    .panel.open-active > *:first-child{ transform: translateY(0); }
     .panel > *:last-child{ transform: translateY(100%); } 
+    .panel.open-active > *:last-child{ transform: translateY(0); } 
 
     .panel p {
       text-transform: uppercase;
@@ -88,13 +90,10 @@
     }
 
     .panel.open {
+      flex:5;
       font-size: 40px;
-    }
-
-    
+    }     
   </style>
-
-
   <div class="panels">
     <div class="panel panel1">
       <p>Hey</p>
@@ -124,6 +123,16 @@
   </div>
 
   <script>
+    const $panels = Array.from(document.querySelectorAll(".panel")); 
+
+    $panels.forEach($panel=>$panel.addEventListener("click", toggleOpen));
+
+    function toggleOpen(){
+      this.classList.toggle('open');
+    }
+
+    
+    
 
   </script>
 

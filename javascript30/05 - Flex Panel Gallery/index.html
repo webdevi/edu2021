@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8">  
   <title>05 - Flex Panels 💪</title>
+  <link rel="shortcut icon" href="#"> 
   <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -70,6 +71,7 @@
       display:flex;
       justify-content: center;
       align-items: center;
+      flex : 1;
     }
 
     .panel > *:first-child{ transform: translateY(-100%); }
@@ -81,14 +83,11 @@
       text-transform: uppercase;
       font-family: 'Amatic SC', cursive;
       text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
-      font-size: 2em;
-      /* display: inline-block; */
-    }
-    
+      font-size: 2em; 
+    } 
     .panel p:nth-child(2) {
       font-size: 4em;
-    }
-
+    } 
     .panel.open {
       flex:5;
       font-size: 40px;
@@ -124,19 +123,24 @@
 
   <script>
     const $panels = Array.from(document.querySelectorAll(".panel")); 
-
-    $panels.forEach($panel=>$panel.addEventListener("click", toggleOpen));
-
-    function toggleOpen(){
+  
+    function toggleOpen(){    
       this.classList.toggle('open');
     }
 
+    function toggleActive(e){      
+      if(e.propertyName.includes('flex')){
+        this.classList.toggle('open-active');
+      } 
+    }
+
+    $panels.forEach($panel=>$panel.addEventListener("click", toggleOpen));
     
-    
+    // CSS를 전환이 완료되면 transitionend 이벤트가 발생한다.
+    // http://www.w3bai.com/ko/jsref/event_transitionend.html
+    $panels.forEach($panel=>$panel.addEventListener("transitionend", toggleActive));
 
   </script>
-
-
 
 </body>
 </html>

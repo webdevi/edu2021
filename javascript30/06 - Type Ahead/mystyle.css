@@ -1,0 +1,53 @@
+:root{
+  --backgroundColorcode :#ffc600;;
+   /* rgb(255, 212, 0); */
+}
+body{
+  background-color:var(--backgroundColorcode);
+  /* min-height:100vh; */
+  display: flex;
+  flex: 1;
+  margin-top:80px; 
+}
+   
+form{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin:0 auto;
+}
+.search{
+    width:350px; 
+    height:60px;
+    font-size: 23pt ;
+    text-align:center; 
+    border : 12px solid rgba(219, 217, 217, 0.5) ;      
+    border-radius: 20px;
+    margin:0;        
+}
+ul {
+  width:300px;     
+  list-style-type: none;
+  margin:0;
+  padding:0;
+}
+li{ 
+  background-color:rgb(235, 235, 235);
+  padding:20px;
+  perspective-origin:center; 
+}
+
+li:nth-child(odd){
+  /* perspective(원근법) :https://gahyun-web-diary.tistory.com/80 */
+  transform:perspective(200px) rotateX(-15deg) translateY(2px) ;
+  background: linear-gradient(rgb(247, 247, 247), rgb(255, 255, 255));      
+  /* transition-delay: 3s; */
+
+}
+li:nth-child(even){
+  transform:perspective(200px) rotateX(15deg) translateY(2px) ;
+  background: linear-gradient(rgb(255, 255, 255),rgb(247, 247, 247));
+  border-bottom:var(--backgroundColorcode) solid 4px;
+} 
+ 

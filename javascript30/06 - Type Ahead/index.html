@@ -15,7 +15,7 @@
 <body>
   <form class="search-form">
     <input type="text" class="search" placeholder="City or State">
-    <ul>
+    <ul class="suggestions">
       <li>Filter For A City</li>
       <li>Or A State</li>  
     </ul>
@@ -24,32 +24,33 @@
   <script>
     const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
     const $searchInput = document.querySelector('.search'); 
+    const $suggestions = document.querySelector('.suggestions'); 
+    
     let cityArr = [];
+    let suggestArr = [];
     let str = "";
+    let cnt = 0 ; 
 
     // https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch
-    fetch(endpoint, fucntion(data){
-      console.log(data);
-      
-    })
-    // fetch(endpoint)
-    //   .then(function(response) {
-    //     return response.json();
-    //   })
-    //   .then(function(myJson) {
-    //     str = JSON.stringify(myJson); 
-    //   });
-      
-    function filterData(e){
-        console.log(e);   
-        let v = str.filter(function(obj){
-          console.log(obj);
-        })     
-    }
+    fetch(endpoint)
+       .then(res => res.json())
+       .then(res =>{
+          res.forEach(e=>{
+            cityArr.push(e.city);
+          })
+       });
+       
+    function filterData(str){ 
+        return cityArr.filter(function(n){           
+          if(n.includes(str)){
+            return n;
+          }          
+        });
+    } 
 
     $searchInput.addEventListener('keyup', function(){
-      filterData(this.value);
-      
+      suggestArr.push(filterData(this.value)); 
+      console.log(suggestArr);
     })
 
 

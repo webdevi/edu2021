@@ -26,32 +26,72 @@
     const $searchInput = document.querySelector('.search'); 
     const $suggestions = document.querySelector('.suggestions'); 
     
-    let cityArr = [];
-    let suggestArr = [];
+    let cities = [];
+ 
     let str = "";
     let cnt = 0 ; 
 
     // https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Using_Fetch
     fetch(endpoint)
        .then(res => res.json())
-       .then(res =>{
-          res.forEach(e=>{
-            cityArr.push(e.city);
-          })
-       });
-       
-    function filterData(str){ 
-        return cityArr.filter(function(n){           
-          if(n.includes(str)){
-            return n;
-          }          
-        });
+       .then(res => cities.push(...res)/*나머지 매개변수 https://www.youtube.com/watch?v=lekNM8ldxno */ 
+       );    
+    
+    function findMatches(wordToMatch, cities){
+      // 정규식 활용 
+      return cities.filter(place => {
+        const regex = new RegExp(wordToMatch, 'gi'); // 대소문자 구분 안함 
+        return place.city.match(regex) || place.state.match(regex);
+      });  
     } 
 
-    $searchInput.addEventListener('keyup', function(){
-      suggestArr.push(filterData(this.value)); 
-      console.log(suggestArr);
-    })
+    function numberWithCommas(x){
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function displayMatches(){
+      // console.log(this.value);
+      const matchArr = findMatches(this.value, cities);      
+      const html = matchArr.map(place =>{
+        const regex = new RegExp(this.value, 'gi'); 
+        
+        const city = place.city.replace(regex, `<span class="hl">${this.value}</span>`); 
+        const state = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+        return `
+           <li>
+              <span class="name">${city}, ${state}</span>
+              <span class="population">${numberWithCommas(place.population)}</span>
+           </li>
+        `; 
+      }).join(''); 
+      $suggestions.innerHTML = html;
+
+    }
+    console.log(cities);
+    // suggestArr = findMatches("New", cities);
+    // console.log(suggestArr); 
+
+
+    // function filterData(str){ 
+    //     return cityArr.filter(function(n){           
+    //       if(n.includes(str)){
+    //         return n;
+    //       }          
+    //     });
+    // } 
+
+    $searchInput.addEventListener('change', displayMatches); 
+    $searchInput.addEventListener('keyup', displayMatches); 
+    // $searchInput.addEventListener('keyup', function(){
+      
+    //     suggestArr.push(findMatches(this.value, cities)); 
+    //     console.log(suggestArr);
+        
+    // }); 
+    // $searchInput.addEventListener('keyup', function(){
+    //   suggestArr.push(filterData(this.value)); 
+    //   console.log(suggestArr);
+    // })
 
 
   </script>

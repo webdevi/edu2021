@@ -33,18 +33,59 @@
     // Some and Every Checks
     // Array.prototype.some() // is at least one person 19 or older?
     // console.log();
-   
-    // console.log(Array.isArray(arr));
-    // Array.prototype.every() // is everyone 19 or older?
-
+  
+    const currentYear = (new Date()).getFullYear(); 
+    
+    // some() : 조건 중에 하나라도 맞는 것이 있으면 true 리턴 
+    // let isAdult = people.some(function(person){
+    //   if(currentYear - person.year >=19 ) 
+    //     return true;       
+    // });
+      
+    const isAdult = people.some((person)=> (currentYear - person.year >=19));
+    
+    console.log(`some() = ${isAdult}`);
+    
+    // every() : 요소들이 조건을 모두 만족해야 true로 return 
+    const AllAdult = people.every((person)=> (currentYear - person.year >=19));
+    console.log(`some() = ${AllAdult}`);
+ 
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
-
+    // find() : 조건에 맞는 데이터를 1개만 가지고 옴 
+    // let arr = comments.find(function(comment){
+    //   if(comment.id === 823423){
+    //     return true; 
+    //   } 
+    // });
+    // console.log(arr);
+    // 화살표 함수로 변환 
+    const findComm2 = comments.find(comment => comment.id === 823423 ); 
+    console.log(findComm2);
+ 
     // Array.prototype.findIndex()
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+    const findIdx = comments.findIndex(comment => comment.id === 823423 ); 
+    console.log(findIdx);
+    console.log(comments[findIdx]);
 
+    // comments.slice(index, 1); 
+    // 배열을 복사해줌 
+    const newComments = [
+            comments.slice(0,findIdx)
+          , comments.slice(findIdx+1,comments.length)]; 
+    console.log(newComments);
+    console.log(Array.isArray(newComments));
+
+    /*나머지 매개변수☆*/ 
+    const newComments2 = [
+            ...comments.slice(0,findIdx)
+          , ...comments.slice(findIdx+1,comments.length)]; 
+    console.log(newComments2);
+    console.log(Array.isArray(newComments2));    
+    
   </script>
 </body>
 </html>

@@ -1,3 +1,6 @@
+<!-- 소스 : https://github.com/wesbos/JavaScript30/tree/master/08%20-%20Fun%20with%20HTML5%20Canvas
+     영상 : https://courses.wesbos.com/account/access/6075912675ff3a25a5c45290/view/194129962
+-->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,8 +9,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="#"> 
   <title>08 - Fun with HTML5 Canvas</title>
+  <style>
+    html, body, #canvas {
+       margin:0;
+       padding:0;
+      }
+    #canvas{
+      /* background-color:blue; */
+    }
+  </style>
 </head>
 <body>
-  
+  <canvas id="canvas"  ></canvas>
 </body>
+<script>
+  const $canvas = document.querySelector('#canvas');
+  let ctx = $canvas.getContext('2d');
+  ctx.strokeStyle =  '#000022'
+  ctx.linewidth = 100;
+  
+  let lineX = 0 ;
+  let lineY = 0; 
+  
+  // console.log(ctx);  
+  $canvas.width = window.innerWidth-3;
+  $canvas.height = window.innerHeight-4;
+  
+  // 그리는 중인가? 
+  let isDrawing = false; 
+
+  function drawing(e){
+    if(isDrawing){      
+      // console.log(e); 
+      [lineX, lineY] = [e.offsetX, e.offsetY];
+       
+      ctx.lineTo(lineX, lineY); 
+      ctx.stroke();
+      console.log([lineX, lineY]);
+    }
+  }
+  // mouse 이벤트 https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event 
+  $canvas.addEventListener('mousemove', drawing); 
+  $canvas.addEventListener('mousedown', (e)=>{
+    isDrawing = true; 
+    [lineX, lineY] = [e.offsetX, e.offsetY];
+    console.log('여기콕');
+    console.log([lineX, lineY]);
+  }); 
+  $canvas.addEventListener('mouseup', ()=>{
+    isDrawing = false; 
+  }); 
+
+  // 윈도우 resizing 될 때 마다 이벤트 태우기 
+</script>
 </html>

@@ -14,9 +14,7 @@
        margin:0;
        padding:0;
       }
-    #canvas{
-      /* background-color:blue; */
-    }
+  
   </style>
 </head>
 <body>
@@ -25,40 +23,50 @@
 <script>
   const $canvas = document.querySelector('#canvas');
   let ctx = $canvas.getContext('2d');
-  ctx.strokeStyle =  '#000022'
-  ctx.linewidth = 100;
-  
-  let lineX = 0 ;
-  let lineY = 0; 
-  
-  // console.log(ctx);  
+  // 이걸 먼저 세팅해줘야됨. 안그러면 보이는게 달라짐 
   $canvas.width = window.innerWidth-3;
   $canvas.height = window.innerHeight-4;
-  
+  // hsl색상표 : https://wepplication.github.io/tools/colorPicker/ 
+  ctx.strokeStyle = '#BADA55';
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.lineWidth = 1;
   // 그리는 중인가? 
   let isDrawing = false; 
-
+  let lastX = 0 ;
+  let lastY = 0; 
+  let color = 0; 
+  
   function drawing(e){
-    if(isDrawing){      
-      // console.log(e); 
-      [lineX, lineY] = [e.offsetX, e.offsetY];
-       
-      ctx.lineTo(lineX, lineY); 
-      ctx.stroke();
-      console.log([lineX, lineY]);
-    }
+    if(!isDrawing) return;
+
+    ctx.strokeStyle =   `hsl(${color}, 100%, 50%)`;    
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);      
+    ctx.lineTo(e.offsetX, e.offsetY); 
+    ctx.stroke();   
+    [lastX, lastY] = [e.offsetX, e.offsetY];      
+    color++;  
+    if(color >= 360){
+      color = 0 ; 
+    }     
+    if( ctx.lineWidth <= 100 ){
+      ctx.lineWidth++;
+    } 
   }
   // mouse 이벤트 https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event 
   $canvas.addEventListener('mousemove', drawing); 
   $canvas.addEventListener('mousedown', (e)=>{
-    isDrawing = true; 
-    [lineX, lineY] = [e.offsetX, e.offsetY];
-    console.log('여기콕');
-    console.log([lineX, lineY]);
+    isDrawing = true;  
+    [lastX, lastY] = [e.offsetX, e.offsetY];      
   }); 
   $canvas.addEventListener('mouseup', ()=>{
     isDrawing = false; 
+    ctx.lineWidth = 1;
   }); 
+  $canvas.addEventListener('mouseout', ()=>{
+    isDrawing = false; 
+  });
 
   // 윈도우 resizing 될 때 마다 이벤트 태우기 
 </script>

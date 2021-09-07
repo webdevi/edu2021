@@ -1,0 +1,164 @@
+html {
+  box-sizing: border-box; /* 박스크기를 잴 때 바깥 경계까지 포함하여 잰다는 것 */
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background: #7A419B;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #7c1599 0%,#921099 48%,#7e4ae8 100%);
+  background-size: cover; /* https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Backgrounds_and_Borders/Resizing_background_images*/
+  align-items: center;
+  justify-content: center;
+}
+
+.player {
+  max-width: 750px;
+  border: 5px solid rgba(0,0,0,0.2);
+  box-shadow: 0 0 50px rgba(0,0,0,0.2);
+  position: relative; /* 아래 controller의 위치 잡기 */ 
+  font-size: 0;
+  overflow: hidden;
+}
+
+/* This css is only applied when fullscreen is active. 
+https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen
+*/
+.player:fullscreen { 
+  max-width: none; /* 지정하지 않음*/ 
+  width: 100%;
+}
+
+.player:-webkit-full-screen {
+  max-width: none;
+  width: 100%;
+}
+
+.player__video {
+  width: 100%;
+}
+/*버튼 play, rewind, fast forward */ 
+.player__button {
+  background: none;
+  border: 0;
+  line-height: 1;
+  color: white;
+  text-align: center;
+  outline: 0;
+  padding: 0;
+  cursor: pointer;
+  max-width: 50px;
+}
+
+.player__button:focus {
+  border-color: #ffc600; 
+}
+
+.player__slider {
+  /* width: 10px; */
+  height: 30px;
+}
+
+.player__controls {
+  display: flex;
+  position: absolute;
+  bottom: 0; /* 바닥에 고정 */ 
+  width: 100%;
+  transform: translateY(100%) translateY(-5px);
+  transition: all .3s; 
+  flex-wrap: wrap;
+  background: rgba(0,0,0,0.1);
+}
+
+.player:hover .player__controls {
+  transform: translateY(0);
+}
+
+.player:hover .progress {
+  height: 15px;
+}
+
+.player__controls > * {
+  flex: 1;
+}
+
+.progress {
+  flex: 10; /* 다른 녀석보다 10배까지 될 수 있다? */ 
+  position: relative;
+  display: flex;
+  flex-basis: 100%; /*flex item의 기본크기 설정*/ 
+  height: 5px;
+  transition: height 0.3s;
+  background: rgba(0,0,0,0.5);
+  cursor: ew-resize; /* <-> 이런 마우스 포인터 */ 
+}
+
+.progress__filled {
+  /* width: 50%; 이건 왜 있는건지 모르겠음. */
+  background: #ffc600;
+  flex: 0; /* 여유 공간이 생겼을 때 flex-grow(flex-basis값보다 커질 수 있는 값)가 변하지 않는다는 것*/ 
+  flex-basis: 50%;
+}
+
+/* unholy css to style input type="range" */
+
+input[type=range] {
+  -webkit-appearance: none;
+  background: transparent;
+  width: 100%;
+  margin: 0 5px;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0 0 1px rgba(13, 13, 13, 0);
+  background: rgba(255,255,255,0.8);
+  border-radius: 1.3px;
+  border: 0.2px solid rgba(1, 1, 1, 0);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  height: 15px;
+  width: 15px;
+  border-radius: 50px;
+  background: #ffc600;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -3.5px;
+  box-shadow:0 0 2px rgba(0,0,0,0.2);
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #bada55;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0 0 1px rgba(13, 13, 13, 0);
+  background: #ffffff;
+  border-radius: 1.3px;
+  border: 0.2px solid rgba(1, 1, 1, 0);
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(13, 13, 13, 0);
+  height: 15px;
+  width: 15px;
+  border-radius: 50px;
+  background: #ffc600;
+  cursor: pointer;
+} 

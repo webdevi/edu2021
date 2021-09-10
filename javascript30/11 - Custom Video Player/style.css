@@ -103,7 +103,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen
   /* width: 50%; 이건 왜 있는건지 모르겠음. */
   background: #ffc600;
   flex: 0; /* 여유 공간이 생겼을 때 flex-grow(flex-basis값보다 커질 수 있는 값)가 변하지 않는다는 것*/ 
-  flex-basis: 50%;
+  flex-basis: 0%;
 }
 
 /* unholy css to style input type="range" */

@@ -38,9 +38,9 @@ function handelProgress(){
   const percent = (video.currentTime / video.duration ) * 100; 
   progressBar.style.flexBasis = `${percent}%`; 
 } 
-function playskip(e){  
-  const playpoint = (e.offsetX / progress.offsetWidth) * video.duration ;
-  video.currentTime = playpoint;
+function playskip(e){ 
+    const playpoint = (e.offsetX / progress.offsetWidth) * video.duration ;
+    video.currentTime = playpoint;    
 }
 // Hook up the event listners
 video.addEventListener('click', toggleVideo);
@@ -56,6 +56,12 @@ skipButtons.forEach(skipButton=>skipButton.addEventListener('click', skip));
 ranges.forEach(range=>range.addEventListener('change', handlerangeUpdate));
 /*mousemove 이벤트를 태워야 조금 더 자연스럽게 작동을 함 */
 ranges.forEach(range=>range.addEventListener('mousemove', handlerangeUpdate));
+
+let mousedown = false; 
+
 progress.addEventListener("click", playskip );
-progress.addEventListener("mousemove", playskip );
+/* mousedown && playskip(e) if문을 inline으로 변경...*/
+progress.addEventListener("mousemove", (e)=> mousedown && playskip(e)); 
+progress.addEventListener("mousedown",()=> mousedown = true); 
+progress.addEventListener("mouseup",()=> mousedown = false); 
 

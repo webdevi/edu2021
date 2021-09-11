@@ -1,0 +1,38 @@
+<!-- 
+  소스 : https://github.com/wesbos/JavaScript30/tree/master/12%20-%20Key%20Sequence%20Detection
+  영상 : https://courses.wesbos.com/account/access/6075912675ff3a25a5c45290/view/194129539
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <title>12 - Key Sequence Detection</title>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+
+<script>
+  const pressed = []; 
+  const secretkey = "passover"; 
+  
+  window.addEventListener('keyup',(e)=>{
+    pressed.push(e.key);
+    // console.log(pressed);
+    // https://im-developer.tistory.com/103
+    // splice 원본 변경 : -음수 값은 맨 끝에서부터 자르기 
+    pressed.splice(-secretkey.length-1,  pressed.length - secretkey.length); 
+    console.log(pressed.join(""));
+    if(pressed.join("").includes(secretkey)){
+      console.log("dING DONG DANG!")
+      cornify_add(); 
+    }
+ 
+  })
+
+</script>
+  
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!-- 
+  소스 : https://github.com/wesbos/JavaScript30/tree/master/13%20-%20Slide%20in%20on%20Scroll
+  영상 : https://courses.wesbos.com/account/access/6075912675ff3a25a5c45290/view/194129405
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <title>13 - Slide in on Scroll</title>
+  <style>
+    body, h1{margin:0;}
+    body{
+      background:#FFC720;
+      font-family: 'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+    }
+    .site-wrap{
+      background: white;
+      max-width:700px;
+      margin:100px auto;
+      padding:40px;
+      text-align: justify; 
+    }
+    
+    .align-left{
+      float:left;
+      padding-right:20px; 
+      transform: translateX(-30%);
+    }
+    .align-right{
+      float:right;
+      padding-left:20px; 
+      transform: translateX(30%);
+    } 
+    .slide-in{
+      transition:1.5s;
+      opacity: 0;
+    }
+    .slide-in.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+  </style>
+</head>
+<body> 
+  <div class="site-wrap">
+    <h1>Slide in on Scroll</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi fugiat id illo alias enim hic iure architecto beatae fugit quaerat consequuntur, dolorem eveniet porro eum tempore cum saepe! Reiciendis, eaque!</p>
+    <p>At harum pariatur cum? Iusto maxime necessitatibus, vel perspiciatis magni aliquam provident deleniti ea aut ratione distinctio? Nobis voluptatem necessitatibus nemo architecto. Asperiores similique quo iure necessitatibus dolore, maiores quasi!</p>
+    <p>Illum rem omnis minima doloribus, quae voluptatum eos. Recusandae dolor earum consequatur enim, dolore numquam quae praesentium, odio, quo neque culpa et quas illum rerum quia iste modi explicabo sapiente.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi fugiat id illo alias enim hic iure architecto beatae fugit quaerat consequuntur, dolorem eveniet porro eum tempore cum saepe! Reiciendis, eaque!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi fugiat id illo alias enim hic iure architecto beatae fugit quaerat consequuntur, dolorem eveniet porro eum tempore cum saepe! Reiciendis, eaque!</p>
+    <p>At harum pariatur cum? Iusto maxime necessitatibus, vel perspiciatis magni aliquam provident deleniti ea aut ratione distinctio? Nobis voluptatem necessitatibus nemo architecto. Asperiores similique quo iure necessitatibus dolore, maiores quasi!</p>
+    <p>Illum rem omnis minima doloribus, quae voluptatum eos. Recusandae dolor earum consequatur enim, dolore numquam quae praesentium, odio, quo neque culpa et quas illum rerum quia iste modi explicabo sapiente.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi fugiat id illo alias enim hic iure architecto beatae fugit quaerat consequuntur, dolorem eveniet porro eum tempore cum saepe! Reiciendis, eaque!</p>
+    <img src="http://unsplash.it/400/400" class="align-left slide-in ">
+    <p>At harum pariatur cum? Iusto maxime necessitatibus, vel perspiciatis magni aliquam provident deleniti ea aut ratione distinctio? Nobis voluptatem necessitatibus nemo architecto. Asperiores similique quo iure necessitatibus dolore, maiores quasi!</p>
+    <p>At harum pariatur cum? Iusto maxime necessitatibus, vel perspiciatis magni aliquam provident deleniti ea aut ratione distinctio? Nobis voluptatem necessitatibus nemo architecto. Asperiores similique quo iure necessitatibus dolore, maiores quasi!</p>
+    <p>Illum rem omnis minima doloribus, quae voluptatum eos. Recusandae dolor earum consequatur enim, dolore numquam quae praesentium, odio, quo neque culpa et quas illum rerum quia iste modi explicabo sapiente.</p>
+    <p>Nam eum nihil expedita nostrum eligendi dolores porro ad at facilis, explicabo eaque dicta itaque. Tenetur voluptate et reiciendis officia nostrum explicabo molestiae, ducimus corrupti facilis nesciunt obcaecati saepe aut.</p>
+    <p>Aliquid eum, quis asperiores iste aperiam necessitatibus minima soluta adipisci, quidem ipsa recusandae velit error possimus dicta placeat dignissimos praesentium aspernatur delectus sequi pariatur! Distinctio sapiente laudantium provident impedit veniam.</p>
+    <p>Dignissimos eum quae minus quis, enim tempora. Tempora aut cumque, libero ratione accusamus dolores, rem provident cupiditate sapiente minima voluptas! Exercitationem molestiae, corrupti ratione inventore doloribus odio numquam sapiente earum.</p>
+    <img src="http://unsplash.it/400/405" class="align-right slide-in ">
+    <p>Veniam, necessitatibus enim vel placeat aliquam impedit sunt minus excepturi expedita fugiat provident et consequuntur cumque, itaque inventore. Autem deleniti consectetur quia reprehenderit molestiae tempore iste dicta dolorem ducimus doloremque!</p>
+    <p>Maiores vel tempore modi facilis commodi autem provident quaerat, molestiae quas omnis porro amet rerum quisquam doloremque nobis voluptatibus suscipit dolore ex voluptatem repellendus placeat delectus vero. Maiores, corporis fugiat.</p>
+    <p>Adipisci, recusandae architecto? Soluta possimus repellendus facere magni similique rerum. Architecto ratione voluptatem eaque eum suscipit officia excepturi doloremque, impedit, provident deserunt blanditiis dolorum quod ad voluptate labore illum aut.</p>
+    <p>Error harum accusamus, ea dolorem cum ex mollitia dolore amet, ab, vitae labore officiis magni dignissimos veniam natus modi id laudantium consectetur voluptate nobis! Culpa at reprehenderit earum ipsa nihil.</p>
+    <p>Dignissimos eum quae minus quis, enim tempora. Tempora aut cumque, libero ratione accusamus dolores, rem provident cupiditate sapiente minima voluptas! Exercitationem molestiae, corrupti ratione inventore doloribus odio numquam sapiente earum.</p>
+    <img src="http://unsplash.it/400/408" class="align-left slide-in ">
+    <p>Veniam, necessitatibus enim vel placeat aliquam impedit sunt minus excepturi expedita fugiat provident et consequuntur cumque, itaque inventore. Autem deleniti consectetur quia reprehenderit molestiae tempore iste dicta dolorem ducimus doloremque!</p>
+    <p>Maiores vel tempore modi facilis commodi autem provident quaerat, molestiae quas omnis porro amet rerum quisquam doloremque nobis voluptatibus suscipit dolore ex voluptatem repellendus placeat delectus vero. Maiores, corporis fugiat.</p>
+    <p>Adipisci, recusandae architecto? Soluta possimus repellendus facere magni similique rerum. Architecto ratione voluptatem eaque eum suscipit officia excepturi doloremque, impedit, provident deserunt blanditiis dolorum quod ad voluptate labore illum aut.</p>
+    <p>Error harum accusamus, ea dolorem cum ex mollitia dolore amet, ab, vitae labore officiis magni dignissimos veniam natus modi id laudantium consectetur voluptate nobis! Culpa at reprehenderit earum ipsa nihil.</p>        
+  </div>
+
+  <script>
+    const sliderImages = document.querySelectorAll(".slide-in"); 
+    
+    // 계속 많은 호출이 일어나는 것을 방지하고, 일정시간마다 호출되도록 하는 
+    // https://pks2974.medium.com/throttle-%EC%99%80-debounce-%EA%B0%9C%EB%85%90-%EC%A0%95%EB%A6%AC%ED%95%98%EA%B8%B0-2335a9c426ff
+    function debounce(func, wait =15, immediate = true){
+      let timeout; 
+      return function(){
+        let context = this, args = arguments; 
+        let later = function(){
+                    timeout = null ;
+                    if(!immediate) func.apply(context, args);           
+                  }; 
+        let callNow = immediate && !timeout; 
+        clearTimeout(timeout); 
+        timeout = setTimeout(later, wait); 
+        if(callNow) func.apply(context, args);                   
+      }; 
+    } 
+
+    window.addEventListener("scroll", debounce(checkSlide)); 
+    
+    function checkSlide(){      
+      // console.count(this);
+      sliderImages.forEach(sliderImage=>{
+        
+        // half way through the image 
+        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2; 
+        //console.log(`sliderImage.height ; ${sliderImage.height}`);
+        
+        //bottom of the image 
+        const imageBottom = sliderImage.offsetTop + sliderImage.height;
+        const isHalfShown = slideInAt > sliderImage.offsetTop; 
+        const isNotScrolledPast = window.scrollY < imageBottom; 
+        
+        // console.log(`slideInAt => ${slideInAt} // sliderImage.offsetTop => ${sliderImage.offsetTop}  // imageBottom => ${imageBottom} // isHalfShown =>${isHalfShown}`);
+
+        if(isHalfShown && isNotScrolledPast){          
+           sliderImage.classList.add('active'); 
+          }
+        else{
+            sliderImage.classList.remove('active');             
+        } 
+      }); 
+    }
+
+
+  </script>
+</body>
+</html>

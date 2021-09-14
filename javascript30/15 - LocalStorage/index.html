@@ -1,0 +1,83 @@
+<!-- 소스 : https://github.com/wesbos/JavaScript30/blob/master/15%20-%20LocalStorage/index-START.html 
+영상 : https://courses.wesbos.com/account/access/6075912675ff3a25a5c45290/view/194129092  -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <title>15 - LocalStorage 🔥</title>
+  <style>
+    body{
+      /* 화면이 꽉 차도록 */ 
+      /* //background-image:url("https://source.unsplash.com/1600x900/?macaroon"); */
+      background-image:url("oh-la-la.jpeg");
+
+      background-repeat : no-repeat ;
+      background-size :cover ;
+      height: 100vh;        
+    }
+    .wrapper{
+      max-width:500px;      
+      width:400px;
+      height:700px;
+      margin:0 auto;
+
+      display:flex;
+      flex-direction: column;      
+    }
+    .logo{
+      background-color:rgba(155, 255, 255, 0.3);
+      align-items: center;
+      border-radius: 50%;
+      text-align:center;
+      width:210px;
+      margin: 0 auto;
+    }
+    .logo img{
+      width:200px;
+      height:200px;
+      
+    }
+    .menu{
+      border:10px solid rgba(0, 0, 0, 0.1);
+      background-color: rgba(255, 255, 255, 0.8);
+      margin:10px;
+      min-height:200px;
+      display:flex;
+      flex-direction: column;
+    }
+    .menu h3{
+      text-align:center;
+      font-size:25px;
+    }
+    .menu div{
+      display: inline;
+      font-size:18px;
+      border-bottom: blue;
+    }
+/*     
+    display:flex;
+      flex-direction: row; 
+      justify-content: center; */
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="logo">
+      <img src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjMDAwMDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTAwIDEwMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnPjxwYXRoIGQ9Ik05Mi4yLDQ1LjlDODYuOSwzOC43LDc5LjMsMzMuNSw3MC44LDMxYy0zLjctNy0xMS4zLTExLjItMTkuMy0xMC4zbC0xMS4zLDEuMmMtMC43LDAuMS0xLjMsMC41LTEuNiwxLjIgICBjLTAuMywwLjYtMC4yLDEuNCwwLjIsMmMxLjksMi43LDIuNCw2LjIsMS4zLDkuM2MtMy4xLDEuNy02LDMuOC04LjcsNi40bC0zLDIuOWMtNC44LTctMTIuOC0xMS4yLTIxLjQtMTEuMmMtMS4xLDAtMiwwLjktMiwyICAgYzAsNy44LDMuNSwxNS4xLDkuNCwyMEM4LjUsNTkuMyw1LDY2LjYsNSw3NC40YzAsMS4xLDAuOSwyLDIsMmM4LjYsMCwxNi42LTQuMiwyMS40LTExLjJsMywyLjlDMzksNzUuNCw0OSw3OS40LDU5LjUsNzkuNCAgIGMxMi44LDAsMjUtNi4yLDMyLjYtMTYuNUM5NS45LDU3LjgsOTUuOSw1MSw5Mi4yLDQ1Ljl6IE01MS45LDI0LjdjNS4xLTAuNSwxMCwxLjQsMTMuMiw1LjFjLTEuOS0wLjMtMy43LTAuNC01LjYtMC40ICAgYy01LjIsMC0xMC4yLDEtMTQuOSwyLjhjMC4yLTIuMy0wLjEtNC41LTEtNi43TDUxLjksMjQuN3ogTTU5LjUsNzUuNGMtOS41LDAtMTguNS0zLjYtMjUuNC0xMC4ybC00LjgtNC42QzI5LDYwLjIsMjguNSw2MCwyOCw2MCAgIGMtMC4xLDAtMC4yLDAtMC4zLDBjLTAuNiwwLjEtMS4yLDAuNS0xLjUsMWMtMy41LDYuNC0xMCwxMC42LTE3LjIsMTEuMmMwLjYtNi42LDQuMi0xMi41LDkuNy0xNi4yYzAuNi0wLjQsMC45LTEsMC45LTEuNyAgIGMwLTAuNy0wLjMtMS4zLTAuOS0xLjdjLTUuNi0zLjctOS4xLTkuNy05LjctMTYuMmM3LjIsMC43LDEzLjYsNC45LDE3LjIsMTEuMmMwLjMsMC41LDAuOCwwLjksMS41LDFjMC42LDAuMSwxLjItMC4xLDEuNy0wLjUgICBsNC44LTQuNkM0MSwzNyw1MCwzMy40LDU5LjUsMzMuNGMzLjQsMCw2LjcsMC41LDkuOSwxLjRjLTIuNywyLjUtNC44LDUuNC02LjIsOC43bC0yLjUsMC40Yy02LjMsMS0xMi4yLDMuOC0xNy4xLDggICBjLTAuNSwwLjQtMC43LDAuOS0wLjcsMS41YzAsMC42LDAuMywxLjEsMC43LDEuNWM0LjksNC4yLDEwLjgsNi45LDE3LjEsOGwxLjYsMC4zYzEuNCw0LjEsMy44LDcuOCw3LDEwLjggICBDNjYuMiw3NC45LDYyLjksNzUuNCw1OS41LDc1LjR6IE02MS4zLDU4LjljLTQuNy0wLjgtOS4yLTIuNy0xMy4xLTUuNWMzLjktMi44LDguNC00LjgsMTMuMi01LjVsMC4zLTAuMWMtMC41LDIuMS0wLjgsNC4zLTAuOCw2LjYgICBDNjAuOSw1NS45LDYxLjEsNTcuNCw2MS4zLDU4Ljl6IE04OSw2MC42Yy0zLjksNS4zLTkuMiw5LjQtMTUuMiwxMS45Yy0zLjctMi45LTYuNC02LjgtNy44LTExLjFjMC0wLjMtMC4xLTAuNy0wLjMtMSAgIGMtMC41LTEuOS0wLjgtMy45LTAuOC02YzAtNy4yLDMuMi0xMy43LDguOS0xOC4xYzYsMi41LDExLjIsNi42LDE1LjIsMTEuOWMxLjQsMS44LDIsNCwyLDYuMkM5MSw1Ni42LDkwLjMsNTguNyw4OSw2MC42eiI+PC9wYXRoPjxwYXRoIGQ9Ik03Niw0NC40Yy0zLjMsMC02LDIuNy02LDZzMi43LDYsNiw2czYtMi43LDYtNlM3OS4zLDQ0LjQsNzYsNDQuNHogTTc2LDUyLjRjLTEuMSwwLTItMC45LTItMmMwLTEuMSwwLjktMiwyLTJzMiwwLjksMiwyICAgQzc4LDUxLjUsNzcuMSw1Mi40LDc2LDUyLjR6Ij48L3BhdGg+PC9nPjwvc3ZnPg==">
+    </div>
+    <div class="menu">
+      <h3>LOCAL TAPAS</h3>
+
+      <DIV>Loading Tapas...</DIV>
+
+      <form action="">
+        <input type="text" name="" id="" placeholder="Item Name">
+        <button>+ Add Item</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

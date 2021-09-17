@@ -96,11 +96,36 @@
       <ul class="plates">
         <li>Loading Tapas...</li>
       </ul>      
-      <form action="">
-        <input type="text" name="" id="" placeholder="Item Name">
+      <form action="" class="add-item">
+        <!-- required : 필수 입력값인 경우 -->
+        <input type="text" name="item" placeholder="Item Name" required>
         <button>+ Add Item</button>
       </form>
     </div>
   </div>
+  <script>
+     const addItems = document.querySelector('.add-item');
+     const itemList = document.querySelector('.plates');
+     const items = [];
+
+     function addItem(e){
+       console.log("helloo");
+       e.preventDefault(); /*html 에서 a 태그나 submit 태그는 고유의 동작이 있다. 페이지를 이동시킨다거나 form 안에 있는 input 등을 전송한다던가 그러한 동작이 있는데 e.preventDefault 는 그 동작을 중단시킨다. */
+      
+       const txt = (this.querySelector('[name=item]')).value;       
+       const item = {
+         txt, 
+         done:false
+       };
+
+       items.push(item);
+       this.reset();
+
+       console.log(items);
+     }
+
+     addItems.addEventListener('submit', addItem);
+
+  </script>
 </body>
 </html>

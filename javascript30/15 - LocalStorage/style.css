@@ -1,0 +1,74 @@
+*, li{
+  list-style:none;
+}
+html {
+  /* box-sizing: border-box; */      
+  background: url("oh-la-la.jpeg") center no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+} 
+.wrapper{
+  max-width:500px;      
+  width:400px;
+  height:700px;
+  margin:0 auto; 
+}
+.logo{
+  background-color:rgba(255, 255, 255, 0.3);
+  align-items: center;
+  border-radius: 50%;
+  text-align:center;
+  width:210px;
+  margin: 0 auto;
+}
+.logo img{
+  width:200px;
+  height:200px;
+}
+.menu{      
+  box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-top:40px;
+  min-height:200px;
+  display:flex;
+  flex-direction: column;
+  
+}
+.menu h3{
+  text-align:center;
+  font-size:25px;
+
+}
+.plates{
+  text-align:left;
+  font-size:18px;
+  margin:0 15px 15px 15px ;
+  padding:15px; 
+
+}
+form{
+  display:flex; 
+  flex-direction: row;
+  margin:0 15px 15px 15px;
+  flex:1;
+}
+form input{
+  flex: 5;
+  height:40px;
+  margin-right:5px;
+  font-size: 18px;
+}
+form bottom{
+  flex :2;
+}
+.plates li{
+  height:30px;
+  border-bottom:1px solid black;
+  padding:10px;
+}

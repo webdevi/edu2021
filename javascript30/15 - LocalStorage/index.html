@@ -8,83 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="#"> 
   <title>15 - LocalStorage 🔥</title>
-  <style>
-    /* html{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    } */
-    *, li{
-      list-style:none;
-    }
-    html {
-      /* box-sizing: border-box; */      
-      background: url("oh-la-la.jpeg") center no-repeat;
-      background-size: cover;
-      min-height: 100vh;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    } 
-    .wrapper{
-      max-width:500px;      
-      width:400px;
-      height:700px;
-      margin:0 auto; 
-    }
-    .logo{
-      background-color:rgba(255, 255, 255, 0.3);
-      align-items: center;
-      border-radius: 50%;
-      text-align:center;
-      width:210px;
-      margin: 0 auto;
-    }
-    .logo img{
-      width:200px;
-      height:200px;
-    }
-    .menu{      
-      box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
-      background-color: rgba(255, 255, 255, 0.8);
-      margin-top:40px;
-      min-height:200px;
-      display:flex;
-      flex-direction: column;
-      
-    }
-    .menu h3{
-      text-align:center;
-      font-size:25px;
-   
-    }
-    .plates{
-      text-align:left;
-      font-size:18px;
-      margin:0 15px 15px 15px ;
-      padding:15px; 
-      border-bottom: 1px solid black;
-    }
-    form{
-      display:flex; 
-      flex-direction: row;
-      margin:0 15px 15px 15px;
-      flex:1;
-    }
-    form input{
-      flex: 5;
-      height:40px;
-      margin-right:5px;
-      font-size: 18px;
-    }
-    form bottom{
-      flex :2;
-    }
-  </style>
+   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="wrapper">
@@ -105,9 +29,9 @@
   </div>
   <script>
      const addItems = document.querySelector('.add-item');
-     const itemList = document.querySelector('.plates');
-     const items = [];
-
+     const itemsList = document.querySelector('.plates');
+     const items = JSON.parse(localStorage.getItem('items')) || [];
+     
      function addItem(e){
        console.log("helloo");
        e.preventDefault(); /*html 에서 a 태그나 submit 태그는 고유의 동작이 있다. 페이지를 이동시킨다거나 form 안에 있는 input 등을 전송한다던가 그러한 동작이 있는데 e.preventDefault 는 그 동작을 중단시킨다. */
@@ -116,15 +40,23 @@
        const item = {
          txt, 
          done:false
-       };
-
+       }; 
        items.push(item);
-       this.reset();
-
-       console.log(items);
+       populateList(items, itemsList);
+       localStorage.setItem('items', JSON.stringify(items));
+       this.reset(); 
+       console.log(items);      
      }
 
+     function populateList(plates = [], plateList){
+      plateList.innerHTML = plates.map((plate, i)=>{
+                                return `<li>${plate.txt}</li>`;
+                            }).join('');
+     } 
+ 
+
      addItems.addEventListener('submit', addItem);
+     populateList(items, itemsList);
 
   </script>
 </body>

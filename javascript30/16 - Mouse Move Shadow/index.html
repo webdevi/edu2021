@@ -27,4 +27,33 @@
     <h1 contenteditable="">🔥WOAH!</h1>
   </div>
 </body>
+<script>
+  const hero = document.querySelector('.hero');
+  const text = hero.querySelector('h1');
+  let walk = 500; 
+
+  function shadow(e){
+    let {offsetX : x, offsetY : y} = e;
+    const {offsetWidth: width , offsetHeight : height } = hero;
+    // console.log(x, y, width, height, e.target.offsetL?eft, e.target.offsetTop );
+
+    if(e.target != this){
+      // console.log('text부분이당. ');
+      x = x + e.target.offsetLeft;
+      y = y + e.target.offsetTop;
+    }
+     // console.log(x, y, width, height);
+    const xWidth = Math.round((x / width * walk) - (walk /2 )) ; 
+    const xHeight = Math.round((y / height * walk) - (walk /2 )) ;  
+
+    text.style.textShadow = `
+     ${xWidth}px ${xHeight}px 0 red,
+     ${xWidth* -1}px ${xHeight}px 0 green,
+     ${xHeight}px ${xWidth*-1}px 0 yellow,
+     ${xHeight* -1}px ${xWidth}px 0 skyblue
+     `;
+    // console.log(`?: ${xWidth}   xHeight: ${xHeight}`); 
+  }
+  hero.addEventListener('mousemove', shadow);
+ </script>
 </html>

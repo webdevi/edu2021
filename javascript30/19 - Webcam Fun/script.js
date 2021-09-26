@@ -29,6 +29,9 @@ function paintToCanvas(){
   
   return setInterval(() => {
     ctx.drawImage(video, 0, 0, width, height);
+    const pixels = ctx.getImageData(0, 0, width, height); 
+    console.log(pixels);
+    debugger;
   }, 16);
 }
 
@@ -39,8 +42,14 @@ function takePhoto(){
 
   // take the data out of the canvas 
   const data = canvas.toDataURL('image/jpeg');
-  console.log(data);
-   
+  const link = document.createElement('a'); 
+  link.href = data;
+  link.setAttribute('download', 'pretty');
+  link.innerHTML = `<img src="${data}" alt="pretty" />`;  
+  //link.textContent = 'Download Image'; 
+  // insertBefore() 특정 위치에 앞에 노드 삽입
+  //부모노드.insertBefore(삽입 할 노드, 기준 점 노드);
+  strip.insertBefore(link, strip.firstChild); 
 }
 
 getVideo(); 

@@ -11,7 +11,7 @@
 <body>
   <div class="photobooth">
     <div class="controls">
-      <button onclick="takePhoto()">Take photo</button>
+      <button onclick="takePhoto()">Take photo</button> 
       <div class="rgb">
         <label for="rmin">Red Min:</label>
         <input type="range" min=0 max=255 name="rmin">
@@ -40,16 +40,5 @@
   <audio src="snap.mp3" class="snap" hidden></audio>
   
 </body>
-<script>
-  const $video = document.querySelector('.player');
-  const $canvas = document.querySelector('.photo');
-  const ctx = $canvas.getContext('2d');
-  const $strip = document.querySelector('.strip');
-  const $audio = document.querySelector('.snap'); 
-
-  // console.log(window.webkitURL);
-  // function takePhoto(){
-  //   $audio.play();
-  // }
-</script>
+<script src="script.js"></script>
 </html>

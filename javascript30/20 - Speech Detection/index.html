@@ -1,0 +1,54 @@
+<!-- 
+ 소스 : https://github.com/wesbos/JavaScript30/tree/master/20%20-%20Speech%20Detection
+ 영상 : https://courses.wesbos.com/account/access/6075912675ff3a25a5c45290/view/194128445
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <title>20 - Speech Detection</title>
+  <style>
+    body{
+      background-color: #ffc600;
+      font-family: 'helvetica neue';
+      font-weight:200;
+      font-size:20px;
+    }
+    .words{
+      width:500px;
+      background-color:white;
+      border-radius: 5px;
+      margin:50px auto; /* top bottom이 50px인 것 */ 
+      padding:1rem 2rem 1rem 5rem;
+      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);     
+      position: relative;
+      line-height: 3rem; /* 좋은 기능 */ 
+    }
+    /* https://www.youtube.com/watch?v=nvdgIsqEegQ */
+    .words:before {
+        content: '';
+        position: absolute;
+        width: 4px;
+        top: 0;
+        left: 30px;
+        bottom: 0;
+        border: 1px solid;
+        border-color: transparent #efe4e4;
+    }
+  </style>
+</head>
+<body>
+  <div class="words" contenteditable>
+    
+  </div>
+
+  <script>
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  
+  
+  </script>
+</body>
+</html>

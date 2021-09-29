@@ -46,9 +46,43 @@
   </div>
 
   <script>
-    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  
-  
+      // 크롬 서포트 적용을 위한 부분
+      window.SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      // 디바이스에서 마이크 사용 허용 요청 prompt 보여줌
+      const recognition = new SpeechRecognition();
+
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+
+      let p = document.createElement('p');
+      const words = document.querySelector('.words');
+      words.appendChild(p);
+
+      recognition.addEventListener('result', (e) => {
+        // console.log(e);
+        //음성인식된 텍스트에 접근하여 하나로 연결
+        const transcript = Array.from(e.results)
+          .map((result) => result[0])
+          .map((result) => result.transcript)
+          .join('');
+
+        // 일정 text를 포함하면 이모지로 교체
+        const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
+        p.textContent = poopScript;
+
+        //인식이 마쳐졌으면, 다시 새로운(비어있는) p tag 생성
+        if (e.results[0].isFinal) {
+          p = document.createElement('p');
+          words.appendChild(p);
+        }
+      });
+      console.log(recognition);
+
+      recognition.addEventListener('end', recognition.start);
+
+      recognition.start();
   </script>
 </body>
 </html>

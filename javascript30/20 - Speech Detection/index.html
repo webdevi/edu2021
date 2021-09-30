@@ -52,9 +52,10 @@
 
       // 디바이스에서 마이크 사용 허용 요청 prompt 보여줌
       const recognition = new SpeechRecognition();
-
+      //실시간으로 인식된 결과 값을 모두 확인하고 싶다면 true를 설정 
+      //최종 적으로 인식된 문장을 확인하고 싶다면 false를 작성
       recognition.interimResults = true;
-      recognition.lang = 'en-US';
+      recognition.lang = 'ko-KR';
 
       let p = document.createElement('p');
       const words = document.querySelector('.words');
@@ -86,3 +87,5 @@
   </script>
 </body>
 </html>
+
+<!-- 참고소스 : https://mizzo-dev.tistory.com/entry/SpeechRecognition-WebChrome-%EC%9D%8C%EC%84%B1-%EC%9D%B8%EC%8B%9D  -->

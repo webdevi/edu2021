@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <title>23 - Speech Synthesis 🔥</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head> 
+<body>
+  <div class="voiceinator">
+      <h1>The Voiceinator 5000 </h1>
+      <select name="voice" id="voices">
+        <option value="Google US English">Google US English (en-US)</option>
+        <option value="Google UK English Female">Google UK English Female (en-GB)</option>
+        <option value="Google UK English Male">Google UK English Male (en-GB)</option>
+      </select>
+      <label for="rate">Rate:</label>
+      <input name="rate" type="range" min="0" max="3" step="0.1" value="1">
+      <label for="pitch">Pitch:</label>
+      <input name="pitch" type="range" min="0" max="2" step="0.1" value="1">
+      <textarea name="speaktxt" id="speaktxt" cols="30" rows="7">Hello! I love Javascript 👍
+      </textarea>
+      <button id="stop">Stop!</button><button id="speak">speak</button>
+  </div>
+
+  <script>
+    const synth = window.speechSynthesis;
+    const msg = new SpeechSynthesisUtterance();
+    // 출처: https://sub0709.tistory.com/86
+    let voices = window.speechSynthesis.getVoices(); 
+    const $voiceDropdown = document.querySelector('#voices');
+    const $options = document.querySelectorAll('[type="range"]');
+    const $speakButton = document.querySelector('#speak');
+    const $stopButton = document.querySelector('#stop');
+ 
+    
+    function speakVoice(){
+      const txt = document.querySelector("#speaktxt").textContent;     
+      // const lang = $voiceDropdown.value.split(' ')[0];
+      // const voicekind = $voiceDropdown.value.split(' ')[1] ? null : 'Female';
+      // console.log(lang, voicekind);
+
+      msg.text  = txt;
+      // msg.lang = lang;
+      // msg.voice = voices;
+      synth.speak(msg);
+    }; 
+    function stopVoice(){
+      event.preventDefault();
+      synth.cancel();
+    }
+    $speakButton.addEventListener('click', speakVoice);
+    $stopButton.addEventListener('click', stopVoice);
+    // $options.forEach((option)=>{
+    //   console.log(option.name);
+    //   option.addEventListener('change', (e)=>{
+    //       console.log(option.value);
+    //       msg.rate = option.value;
+    //   }); 
+    // });
+    // $options.forEach(option, option.addEventListener('change', (e)=>{
+    //     console.log(e);
+    // });
+ 
+
+    
+  </script>
+</body>
+</html>

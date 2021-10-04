@@ -1,0 +1,99 @@
+html{
+  font-size:10px;
+  font-family: 'Lobster', cursive;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body{
+  margin: 0;
+  padding: 0; 
+  background-color: #3BC1AC;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  background-image:
+    radial-gradient(circle at 100% 150%, #3BC1AC 24%, #42D2BB 25%, #42D2BB 28%, #3BC1AC 29%, #3BC1AC 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent),
+    radial-gradient(circle at 0    150%, #3BC1AC 24%, #42D2BB 25%, #42D2BB 28%, #3BC1AC 29%, #3BC1AC 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent),
+    radial-gradient(circle at 50%  100%, #42D2BB 10%, #3BC1AC 11%, #3BC1AC 23%, #42D2BB 24%, #42D2BB 30%, #3BC1AC 31%, #3BC1AC 43%, #42D2BB 44%, #42D2BB 50%, #3BC1AC 51%, #3BC1AC 63%, #42D2BB 64%, #42D2BB 71%, transparent 71%, transparent),
+    radial-gradient(circle at 100% 50%, #42D2BB 5%, #3BC1AC 6%, #3BC1AC 15%, #42D2BB 16%, #42D2BB 20%, #3BC1AC 21%, #3BC1AC 30%, #42D2BB 31%, #42D2BB 35%, #3BC1AC 36%, #3BC1AC 45%, #42D2BB 46%, #42D2BB 49%, transparent 50%, transparent),
+    radial-gradient(circle at 0    50%, #42D2BB 5%, #3BC1AC 6%, #3BC1AC 15%, #42D2BB 16%, #42D2BB 20%, #3BC1AC 21%, #3BC1AC 30%, #42D2BB 31%, #42D2BB 35%, #3BC1AC 36%, #3BC1AC 45%, #42D2BB 46%, #42D2BB 49%, transparent 50%, transparent);
+  background-size:100px 50px;
+  background-attachment: fixed;
+} 
+
+.voiceinator{
+  border-radius:1rem;
+  width:500px;
+  margin:0 auto;    
+  position: relative;
+  
+  overflow:hidden;
+  background-color: white;
+  box-shadow:0 0 5px 5px rgba(0, 0, 0, 0.1) ;
+}  
+.voiceinator select,
+.voiceinator button,
+.voiceinator input,
+.voiceinator textarea{
+  display: block;
+}
+label{
+  font-size:1em;
+  font-family: sans-serif;
+  padding:10px 0 0 18px ;
+}  
+h1{ 
+  font-size:4.5em;
+  height:70px;
+  background : #F3C010;
+  margin:0px;
+
+  padding:35px 0 80px 0 ; 
+  text-align: center;    
+  border-bottom: 5px solid #F3C010
+}  
+select{
+  background-color:rgba(0, 0, 0, 0.1);
+  border:none;    
+  margin:15px;
+  padding:12px;
+  font-size:15pt;
+  width: 92%;
+}
+input[type="range"]{
+  width:93%;
+  margin:10px auto; 
+}
+textarea{
+  margin:15px;
+  padding:12px;
+  border: none;
+  background-color:rgba(0, 0, 0, 0.1);
+  font-size:2em;
+  width: 92%;
+}
+button{
+  background-color: #F3C010;
+  border:none;
+  padding:10px;
+  margin:10px; 
+  display:inline; 
+  position:relative;
+  float:left;
+  font-size:1.4em;
+  width:45%;
+  cursor: pointer;
+  border-bottom: 5px solid #F3C010; 
+  font-size:2.5em;
+  font-family: 'Lobster', cursive;
+}
+
+.voiceinator button:active {
+  top: 2px;
+}
+
+.voiceinator button:nth-of-type(1) {
+  margin-right: 2%;
+}

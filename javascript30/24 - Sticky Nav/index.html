@@ -55,16 +55,23 @@
     }
     .site-wrap img{
       display: block;
-      margin:30px 0 30px 0;
-      
+      margin:30px 0 30px 0; 
     }
+    .fixed{
+      position:fixed;
+      top: 0px; 
+      left: 0px;
+      width:100%;
+      z-index:10;
+      transform: 2s;
+    } 
   </style>
 </head>
 <body>
   <header>
     <h1>A story about getting lost.</h1>
   </header>
-  <nav>
+  <nav id="main" >
     <ul>
       <li>HOME</li>
       <li>ABOUT</li>
@@ -96,7 +103,25 @@
     Delectus voluptatem asperiores, commodi reiciendis quos ipsa incidunt libero nesciunt totam id consectetur repellendus suscipit et dignissimos. Minus molestias maiores, velit incidunt quo, obcaecati omnis repudiandae rerum ducimus sapiente beatae.
     At odio adipisci laboriosam natus rem? Nemo quia libero dignissimos minus alias soluta officiis temporibus quibusdam consequuntur, pariatur praesentium nesciunt exercitationem voluptas assumenda illo impedit. Provident aut dolores non sunt!
     Fugiat ab a voluptatibus, autem accusamus alias. Exercitationem ea esse repudiandae dolor voluptate amet, sed aut. Distinctio nam nostrum similique a ad perspiciatis reprehenderit maxime quas maiores soluta, accusantium ullam.
-  </div>
-  
-</body>
+  </div> 
+</body> 
+<script>
+  const $header = document.querySelector("header"); 
+  const $nav = document.querySelector("#main");
+  let fixed = false; 
+
+  function fixToggle(){
+    let p2 = $header.getBoundingClientRect(); 
+
+    if(p2.height + p2.y <= 0 ){
+      console.log('멈췃!');    
+      $nav.classList.add('fixed');
+    }
+    else{
+      console.log('풀어랏');          
+      $nav.classList.remove('fixed');
+    } 
+  } 
+  window.addEventListener('scroll',fixToggle);  
+</script>
 </html>

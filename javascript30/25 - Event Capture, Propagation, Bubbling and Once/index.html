@@ -43,8 +43,32 @@
   }
 </style>
 
-<button></button>
+<button>CLICK</button>
 <script>
+  const $divs = document.querySelectorAll('div');
+  const $btn = document.querySelector('button');
+
+  function logtext(e){
+      console.log(this.classList.value); // event가 실행되는 요소
+      //console.log(e); // click point관련 정보 
+      //e.stopPropagation(); // stop bubbling!;
+      //이벤트를 완전히 처리하고 난 후 버블링을 중단하도록 명령
+      //거의 사용하지 않음. 
+  }
+  // 1) 캡쳐링 : 이벤트가 최상위에서 시작해 아래로 전파 
+  //$divs.forEach(div=>div.addEventListener('click', logtext, true)); 
+  // 2) 버블링 : 이벤트가 타깃 요소에 도착해 실행된 후(타깃 단계), 다시 위로 전파됩니다 
+    $divs.forEach(div=>div.addEventListener('click', logtext, {
+      capture:false, 
+      once:true  // 한번만 실행하게 함 
+    })); 
+  // document.body.addEventListener('click', logtext, true);
+    $btn.addEventListener('click', ()=>{
+        console.log('click!!!!');        
+        
+    }, {
+      once: true 
+    });
 
 </script>
 </body>

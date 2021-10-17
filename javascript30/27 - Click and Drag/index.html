@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <title>27 - Click and Drag</title>
+</head>
+<style>
+  *{list-style: none;}
+  body{
+    background :url("https://source.unsplash.com/random/1920x1080/?Mountains")  no-repeat center center fixed; 
+    background-size: cover;
+  }
+  .items{
+    width:90%;    
+    margin:50px auto;    
+    min-height:500px;
+    display:flex; 
+    border:1px solid white;
+    overflow: hidden; 
+    padding:50px ;
+    overflow-x:scroll;
+    overflow-y:hidden;
+  
+    transition: all 0.2s;
+    transform: scale(0.98);
+    /* will-change: transform; */
+    perspective:1000px;
+    white-space:nowrap; 
+    cursor:pointer;
+  }
+  .item{   
+    flex:1;
+    font-size:100px;
+    min-width:200px;
+    height:calc(100% -60px);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid rgba(0, 0, 0, 0.2);
+    color:rgba(0, 0, 0, 0.3);   
+  }
+  .items.active{
+    transform: scale(1.001);
+    background-color:rgba(255, 255, 255, 0.3);
+    cursor:grabbing;
+  }
+  /* 홀수 */
+  .item:nth-child(odd){
+    transform:scaleX(1.31) rotateY(-40deg);
+  }
+  .item:nth-child(even){
+    transform:scaleX(1.31) rotateY(40deg);
+  }   
+  .item:nth-child(9n+1) { background: dodgerblue;}
+  .item:nth-child(9n+2) { background: goldenrod;}
+  .item:nth-child(9n+3) { background: paleturquoise;}
+  .item:nth-child(9n+4) { background: gold;}
+  .item:nth-child(9n+5) { background: cadetblue;}
+  .item:nth-child(9n+6) { background: tomato;}
+  .item:nth-child(9n+7) { background: lightcoral;}
+  .item:nth-child(9n+8) { background: darkslateblue;}
+  .item:nth-child(9n+9) { background: rebeccapurple;}
+</style>
+<body> 
+  <div class="items"> 
+    <div class="item item1">01</div>
+    <div class="item item2">02</div>
+    <div class="item item3">03</div>
+    <div class="item item4">04</div>
+    <div class="item item5">05</div>
+    <div class="item item6">06</div>
+    <div class="item item7">07</div>
+    <div class="item item8">08</div>
+    <div class="item item9">09</div>
+    <div class="item item10">10</div>
+    <div class="item item11">11</div>
+    <div class="item item12">12</div>
+    <div class="item item13">13</div>
+    <div class="item item14">14</div>
+    <div class="item item15">15</div>
+    <div class="item item16">16</div>
+    <div class="item item17">17</div>
+    <div class="item item18">18</div>
+    <div class="item item19">19</div>
+    <div class="item item20">20</div>
+    <div class="item item21">21</div>
+    <div class="item item22">22</div>
+    <div class="item item23">23</div>
+    <div class="item item24">24</div>
+    <div class="item item25">25</div>
+  </div>
+</body>
+<script>
+  const $slider = document.querySelector(".items"); 
+  let isDown = false; 
+  let startX;
+  let scrollLeft;
+
+  $slider.addEventListener("mousedown", (e)=>{ 
+    isDown = true;  
+    $slider.classList.add('active');
+    //시작점 
+    startX = e.pageX - $slider.offsetLeft;
+    scrollLeft = $slider.scrollLeft;
+    console.log(startX, scrollLeft);
+  });
+  $slider.addEventListener("mouseleave", ()=>{
+    isDown = false;  
+    $slider.classList.remove('active');
+  }); 
+  $slider.addEventListener("mouseup", ()=>{
+    isDown = false; 
+    $slider.classList.remove('active');
+  });
+  $slider.addEventListener("mousemove", (e)=>{ 
+    if(!isDown){      
+      return;
+    }
+    // * preventDefault()는 브라우저 고유의 행동을 막아주는 함수
+    // * stopPropagation()은 부모 엘리먼트로의 이벤트 전달을 막아주는 함수
+    // 브라우저 고유의 동작을 중단시켜주는 역할
+    e.preventDefault(); 
+    
+    // x : mouse가 이동하면서 startX로부터 멀어져가는 값을 측정하기 위하여
+    const x =  e.pageX - $slider.offsetLeft;
+    // walk : 최초시작점(startX)부터 mouse가 움직인 px 값차이를 의미
+    const walk = (x - startX)*2;
+    //슬라이드 이동은 scrollLeft의 값과 반대로 증감해야하므로 - 부호 붙임
+    //scollLeft 값은 최초 클릭했을 당시의 값을 저장해둔 것임, -=으로 하면 급격히 스크롤되는 오류 발생
+    $slider.scrollLeft = scrollLeft - walk; 
+  });
+  
+</script>
+</html>

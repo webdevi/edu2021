@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <title>28 - Video Speed Controller</title>
+  <style>
+    body{
+      background:url("https://source.unsplash.com/weekly?water") no-repeat center center fixed; 
+      background-size: cover;
+      margin:0; 
+      display:flex;
+      flex-direction:row;
+      justify-content: center;
+      align-items:center;
+      min-height:100vh;
+      margin:0 auto;
+    }
+    .wrap{       
+      display:flex;
+    }
+    video{
+      border:10px solid rgba(255, 255, 255, 0.1);
+      
+    }
+    .speed-bar{
+      display:flex;
+      justify-content: center;
+      align-items: center;      
+      width:60px;
+      height:100px;
+      z-index:-1;
+      background:linear-gradient(purple, skyblue);      
+     
+      color:white;      
+    }
+    .speed{
+      background-color:white;
+      margin-left:20px;      
+      border-radius:50px;
+      overflow: hidden;
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    } 
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <video controls  src="../11 - Custom Video Player/652333414.mp4"></video>
+    <div class="speed"> 
+       <div class="speed-bar">1x</div>
+    </div>
+  </div>
+
+  <script>
+    const $video = document.querySelector('video'); 
+    const $speed = document.querySelector('.speed');
+    const $speedBar = document.querySelector('.speed-bar');
+    let startH = $speedBar.clientHeight;
+
+    $speed.addEventListener('mousemove', (e)=>{
+      // console.log(e.offsetY, $speedBar.clientHeight);
+      $speedBar.style.height = `${e.offsetY}px`;
+      const h = e.offsetY / startH; 
+      $speedBar.innerHTML = `${h}x`; 
+      $video.playbackRate = h; //속도 
+    });
+ 
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="#"> 
+  <title>30 - Whack A Mole</title>
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet" type="text/css">
+  <style>
+    body{
+      background-color: #FA8BFF;
+      background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
+
+      min-height:100vh;
+      font-family: 'Amatic SC', cursive;
+      font-size: 10px;
+      margin:0px;
+      padding:0px;
+    }
+    h1{
+      font-size:10em;
+      text-align:center;
+    }
+    .score{
+      width:100px;
+      padding:0 30px 0 30px;
+      border-radius: 10px;
+
+      background-color:rgba(219, 219, 118, 0.8);
+    }
+    .hole{
+      background:url('dirt.svg') bottom center no-repeat; 
+      background-size:cover;
+      width:200px;
+      height:200px;
+
+    }
+  </style>
+</head>
+<body>
+  <h1>WHACK-A-MOLE!
+    <span class="score"></span>
+  </h1>
+  <button>start!</button>
+  <div class="game">
+    <div class="hole hole1"><div class="mole">1</div></div>
+    <div class="hole hole2"><div class="mole">2</div></div>
+    <div class="hole hole3"><div class="mole"></div></div>
+    <div class="hole hole4"><div class="mole"></div></div>
+    <div class="hole hole5"><div class="mole"></div></div>
+    <div class="hole hole6"><div class="mole"></div></div>
+  </div>  
+  <script>
+
+  </script>
+</body>
+</html>

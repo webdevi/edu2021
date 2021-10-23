@@ -71,7 +71,7 @@
   <h1>WHACK-A-MOLE!
     <span class="score">0</span>
   </h1>
-  <button>start!</button>
+  <button onclick="start()">start!</button>
   <div class="game">
     <div class="hole hole1"><div class="mole"></div></div>
     <div class="hole hole2"><div class="mole"></div></div>
@@ -81,8 +81,19 @@
     <div class="hole hole6"><div class="mole"></div></div>
   </div>  
   <script>
-    const $mole = document.querySelectorAll('.mole');
+    const $moles = document.querySelectorAll('.mole');
+    const $btn = document.querySelector('bottom');
     
+    function start(){
+      console.log(this);
+      // $mole[1].classList.add("up");
+    }
+
+    $moles.forEach(mole=>{
+      console.log(mole);
+    });
+
+    // $btn.addEventListener('click', start);
 
   </script>
 </body>

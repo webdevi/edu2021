@@ -83,16 +83,44 @@
   <script>
     const $moles = document.querySelectorAll('.mole');
     const $btn = document.querySelector('bottom');
+    const $score = document.querySelector('.score');
     
-    function start(){
-      console.log(this);
-      // $mole[1].classList.add("up");
+    let st  ; 
+    let lastid ; 
+    let loopcnt = 10;
+    let cnt = 0; 
+
+    function startGame(){
+      if(loopcnt === 1) clearInterval(st);
+      
+      let j = Math.floor(Math.random() * ($moles.length + 1));      
+      
+      if(lastid === j) return;      
+      $moles[j].classList.add("up");
+      
+      console.log(loopcnt, lastid,j); 
+      lastid = j; 
+      setTimeout(function() {
+        $moles[j].classList.remove('up');    
+        loopcnt--; 
+        
+        }, 800);  
+    }
+    function countUp(){
+      cnt++;
+      $score.textContent= cnt;
     }
 
     $moles.forEach(mole=>{
-      console.log(mole);
+      mole.addEventListener('click', countUp);
     });
 
+    function start(){
+      clearInterval(st);
+      loopcnt = 10;
+      st  = setInterval(startGame, 600);
+    }
+ 
     // $btn.addEventListener('click', start);
 
   </script>

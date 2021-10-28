@@ -1,0 +1,105 @@
+body, ul{
+  margin:0;
+  padding:0;
+}
+
+li{
+  list-style-type: none;
+}
+
+a{
+  color:inherit;
+  text-decoration: none;
+}
+body{
+  background-color:#222;
+  color:#999;
+}
+
+.menu{
+  background-color:#222;
+  border-radius:40px;
+  box-shadow:-0.2em -0.2em 10px #555
+            , 0.2em 0.2em 10px #111;
+  color:#666;
+
+  /* 가운데 정렬 */
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  
+  font-size:2rem;
+
+  /* 직계 자식만 가로 정렬 */
+  display:flex; 
+  text-align: center;
+
+  line-height:1;  /*폰트사이즈와 동일한 간격*/ 
+  padding:0 0.8em;
+
+  font-family:'arial';
+  letter-spacing:0.2em;
+  text-indent: 0.2em;
+}
+.menu-item{
+  position:relative;
+}
+.menu-item a{
+  padding:0.4em;
+  display:block;
+}
+.menu-sub{
+  background-color:black;
+  white-space:nowrap; /*무조건 한줄로 나오도록 */ 
+  position:absolute;
+  left:50%; /*메뉴기준으로 absolute잡힘*/ 
+  top:20px;
+  transform:translate(-50%, 1.8em);
+  opacity: 0;
+  
+  pointer-events:none;
+
+  transition: all .4s;
+}
+
+.menu-item:hover{
+color:lime;
+}
+
+
+/* 안보이는 영역을 잡아줌 */
+.menu-sub:before{
+  content:' ';
+  position:absolute; 
+  left:0;
+  top:-20px; 
+  right:0px;
+  height:20px;
+  /* background-color:red;   */
+}
+/* 화살표 디자인 */
+.menu-sub:after{
+  content:' ';
+  position:absolute; 
+  left:50%;
+  top:-19px; 
+  transform:translateX(-50%);
+  width:0;
+  height:0;
+
+  /* 화살표 모양 생성 */
+  border-width:10px;
+  border-style:solid;
+  border-color:transparent  transparent black transparent ; 
+}
+.menu-item:hover .menu-sub{
+  opacity:1;
+  pointer-events:auto; /* ie에서 쓸수 없다 */ 
+  /* top:0; */
+}
+
+.menu-sub a{
+  font-size: 16px;
+  color:#666;
+}

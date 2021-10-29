@@ -1,0 +1,98 @@
+body, ul, h1, h2, p {
+  margin:0;
+  padding:0;  
+}
+li{
+  list-style-type: none;
+}
+img{
+  vertical-align:top;
+} 
+body{
+  background-color: black; 
+  color:#999; 
+} 
+.title{
+  font-size:1.5em;
+  width:max-content;
+  color:#999;  
+  letter-spacing:0.4em;
+  /* width:max-content;ie9지원안됨 
+     border-bottom:5px solid; 이렇게 하면
+     뒤에 삐져나오는 부분이 있어서 ... 다른방법으로
+  */
+  position:relative;
+  margin:30px 0;
+  transition: all 0.4s;
+}
+
+.title:hover{
+  color:#fff; 
+}
+/* .title:hover::before{
+  margin-right:0.4em;
+} */
+.title:before{
+   content:' ';
+   background-color:currentColor;
+   position:absolute; 
+   /* transition: margin 0.4s; */
+   left:0;
+   right:0;
+   margin-right:0.4em;
+   bottom:-0.2em;    
+   height:0.2em; 
+}
+
+.wrapper{
+  background-color: #333;
+  width:1000px;
+  margin:0 auto;
+  display:flex;
+  flex-direction: column; 
+}
+
+.food{
+  display:flex;
+  flex-direction: row;
+}
+.food-item{
+  width:33.3333333%;
+  overflow: hidden;
+  transition: all 0.4s;
+  display:flex;
+  justify-content:center;
+  position:relative;
+  opacity: 0.7;
+} 
+.food-item-cover{
+   flex-shrink: 0;
+}
+.food:hover .food-itme{
+  width:25%;
+}
+.food-item:hover{
+  width:50%;
+  opacity: 1;
+}
+.food-item-contents{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color:rgba(0, 0, 0 , 0.95);
+  margin:20px;
+  padding:20px;
+  overflow:hidden;
+}
+.food-item.cookie h2{ color:orangered;}
+.food-item.cake h2{ color:pink;}
+.food-item.crepe h2{ color:yellow;}
+
+.food-item-contents h2{
+  margin-bottom:10px;
+}
+
+.food-item-contents p{
+  width:400px;  
+}

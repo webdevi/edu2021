@@ -1,4 +1,4 @@
-body, ul, li, p{
+body, ul, li, p, h1, h2{
   padding:0;
   margin:0;  
   font-family: 'arial'; 
@@ -20,65 +20,89 @@ body{
   text-align: center;
   font-size:2.5em;
   color:#333;  
+  padding-bottom:40px;
+  margin:50px 0 30px 0;
 }
-.price{
-  width:100%; 
-  display:flex;  
+.price-item-header, 
+.price-item-footer{
+  padding:20px;
+  text-align: center;
 }
-.price-item{
-  width:33%;
-  margin-left: 10px;
-  padding:0;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 5px;  
-  background-color: white;
-}
-.most{
-  box-shadow:3px 3px 5px rgba(139, 139, 139, 0.3)
-            ,-3px -3px 5px rgba(139, 139, 139, 0.3) ;
-  margin: -20px 10px;
-}
-.price-item-header{
-  text-align:center;
-  padding-bottom:20px;
+.price-item-header{ 
+
 }
 .price-item-contents{
   background-color:#eee;
-  padding: 10px 0 10px 0; 
-  display:flex;  
+  padding: 20px;  
+  display:flex;   
 }
 .price-item-footer{   
   text-decoration: none;
   text-align: center;
-  padding-top:20px;
-  justify-content: bottom;
-}
-.tag{
  
+  justify-content: bottom;
+  margin-top:auto;
+}
+
+.price{
+  /* width:100%;  */
+  display:flex;  
+  margin:0 -20px;  
+}
+.price-item{
+  flex-basis:33.333333%;  
+  margin:0 20px; 
+  border: 1px solid rgba(0, 0, 0, 0.3);
+   border-radius: 5px;  
+  background-color: white;
+  display:flex;
+  flex-direction:column;
+}
+.most{
+  box-shadow:3px 3px 5px rgba(139, 139, 139, 0.3)
+            ,-3px -3px 5px rgba(139, 139, 139, 0.3) ;
+  margin: -20px 20px;
+  
+}
+
+.tag{
+  display:flex;
+  justify-content: center;
+  align-items: center; 
 }
 .tag strong{
   font-size:1.6em;
+  margin-right:4px;
 }
 /* .tag span{
   background-color: chartreuse;    
 } */
-.price-item-footer .button{
+.button{
   margin:17px;
   padding:18px;
   display:block;
   background-color:rgb(18, 139, 238);
   color:white;
   text-decoration: none;
+  transition: all .4s;
+}
+.button:hover{
+  background-color: rgb(5, 5, 133);
+}
+.list{
+  line-height: 1.4em;  
 }
 .list-item{    
   display:flex;
-  line-height: 1.6em;  
+  align-content: center;  
+  margin-bottom:8px;
 }
 .list-item-icon{
-  fill:currentColor;
+  fill:currentColor; /* svg라서 */ 
   color:green;
-  flex-shrink: 0;  
-  padding:0 10px 0 10px;
+  flex-shrink: 0; /*  flex에 의해서 오브젝트가 작아지지 않음 */  
+  margin-right:0.4em;
+  margin-top:2px;
 }
 .list-item p{  
   display:block;

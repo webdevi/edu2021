@@ -1,0 +1,103 @@
+body, ul, li, h2, span, p{
+  margin:0;
+  padding:0;
+  
+}
+body{
+  background-color:#000;
+}
+li{
+  list-style-type:none;
+}
+.wrapper{  
+  display:flex;
+  justify-content: center;
+  align-items: center; 
+  height:100vh;
+}
+.team{ 
+  display:flex;
+  justify-content: center;
+  align-items: center; 
+}
+.team-item{
+  flex-basis:200px;
+  flex-shrink: 0; /* 기본 사이즈가 축소되지 않도록 */ 
+  margin:0 4px;
+  opacity:0.4;
+  transition: all .4s;  
+}
+.team-item:hover {
+  opacity:1;
+  /* transform:scale(1.2); 이렇게 하면 겹침*/
+  flex-basis:280px;
+  margin:0 20px; /* hover되었을 때 좌우를 밀어냄 */ 
+} 
+.team-item img{
+  width:100%; /*부모크기만큼 꽉 찬다*/ 
+}
+
+
+.profile{
+  background-color: #222;  
+  position: relative;
+  overflow: hidden;
+}
+.profile:before{
+  content:' ';
+  /* background:linear-gradient(360deg, rgba(0, 0, 0, 0.8) 10%, rgba(0, 0, 0, 0) ); */
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.95+100 */
+background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.95) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.95) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#f2000000',GradientType=0 ); /* IE6-9 */
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
+  height:200px;
+}
+
+.profile_red{ color:rgb(253, 89, 89);}
+.profile_beige{ color:beige;}
+.profile_green{ color:green;}
+.profile_pink{ color:pink;}
+.profile_purple{ color:rgb(190, 86, 250);}
+
+.profile-contents{  
+  position:absolute; /* 공간을 차지하지 않고 위로 뜨게*/ 
+  left:0;
+  /* top:270px;   */
+  bottom:0; /*bottom을 기준으로 */  
+  padding:10px;
+} 
+.profile-contents h2{
+  font-size:1.5em;
+}
+.profile-contents span{ 
+   display:block;
+   font-size:0.7em;  
+
+}
+
+.profile-contents p{
+  color:white;   
+  font-size:0.9em;
+  line-height:1.2em; 
+    
+  /*처음에 안보이도록*/
+  max-height:0; 
+  overflow:hidden;
+  opacity:0;
+  margin-bottom:5px;
+  margin-top:10px;
+  transition: all 1s;
+}   
+
+.team-item:hover .profile-contents p{
+  /* max-height:200px; */
+  max-height: 6em; /* line-height:1.2라고할 때 5줄이 나오게 하려면 */ 
+  opacity: 1;
+  transition-delay: 0.4s;
+}   
+

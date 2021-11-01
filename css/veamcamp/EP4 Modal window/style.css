@@ -61,9 +61,8 @@ body{
   flex-basis:820px;
   color: #aaa;  
   display:flex;  
-  justify-content: center;  
-  align-items: center;  
-  margin:0px auto;   
+  transition:all 2s;
+  margin:0 20px;   
   font-size:1.05em;
   transform: translateY(-150%);
   background-color: rgb(31, 31, 31); 

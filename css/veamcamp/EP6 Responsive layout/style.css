@@ -41,9 +41,16 @@ h1{
 }
 
 @media (max-width:720px){
-
-  .container{       
-    margin:0 auto;
+  .container{
+    margin:0;
+  }
+  .container, 
+  .cover, 
+  .contents{
+    display: block;
+    width:auto;
+  }
+  .container{ 
     display:block;
     position:relative;
   } 

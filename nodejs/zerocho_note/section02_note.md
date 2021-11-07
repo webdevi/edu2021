@@ -22,7 +22,7 @@
   - 다른 파일에서 `require(파일경로)`로 그 모듈의 내용을 가져올 수 있음.
 
 > var.js 
-<pre>
+```javascript
   const odd = '홀수입니다';
   const even = '짝수입니다.';
 
@@ -30,10 +30,10 @@
     odd, 
     even, 
   }; // 객체를 넘김 
-</pre>
+````
 
 >func.js
-<pre>
+```javascript
 const {odd, even} = require('./var');
 function checkOddorEven(num){
   if(num%2){
@@ -42,15 +42,15 @@ function checkOddorEven(num){
   return even; 
 }
 module.exports = checkOddorEven; 
-</pre>
+````
 
 >index.js
-<pre>
+```javascript 
   const {odd, even} = require('./var');
   const checkNumber = require('./func');
 
   ..... 
-</pre>
+````
 * 자바스크립트 자체 모듈 시스템 문법이 생김(es2015모듈)
   * 아직 노드에서의 지원은 완벽하지 않음. (2020년 당시.. 현재는?)
   * mjs 확장자를 사용해야 함. 
@@ -106,12 +106,13 @@ module.exports = checkOddorEven;
   * 동일한 이유는 module.exports와 exports가 참조관계이기 때문 / **같이쓸 수는 없음** 
   * exports에 객체 속성이 아닌 다른 값을 대입하면 참조관계가 깨짐
 
-<pre>
+```javascript
   exports.add = '홀수입니다';
   exports.even = '짝수입니다';
   // module.exports = {odd, even};과 동일 
   // 차이는?
-</pre>
+````
+
 
 ### this 
 * 노드에서 this를 사용할 때 주의점이 있음 
@@ -141,7 +142,7 @@ module.exports = checkOddorEven;
 ## * PROCESS 
 * 현재 실행중인 노드 프로세스에 대한 정보를 담고 있음.
   * 컴퓨터마다 출력값이 다를 수 있음 
-<pre>
+```
 $ node 
 > process.version  // 설치된 노드 버전 
 > process.arch // 프로세스 아키텍처 정보
@@ -151,7 +152,7 @@ $ node
 > process.execPath // 노드의 경로 
 > process.cwd() // 현재 프로세스가 실행되는 위치 
 > process.cpuUsage() // 현재 cpu 사용량
-</pre>
+``` 
 
 노드실행경로를 아는 방법
 > __filename, __dirname, process.cwd()
@@ -161,17 +162,20 @@ $ node
 #### [시스템 환경 변수]들이 들어 있는 객체 
 * 비밀키(데이터베이스 비밀번호, 서드파티 앱 키 등)를 보관하는 용도로 쓰임 
 * 환경변수는 process.env로 접근 가능 
-<pre>
+ 
+```javascript
 const secretID = process.env.SECRET_ID; 
 const secretCode = process.env.SECRET_CODE; 
-</pre>
+```
 * 일부 환경변수는 노드 실행시 영향을 미침
 * 예시) NODE_OPTIONS(노드실행 옵션), UV_THREADPOOL_SIZE(스레드풀 개수)
   * max-old-space-size는 노드가 사용할 수 있는 메모리를 지정하는 옵션 
-<pre>
+
+  ```ini
   NODE_OPTIONS=--max-old-space-size=8192 
   UV_THREADPOOL_SIZE=8
-</pre>
+  ```
+
 ### * process.nextTick(콜백)
 - 이벤트 루프가 다른 콜백 함수보다 nextTick의 콜백함수를 우선적으로 처리함 
   * 너무 남용하면 다른 콜백함수들 실행이 늦어짐
@@ -180,7 +184,8 @@ const secretCode = process.env.SECRET_CODE;
 
 > nextTick.js
 * 4가지 모두 백그라운드로 넘어갔다가 태스크큐로 이동
-<pre>
+ 
+ ```javascript
   setImmediate(()=>{
     console.log('즉시'); 
   }); 
@@ -191,7 +196,7 @@ const secretCode = process.env.SECRET_CODE;
     console.log('타임아웃'); 
   }, 0); 
   Promise.resolve().then(()=>console.log('promise'));
-</pre>
+ ```
 > 실행결과 
 * nextTick, promise는 microtask라 우선 실행됨 
 * nextTick, promise 사이에서는 순서가 지켜짐
@@ -215,7 +220,7 @@ promise
 ## 7. os와 path 			12:15	
 * process와 겹치는 부분이 있음 
 ## os
-<pre>
+```javascript 
 -- 운영체제 정보 
 os.arch();  // process.arch와 동일
 os.platform();  // process와 동일
@@ -235,7 +240,7 @@ os.cpus().length;
 -- 메모리 정보
 os.freemem(); // 사용가능한 메모리(RAM)을 보여줌
 os.totalmem(); // 전체 메모리 용량을 보여줌 
-</pre>
+````
 * `os.cpus()`가 많이 사용 
   - node는 싱글 쓰레드이기 때문에.. 
   - 효율적인 코어 활용을 위해서 OS에서 가용할 수 있는 코어 수를 찾기 위함 
@@ -245,7 +250,8 @@ os.totalmem(); // 전체 메모리 용량을 보여줌
 ## path 
 폴더와 파일의 경로를 쉽게 조작하도록 도와주는 모듈
   * 운영체제별로 경로 구분자가 다름 (window: '\', POSIX: '/')
-<pre>
+
+```javascript 
 const path = require('path'); 
 const string = __filename ;  // 경로 
 
@@ -268,7 +274,7 @@ path.isAbsoluter('./home');
 path.relative('c:\\users\\path.js', 'c:\\'); // a->b로 가는 방법을 알려줌 
 path.join(__dirname, '..', '..', '/users'); //주소합침/ 절대경로 나오며 무시 
 path.resolve(경로...): path.join()과 비슷. 절대경로가 나오면 절대경로를 우선으로 보여줌
-</pre>
+````
 * path.delimiter : 환경변수 구분자. process.env.PATH를 입력하면 여러개의 경로가 이 구분자로 구분되어 있습니다. window는 세미콜론(;), POSIX는 콜론(:)입니다. 
 * `join`과 `resolve`의 차이 : resolve는 /를 절대경로로 처리, join은 상대경로로 처리 
   * 상대경로 : 현재 파일 기준, 같은 경로면 점하나(.), 한단계 상위 경로면 점 두개(..)
@@ -286,10 +292,11 @@ path.resolve(경로...): path.join()과 비슷. 절대경로가 나오면 절대
 
 ![WHATWG와 노드의 주소체계](./img02.jpg)
 
-<pre>
-const url = require('url'); ----- ①
 
-</pre>
+```javascript 
+const url = require('url'); ----- ①
+````
+
  ① url 모듈 안에 URL생성자가 있음. 이 생성자에 주소를 넣어 객체로 만들면 주소가 부분별로 정리됨. 이 방식이 WHATWG의 url임. 
  WHATWG에만 있는 username, password, origin, searchParam 속성이 존재. 
 
@@ -354,7 +361,7 @@ WHATWG 방식으로 구분하기 어려움으로 기존 방식을 사용해야 �
 #### 대칭형 암호화(암호문 복호화 가능)
 * Key가 사용됨
 * 암호화할 때와 복호화할 때 같은 Key를 사용해야 함.
-<pre>
+```javascript
 const crypto = require('crypto');
 
 const algorithm = 'aes-256-cbc';
@@ -365,7 +372,7 @@ const cipher = crypto.createCipheriv(algorithm, key, iv);
 let result = cipher.update('암호화할 문장', 'utf8', 'base64');
 result += cipher.final('base64'); 
 console.log('암호화:', result);
-</pre>
+````
 > 생각보다 보안에 취약 : 해커들이 key를 훔치려고 하고, 훔칠 가능성이 높음    
 > front와 server관계(한쪽이 공개적인 경우)에서는 사용할 수 없음 (key를 개발자 도구에서 다 보임)   
 > createCipher`iv` : 취약점땜에 iv 추가   
@@ -435,16 +442,136 @@ console.log('암호화:', result);
   * dgram : UDP와 관련된 작업을 할 때 사용합니다. 
   * v8 : V8 엔진에 직접 접근할 때 사용합니다. 
   * vm : 가상머신에 직접 접근할 때 사용합니다. 
-------------------------------
-
-
-
-
+------------------------------ 
 ## 12. 파일 시스템 사용하기		16:50	
+
+### fs
+* 파일 시스템에 접근하는 모듈
+  * 파일/폴더 생성, 삭제, 읽기, 쓰기 가능
+  * 웹 브라우저에서는 제한적이었으나 노드는 권한을 가지고 있음
+
+```javascript 
+const fs = require('fs').promises;
+// 파일 읽기 
+fs.readFile('./readme.txt')
+      .then(()=>{
+        console.log(data);
+        console.log(data.toString()); 
+      })
+      .catch((err)=>{
+        throw err; 
+      });      
+
+// 파일 쓰기 
+fs.writeFile('./writeme.txt', '작성할 글' )
+      .then(()=>{
+        return fs.readFile('/writeme.txt')
+      })
+      .then((data)=>{
+        // 프로미스 체인
+        console.log(data.toString());
+      })
+      .catch((err)=>{
+        throw err; 
+      });      
+
+````
+### 동기 메서드와 비동기 메서드
+* 예제를 여러 번 실행해보기 
+  * 매번 순서가 다르게 실행됨 
+  * 순서에 맞게 실행하려면? 
+
+* 동기와 비동기 : 백그라운드 작업 완료 확인 여부 
+* 블로킹가 논 블로킹 : 함수가 바로 return 되는지 여부 
+* 노드에서는 대부분 `동기-블로킹` 방식과 `비동기-논블로킹` 방식임
+
+> 동기적으로 파일을 읽으려면 
+```javascript 
+const fs = require('fs');
+let data = fs.readFileSync('./readme.txt'); 
+console.log('1번', data.toString()); 
+// 서버 초기화 할 때나 필요하지
+// 실제로 서버에서 사용하면 문제가 발생함 
+```  
+
+> 비동기로 하되 순서를 지키는 것 (추천)  
+```javascript 
+const fs = require('fs');
+
+async function main() {
+  let data = await fs.readFile('./readme.txt'); 
+  console.log('1번', data.toString()); 
+  data = await fs.readFile('./readme.txt'); 
+  console.log('2번', data.toString()); 
+  data = await fs.readFile('./readme.txt'); 
+  console.log('3번', data.toString()); 
+  data = await fs.readFile('./readme.txt'); 
+  console.log('4번', data.toString()); 
+}
+main(); 
+// 서버 초기화 할 때나 필요하지
+```  
 ------------------------------
 ## 13. 버퍼와 스트림 이해하기		15:27	
+### `버퍼` : 일정한 크기로 모아두는 데이터   
+  * 일정한 크기가 되면 한 번에 처리
+  * 버퍼링 : 버퍼에 데이터가 찰 때까지 모으는 작업 
+  * 버퍼크기 = 파일크기랑 동일 
+### `스트림` : 데이터의 흐름 (`효율`)
+  * 일정한 크기로 나눠서 여러번에 걸쳐서 처리
+  * 버퍼(또는 청크)의 크기를 작게 만들어서 주기적으로 데이터를 전달 
+  * 스트리밍 : 일정한 크기의 데이터를 지속적으로 전달하는 작업 
+```javascript 
+const buffer = Buffer.from('저를 버퍼로');
+console.log(buffer);
+
+// 스트림으로 여러개의 버퍼를 받는 경우 
+// 버퍼를 합치는 작업이 필요함 
+const array = [Buffer.from('띄엄 '), Buffer.from('띄어쓰기')]; 
+console.log(Buffer.concat(array).toString()); 
+// 때때로 데이터는 없지만 버퍼를 미리 잡아둬야 하는 경우도 있다. 
+console.log(Buffer.alloc(5));
+```
+> 파일을 읽을 때 스트림으로 읽으려면    
+> 버퍼 방식에 비해 메모리를 절약할 수 있음. 
+```javascript
+const fs = require('fs');
+// createReadStream 한번에 읽는 버퍼사이즈 64kb 
+const readStream = fs.createReadStream('./readme.txt', {highWaterMark : 16 }); 
+
+const data = [];
+readStream.on('data', (chunk)=>{
+  data.push(chunk); 
+  console.log('data:', chunk, chunk.length);   
+}); 
+
+readStream.on('end', ()=>{
+  console.log('end :', Buffer.concat(data).toString()); 
+}); 
+
+// stream도 비동기이기 때문에 error처리를 잘해야 
+readStream.on('error' , (err)=>{
+  console.log('error:', err);
+}); 
+```
+
+> 글쓸 때 
+```javascript
+const fs = require('fs'); 
+
+const writeStream = fs.createWriteStream('./write.txt');
+writeStream.on('finish', ()=>{
+  console.log('파일쓰기 완료');
+}); 
+writeStream.write('이 글을 씁니다\n');
+writeStream.write('한 번 더 씁니다');
+writeStream.end();
+```
+ 
 ------------------------------
 ## 14. pipe와 스트림 메모리 효율 확인	15:32	
+
+
 ------------------------------
 ## 14. 스레드풀과 커스텀 이벤트		08:39	
 ------------------------------

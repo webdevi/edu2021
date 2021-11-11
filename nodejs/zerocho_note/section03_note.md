@@ -1,6 +1,39 @@
 # 섹션 3. http 모듈로 서버 만들기 1시간 31분
 ## 1. HTTP 서버 만들기 11:26
+### 서버와 클라이언트의 관계
+* 클라이언트가 서버로 요청(request)을 보냄
+* 서버는 요청을 처리 
+* 처리 후 클라이언트로 응답(response)을 보냄
 
+### http요청에 응답하는 노드 서버 
+* createServer로 요청 이벤트에 대기
+* req 객체는 요청에 관한정보가, res객체는 응답에 관한 정보가 담겨 있음
+
+```javascript
+const http = request('http'); 
+//비동기이므로, 항상 에러처리를 잊지말자
+const server = http.createServer((req, res)=>{
+  // 여기에 어떻게 응답할지 적습니다. 
+  res.write('hello'); 
+  res.write('server'); 
+  res.end('wow');   
+})
+  .listen(8080); 
+  // 위의 콜백을 아래로 뺄 수 있다. 
+server.on('listening',()=>{
+  console.log('8080번 포트에서 서버 대기중입니다.')); 
+}); 
+server.on('error',(error)=>{
+  console.error(error); 
+}); // 코드 수정 후 서버 재시작 해야됨
+```
+
+### localhost는 컴퓨터 내부 주소
+  * 외부에서는 접근 불가능
+
+### 포트는 서버 내에서 프로세스를 구분하는 번호 
+  * 기본적으로 http서버는 80번 포트 사용(생략가능 https 443)
+  * 다른 포트로 데이터베이스나 다른 서버 동시 연결 가능 
 ----------------------------
 ## 2. fs로 HTML 읽어 제공하기 05:41
 ----------------------------

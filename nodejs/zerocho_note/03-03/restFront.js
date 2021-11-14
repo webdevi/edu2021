@@ -8,16 +8,18 @@ async function getUser() { // 로딩 시 사용자 가져오는 함수
     Object.keys(users).map(function (key) {
       const userDiv = document.createElement('div');
       const span = document.createElement('span');
-      span.textContent = users[key];
+      const dept =  users[key]["dept"]; 
+      span.textContent = users[key]["name"] + ', ' + users[key]["dept"] ;
+      
       const edit = document.createElement('button');
       edit.textContent = '수정';
       edit.addEventListener('click', async () => { // 수정 버튼 클릭
-        const name = prompt('바꿀 이름을 입력하세요');
+        const name = prompt('바꿀 이름을 입력하세요'); 
         if (!name) {
           return alert('이름을 반드시 입력하셔야 합니다');
         }
         try {
-          await axios.put('/user/' + key, { name });
+          await axios.put('/user/' + key, { name , dept });
           getUser();
         } catch (err) {
           console.error(err);
@@ -49,14 +51,16 @@ window.onload = getUser; // 화면 로딩 시 getUser 호출
 document.getElementById('form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = e.target.username.value;
+  const dept = e.target.dept.value;
   if (!name) {
     return alert('이름을 입력하세요');
   }
   try {
-    await axios.post('/user', { name });
+    await axios.post('/user', { name, dept });
     getUser();
   } catch (err) {
     console.error(err);
   }
   e.target.username.value = '';
+  e.target.dept.value = '';
 });

@@ -21,7 +21,7 @@ http.createServer(async (req, res) => {
     const { name } = qs.parse(query);
     const expires = new Date();
     expires.setMinutes(expires.getMinutes() + 5);
-    const uniqueInt = Date.now();
+    const uniqueInt = Date.now(); //세션키 겹치지 않도록 
     session[uniqueInt] = {
       name,
       expires,
